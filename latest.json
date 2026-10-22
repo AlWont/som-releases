@@ -1,8 +1,8 @@
 {
-  "version": "0.4.1",
+  "version": "0.5.0",
   "electron": "44.5.1",
   "date": "2026-10-22",
-  "notes": "Проверочное обновление: если вы это читаете, автообновление Som работает.",
+  "notes": "Ответы на сообщения, правка (↑), удаление у себя и у обоих, реакции, поиск по переписке (Ctrl+F), голосовые сообщения.",
   "files": [
     {
       "path": "boot.js",
@@ -11,23 +11,23 @@
     },
     {
       "path": "core/bin/som-core.exe",
-      "size": 3170816,
-      "sha256": "27e94d0171810da15850739544684234f93261186fce4695620b030a8e29a899"
+      "size": 3236864,
+      "sha256": "64ef17f6441ed0ede35490f69451b2a2f77c112d2992df17cbbe14b57b75ffee"
     },
     {
       "path": "main.js",
-      "size": 20830,
-      "sha256": "975f0eed4bd1d5faca7cc8609cd33314551994f50a6fe793947fd4c4dfc19a8b"
+      "size": 21822,
+      "sha256": "8ba4cd7b1b14190ecd249191457593cbb955314ccfd1077250a567eaadb354b7"
     },
     {
       "path": "package.json",
       "size": 303,
-      "sha256": "a1081000ab970dfe44575811f228c176f36b29b423fbe712084769cf4480499c"
+      "sha256": "f276835b8d734fa7834adc056ce3ea56d4000a36a91704ca6100dbf8d645f4de"
     },
     {
       "path": "preload.cjs",
-      "size": 1640,
-      "sha256": "76a436c74c345140ee9c184bc42ee83e624a9e208d820f70779da249e38f1bea"
+      "size": 1740,
+      "sha256": "2309041cc32dd51eb2c2194f17dc8d41df636ad533bfb1a42678b237e5c7f525"
     },
     {
       "path": "renderer/assets/icon-small.svg",
@@ -51,13 +51,13 @@
     },
     {
       "path": "renderer/index.html",
-      "size": 20518,
-      "sha256": "52a3458fc5826efc956a5ae1a3922cd8c957b9b32ccd895093988ec3a671b860"
+      "size": 22505,
+      "sha256": "ae848d69e3978e4e48a52de715f7b5df3fdaec7d0ea53168a1a83c2d37b7b12c"
     },
     {
       "path": "renderer/js/app.js",
-      "size": 57311,
-      "sha256": "220df9d8c1adf8d2178f2250cbc5d9e9aae809d4a62ec29f3d5493dbe98c7e0d"
+      "size": 68605,
+      "sha256": "10c58245d057679df2d03e81f15e19719321000135e5f2d56861ec6ebaa2732f"
     },
     {
       "path": "renderer/js/call.js",
@@ -65,9 +65,14 @@
       "sha256": "cbf90d5111e15f93fbe9603bdf132508945d0f7132ec3b51f94c6178c29d3d53"
     },
     {
+      "path": "renderer/js/msgtools.js",
+      "size": 7971,
+      "sha256": "9e72ef9c8ad8f197e2518dfe63bb82307dff5809cc090211d1b54e6bddf27b1f"
+    },
+    {
       "path": "renderer/styles.css",
-      "size": 22600,
-      "sha256": "98510ff331fc76a7d80593846d349e624085f2d8c2257ba8d3945eb7d4854895"
+      "size": 29143,
+      "sha256": "fd32e6301f9303d9d3fbef082605eb88005b02332178eaf02804326da9b26b0a"
     },
     {
       "path": "renderer/vendor/ICONS-LICENSE.txt",
