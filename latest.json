@@ -1,8 +1,8 @@
 {
-  "version": "0.6.0",
+  "version": "0.7.0",
   "electron": "44.5.1",
   "date": "2026-10-22",
-  "notes": "Профили: фото, свой статус, «О себе», цвет. Статусы: в сети, не на месте (сам), не беспокоить, невидимка. Карточка друга с личной заметкой.",
+  "notes": "Редактор фото профиля (кадр, масштаб, поворот, цвет, предпросмотр), анимированные аватары из GIF и видео, баннер, статус со значком и сроком, «Играет в …», скрытие «был в сети», «не на месте» при блокировке экрана.",
   "files": [
     {
       "path": "boot.js",
@@ -11,23 +11,28 @@
     },
     {
       "path": "core/bin/som-core.exe",
-      "size": 3270656,
-      "sha256": "aa22bbd8c9313f0352ad5c63a6e6fd6c9e4bec9b06100864413b54550ecbb30c"
+      "size": 3308544,
+      "sha256": "2cc5ca5a336b4e5db7a611ec606c665a9f0ace0fc7417aeaefe3af6f76a4b2fa"
+    },
+    {
+      "path": "games.cjs",
+      "size": 6374,
+      "sha256": "900e1ef3d6236f25fb183c3e7cd7996c7626b366791d659367652c1fe5e7aaf6"
     },
     {
       "path": "main.js",
-      "size": 21983,
-      "sha256": "17b1275583b1f811f5434e3e50fb9f2a0761bf3b47d308262bf1e25d291d8a78"
+      "size": 24144,
+      "sha256": "65121167ca359acc8cceea904b7545861fff7b97ea836ad8c556b4a4e30c765c"
     },
     {
       "path": "package.json",
       "size": 303,
-      "sha256": "1a97f299e2d7e88ea4e75e535b82160489b7399ffea1a95f8737f23965742d7e"
+      "sha256": "f9945cf83763c1af77ccb0d6a9c040f65688345bac9456125b2166e9c39cddd1"
     },
     {
       "path": "preload.cjs",
-      "size": 1790,
-      "sha256": "a8cc549b074e7a0baa2c6c07d336a6b6e13d929f311949715214f2a7de3e3e73"
+      "size": 2167,
+      "sha256": "59394cbdb145322e39a9d882751c2bfad128c18f4777d6c0654f3c488f64750f"
     },
     {
       "path": "renderer/assets/icon-small.svg",
@@ -51,13 +56,18 @@
     },
     {
       "path": "renderer/index.html",
-      "size": 25062,
-      "sha256": "80cec5273bedaabfb71e732e91d3a1667cd0d6bc92b12bbedf0612b6251bc564"
+      "size": 27901,
+      "sha256": "0b7b2a55eb5330fd314715b99ca15ec67268af2a7149a5dc090634841881c7c1"
     },
     {
       "path": "renderer/js/app.js",
-      "size": 77979,
-      "sha256": "619c9ef37551db7915f4e5cbffbe7a8828c6ef4d54653790759961e3535cf6f9"
+      "size": 87505,
+      "sha256": "5239f8c6919f539808f8d54c149160d87b758768b83a5682e68746f891acf52c"
+    },
+    {
+      "path": "renderer/js/avatar-editor.js",
+      "size": 32464,
+      "sha256": "1e26796c22658fedb27b0019172f68544240dc5f5553cb31ef6eea3a1cddf7e9"
     },
     {
       "path": "renderer/js/call.js",
@@ -66,13 +76,13 @@
     },
     {
       "path": "renderer/js/msgtools.js",
-      "size": 7971,
-      "sha256": "9e72ef9c8ad8f197e2518dfe63bb82307dff5809cc090211d1b54e6bddf27b1f"
+      "size": 9109,
+      "sha256": "6fbe5653893e1c8447cbe94e9eaa0e4f3ef49df471c966656012ef59b724d101"
     },
     {
       "path": "renderer/styles.css",
-      "size": 32378,
-      "sha256": "3b840cbe7b39c74e90fb0778b21c3ae8f8d37c6f875e56af29a0b293ceb9c43c"
+      "size": 36815,
+      "sha256": "1a417d02f95164c3dcf89de3070ca6b547e91a13d27bf1794615492a750398be"
     },
     {
       "path": "renderer/vendor/ICONS-LICENSE.txt",
