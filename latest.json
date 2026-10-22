@@ -1,8 +1,8 @@
 {
-  "version": "0.5.0",
+  "version": "0.6.0",
   "electron": "44.5.1",
   "date": "2026-10-22",
-  "notes": "Ответы на сообщения, правка (↑), удаление у себя и у обоих, реакции, поиск по переписке (Ctrl+F), голосовые сообщения.",
+  "notes": "Профили: фото, свой статус, «О себе», цвет. Статусы: в сети, не на месте (сам), не беспокоить, невидимка. Карточка друга с личной заметкой.",
   "files": [
     {
       "path": "boot.js",
@@ -11,23 +11,23 @@
     },
     {
       "path": "core/bin/som-core.exe",
-      "size": 3236864,
-      "sha256": "64ef17f6441ed0ede35490f69451b2a2f77c112d2992df17cbbe14b57b75ffee"
+      "size": 3270656,
+      "sha256": "aa22bbd8c9313f0352ad5c63a6e6fd6c9e4bec9b06100864413b54550ecbb30c"
     },
     {
       "path": "main.js",
-      "size": 21822,
-      "sha256": "8ba4cd7b1b14190ecd249191457593cbb955314ccfd1077250a567eaadb354b7"
+      "size": 21983,
+      "sha256": "17b1275583b1f811f5434e3e50fb9f2a0761bf3b47d308262bf1e25d291d8a78"
     },
     {
       "path": "package.json",
       "size": 303,
-      "sha256": "f276835b8d734fa7834adc056ce3ea56d4000a36a91704ca6100dbf8d645f4de"
+      "sha256": "1a97f299e2d7e88ea4e75e535b82160489b7399ffea1a95f8737f23965742d7e"
     },
     {
       "path": "preload.cjs",
-      "size": 1740,
-      "sha256": "2309041cc32dd51eb2c2194f17dc8d41df636ad533bfb1a42678b237e5c7f525"
+      "size": 1790,
+      "sha256": "a8cc549b074e7a0baa2c6c07d336a6b6e13d929f311949715214f2a7de3e3e73"
     },
     {
       "path": "renderer/assets/icon-small.svg",
@@ -51,18 +51,18 @@
     },
     {
       "path": "renderer/index.html",
-      "size": 22505,
-      "sha256": "ae848d69e3978e4e48a52de715f7b5df3fdaec7d0ea53168a1a83c2d37b7b12c"
+      "size": 25062,
+      "sha256": "80cec5273bedaabfb71e732e91d3a1667cd0d6bc92b12bbedf0612b6251bc564"
     },
     {
       "path": "renderer/js/app.js",
-      "size": 68605,
-      "sha256": "10c58245d057679df2d03e81f15e19719321000135e5f2d56861ec6ebaa2732f"
+      "size": 77979,
+      "sha256": "619c9ef37551db7915f4e5cbffbe7a8828c6ef4d54653790759961e3535cf6f9"
     },
     {
       "path": "renderer/js/call.js",
-      "size": 36974,
-      "sha256": "cbf90d5111e15f93fbe9603bdf132508945d0f7132ec3b51f94c6178c29d3d53"
+      "size": 37096,
+      "sha256": "ce399435029727627b87203c1470e832fa749a02eaa05396d87be86c0ca0ef6b"
     },
     {
       "path": "renderer/js/msgtools.js",
@@ -71,8 +71,8 @@
     },
     {
       "path": "renderer/styles.css",
-      "size": 29143,
-      "sha256": "fd32e6301f9303d9d3fbef082605eb88005b02332178eaf02804326da9b26b0a"
+      "size": 32378,
+      "sha256": "3b840cbe7b39c74e90fb0778b21c3ae8f8d37c6f875e56af29a0b293ceb9c43c"
     },
     {
       "path": "renderer/vendor/ICONS-LICENSE.txt",
