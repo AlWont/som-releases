@@ -1,8 +1,8 @@
 {
-  "version": "0.9.0",
+  "version": "0.9.1",
   "electron": "44.5.1",
   "date": "2026-10-23",
-  "notes": "«Избранное» для заметок и сохранённых сообщений, закреп сообщений у обоих, превью ссылок, @упоминания (пробиваются через «Не беспокоить»), папки и архив чатов.",
+  "notes": "Исправлена демка (Windows не давала разрешение на захват), понятные причины ошибок показа экрана, крупнее аватары в звонке, кнопки по центру, громкость друга по правому щелчку на аватар.",
   "files": [
     {
       "path": "boot.js",
@@ -21,8 +21,8 @@
     },
     {
       "path": "main.js",
-      "size": 37384,
-      "sha256": "20e8942a922022b42d83c298de8b72bfa46a4538210169edebdb8a945d80b28c"
+      "size": 38791,
+      "sha256": "20fe0106156f3cbc9506c925e9a535b528e4dc11610280254cd4642441179e68"
     },
     {
       "path": "overlay-preload.cjs",
@@ -32,12 +32,12 @@
     {
       "path": "package.json",
       "size": 303,
-      "sha256": "45a38f061e1fcf9cdd17764e158db6f86d112f9f5045ef9fae9adf1a7419d5d9"
+      "sha256": "7f834c693fb1dcf0410b8019cf9aec3589e7263e6637d2dc6360a00396ad62c4"
     },
     {
       "path": "preload.cjs",
-      "size": 2661,
-      "sha256": "efcc4466197a0340fd4bcc52f576ed1971bf6b551e2d280692ad7cda873897fa"
+      "size": 2723,
+      "sha256": "162ce0e504a83066de626c100a7edb515fa038eb5f42ff4a2417226bc6ca07ba"
     },
     {
       "path": "renderer/assets/icon-small.svg",
@@ -66,8 +66,8 @@
     },
     {
       "path": "renderer/js/app.js",
-      "size": 136763,
-      "sha256": "43456545edb4a79b9edc06aba4a7f8cb582c6f27eeefae219331f2d10730f8ed"
+      "size": 138941,
+      "sha256": "dadb714616aa587b5de803b527a48784f35af374c94d452614fac67cc40cf602"
     },
     {
       "path": "renderer/js/avatar-editor.js",
@@ -76,8 +76,8 @@
     },
     {
       "path": "renderer/js/call.js",
-      "size": 61650,
-      "sha256": "075751b0a991da87517ff686ee89ce994c7f7ed497fa92498880e32165ac969b"
+      "size": 63965,
+      "sha256": "7fa3463a7903b43381dbb07727976932a46aca438d92cce89abd02bae0e943f0"
     },
     {
       "path": "renderer/js/circle.js",
@@ -86,8 +86,8 @@
     },
     {
       "path": "renderer/js/msgtools.js",
-      "size": 9789,
-      "sha256": "efeebda3816cccbe9d37303415495ae7b82d14d50c60abb3a33bbcd1b7001b7c"
+      "size": 9982,
+      "sha256": "1b73e7cb502f38a930b252335a862b83e7f6c0b0fb41c9c8637ae7474e047bd2"
     },
     {
       "path": "renderer/js/overlay.js",
@@ -116,8 +116,8 @@
     },
     {
       "path": "renderer/styles.css",
-      "size": 49428,
-      "sha256": "51bcb5c75fe1d09bf2fb8500672d6e18719296578a8a13a3b2364184741ab3a7"
+      "size": 51141,
+      "sha256": "260c251a5c9321a88e6f7015126d3632264f460973b3d6260351bab58356aa52"
     },
     {
       "path": "renderer/vendor/ICONS-LICENSE.txt",
