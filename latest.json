@@ -1,8 +1,8 @@
 {
-  "version": "0.9.1",
+  "version": "0.10.0",
   "electron": "44.5.1",
   "date": "2026-10-23",
-  "notes": "Исправлена демка (Windows не давала разрешение на захват), понятные причины ошибок показа экрана, крупнее аватары в звонке, кнопки по центру, громкость друга по правому щелчку на аватар.",
+  "notes": "Звонок как в Discord: плитки людей и демок, демку смотришь по кнопке «Смотреть» (пока не смотрят — картинка не передаётся), развернуть звонок и полный экран, громкость по правому щелчку на плитке. 10 тем оформления и масштаб интерфейса. Исправления и оптимизация.",
   "files": [
     {
       "path": "boot.js",
@@ -12,7 +12,7 @@
     {
       "path": "core/bin/som-core.exe",
       "size": 3358208,
-      "sha256": "77c1a23b9c43f4dabee384d9d08975aa1fccaf91d521e42cfba2894b55eb2c3e"
+      "sha256": "0c3b15941d03ca3c101e972b32dd33d1fb2637c79cee0ffdb7d73485570cbcc1"
     },
     {
       "path": "games.cjs",
@@ -21,8 +21,8 @@
     },
     {
       "path": "main.js",
-      "size": 38791,
-      "sha256": "20fe0106156f3cbc9506c925e9a535b528e4dc11610280254cd4642441179e68"
+      "size": 38979,
+      "sha256": "070e8c3d9284f0f6f8cdc19cbccc5a94b155ba8b526acd7ae3c87f50a02a2e66"
     },
     {
       "path": "overlay-preload.cjs",
@@ -31,13 +31,13 @@
     },
     {
       "path": "package.json",
-      "size": 303,
-      "sha256": "7f834c693fb1dcf0410b8019cf9aec3589e7263e6637d2dc6360a00396ad62c4"
+      "size": 304,
+      "sha256": "d5dfaa0824cc8ca378dbb88a17a7b62768ad43c5b3fad63b5b9dfdcf761e7749"
     },
     {
       "path": "preload.cjs",
-      "size": 2723,
-      "sha256": "162ce0e504a83066de626c100a7edb515fa038eb5f42ff4a2417226bc6ca07ba"
+      "size": 2776,
+      "sha256": "3858d6ce2e07901830cc1d0aa883e3102d70bfefc9bd8b5bf3bfd3fdea26cfb1"
     },
     {
       "path": "renderer/assets/icon-small.svg",
@@ -61,23 +61,23 @@
     },
     {
       "path": "renderer/index.html",
-      "size": 39901,
-      "sha256": "c5c020c1c5c72f90bef9ccbd03c92a6f02184c9b86a983b93a250f778eea85c0"
+      "size": 41970,
+      "sha256": "77d7da410775d44152d1284681d0bda3e3635743a358c5f3d9f2cd563911441f"
     },
     {
       "path": "renderer/js/app.js",
-      "size": 138941,
-      "sha256": "dadb714616aa587b5de803b527a48784f35af374c94d452614fac67cc40cf602"
+      "size": 141623,
+      "sha256": "9820032c82f5194f7544b6a28ae7c5fb892b3a5ba129af70f1ed8c2e42ddae99"
     },
     {
       "path": "renderer/js/avatar-editor.js",
-      "size": 32464,
-      "sha256": "1e26796c22658fedb27b0019172f68544240dc5f5553cb31ef6eea3a1cddf7e9"
+      "size": 32748,
+      "sha256": "20a83bd94937e56aee6a6f88f4c4220aeb75ce8e9f4fd047a58e55fd3276c789"
     },
     {
       "path": "renderer/js/call.js",
-      "size": 63965,
-      "sha256": "7fa3463a7903b43381dbb07727976932a46aca438d92cce89abd02bae0e943f0"
+      "size": 72206,
+      "sha256": "2f863d1256f0c77cb0930884f2a7bc56f674988eece9aaf29ceeaf75e3550f4c"
     },
     {
       "path": "renderer/js/circle.js",
@@ -100,6 +100,11 @@
       "sha256": "a4f75ca47f82005c6f8afe0637781590f50a69ff9cb8b61c1cce8a4fb18541a0"
     },
     {
+      "path": "renderer/js/themes.js",
+      "size": 1616,
+      "sha256": "3909551abe7ba81710162ed95283a84d776d0a07f0278d0e05e912210192446c"
+    },
+    {
       "path": "renderer/js/voice.js",
       "size": 7057,
       "sha256": "c1860b71fbf7918acbf0b0d38d682122bb3503fc847908874e519ccfac4df499"
@@ -116,8 +121,8 @@
     },
     {
       "path": "renderer/styles.css",
-      "size": 51141,
-      "sha256": "260c251a5c9321a88e6f7015126d3632264f460973b3d6260351bab58356aa52"
+      "size": 57703,
+      "sha256": "58d47d9a2bb706eb6d8fc84b7aaf84643089241494b371a78f1027da13e7b680"
     },
     {
       "path": "renderer/vendor/ICONS-LICENSE.txt",
