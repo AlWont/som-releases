@@ -1,8 +1,8 @@
 {
-  "version": "0.8.0",
+  "version": "0.9.0",
   "electron": "44.5.1",
   "date": "2026-10-23",
-  "notes": "Демонстрация экрана в звонке (до 1440p 60 к/с, со звуком компьютера без голосов), видеозвонки с камерой, push-to-talk и звуки событий, голосовые с замком и прослушиванием, видео-кружки, оверлей поверх игры, очистка метаданных фото.",
+  "notes": "«Избранное» для заметок и сохранённых сообщений, закреп сообщений у обоих, превью ссылок, @упоминания (пробиваются через «Не беспокоить»), папки и архив чатов.",
   "files": [
     {
       "path": "boot.js",
@@ -11,8 +11,8 @@
     },
     {
       "path": "core/bin/som-core.exe",
-      "size": 3324928,
-      "sha256": "2508345bd30d889e5d1fa6b590c4c307640370937304629ba038ec367876bbd9"
+      "size": 3358208,
+      "sha256": "77c1a23b9c43f4dabee384d9d08975aa1fccaf91d521e42cfba2894b55eb2c3e"
     },
     {
       "path": "games.cjs",
@@ -21,8 +21,8 @@
     },
     {
       "path": "main.js",
-      "size": 31703,
-      "sha256": "6f6685b1210ae7a043f350dca0f034938533e82934edcd10c2569ead7c4a7434"
+      "size": 37384,
+      "sha256": "20e8942a922022b42d83c298de8b72bfa46a4538210169edebdb8a945d80b28c"
     },
     {
       "path": "overlay-preload.cjs",
@@ -32,12 +32,12 @@
     {
       "path": "package.json",
       "size": 303,
-      "sha256": "df6886b2602afd21a980a315062a8cea545fade278761c16baf10c45d30fdd53"
+      "sha256": "45a38f061e1fcf9cdd17764e158db6f86d112f9f5045ef9fae9adf1a7419d5d9"
     },
     {
       "path": "preload.cjs",
-      "size": 2537,
-      "sha256": "5717abb4788724820f1338890c2ef05d74881b7e36770b7db00eddf59f4bd8a5"
+      "size": 2661,
+      "sha256": "efcc4466197a0340fd4bcc52f576ed1971bf6b551e2d280692ad7cda873897fa"
     },
     {
       "path": "renderer/assets/icon-small.svg",
@@ -61,13 +61,13 @@
     },
     {
       "path": "renderer/index.html",
-      "size": 37694,
-      "sha256": "53f087b5d6288d79d87073d451bcc2084d983b8b24891c724015f13b65337a42"
+      "size": 39901,
+      "sha256": "c5c020c1c5c72f90bef9ccbd03c92a6f02184c9b86a983b93a250f778eea85c0"
     },
     {
       "path": "renderer/js/app.js",
-      "size": 118783,
-      "sha256": "45b7a7d6e95b34167e35e61847bd1dc3aadbf0acc7610229e82a49dd746c1c61"
+      "size": 136763,
+      "sha256": "43456545edb4a79b9edc06aba4a7f8cb582c6f27eeefae219331f2d10730f8ed"
     },
     {
       "path": "renderer/js/avatar-editor.js",
@@ -116,8 +116,8 @@
     },
     {
       "path": "renderer/styles.css",
-      "size": 45137,
-      "sha256": "a5af48c531be6416907352da65b60dae30a4887356d81695ff1f9bf3e8ab1742"
+      "size": 49428,
+      "sha256": "51bcb5c75fe1d09bf2fb8500672d6e18719296578a8a13a3b2364184741ab3a7"
     },
     {
       "path": "renderer/vendor/ICONS-LICENSE.txt",
