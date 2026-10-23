@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="ru" data-theme="graphite">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Som</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <div id="boot" class="boot">Запускаю ядро…</div>
+
+  <!-- Знакомство -->
+  <main id="welcome" class="welcome" hidden>
+    <section class="welcome-card" id="welcomeStart">
+      <img class="logo" src="assets/icon.png" alt="">
+      <h1>Добро пожаловать в Som</h1>
+      <p class="lead">Мессенджер для своих. Без сервера, без телефона и почты: только вы и те, кого вы добавили.</p>
+      <ol class="steps">
+        <li><span class="num">1</span><span><b>Имя.</b> Его увидят друзья. Поменять можно в любой момент.</span></li>
+        <li><span class="num">2</span><span><b>Ключ личности.</b> Создаётся на этом ПК и хранится под защитой Windows. Никуда не отправляется.</span></li>
+        <li><span class="num">3</span><span><b>Код друга.</b> Короткая подпись ключа — по ней друзья убедятся, что это вы.</span></li>
+      </ol>
+      <form id="welcomeForm">
+        <label class="field"><span>Как вас называть</span>
+          <input type="text" id="welcomeName" maxlength="32" autocomplete="off" required placeholder="Например, Тимур">
+        </label>
+        <p class="hint" id="welcomeError" hidden></p>
+        <button class="btn primary" type="submit" id="welcomeGo" data-wide>Создать профиль</button>
+      </form>
+    </section>
+    <section class="welcome-card welcome-done" id="welcomeDone" hidden>
+      <img class="logo" src="assets/icon.png" alt="">
+      <h1>Готово</h1>
+      <p class="lead">Ваш код друга</p>
+      <div class="big-code code" id="welcomeCode"></div>
+      <p class="hint">Отправьте другу своё приглашение. Когда он его добавит, вам придёт заявка.</p>
+      <div class="dlg-actions" data-center>
+        <button class="btn" type="button" id="welcomeInvite">Моё приглашение</button>
+        <button class="btn primary" type="button" id="welcomeEnter">Открыть Som</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Основное окно -->
+  <div id="shell" class="shell" hidden>
+    <nav class="rail" aria-label="Пространства">
+      <button class="rail-btn home" type="button" aria-current="true" title="Личные сообщения"><img src="assets/icon.png" alt="Личные"></button>
+      <div class="rail-sep"></div>
+      <button class="rail-btn" type="button" disabled title="Пространства появятся в следующей версии">+</button>
+    </nav>
+
+    <aside class="side">
+      <div class="side-head">
+        <h2>Друзья</h2>
+        <button class="icon-btn" type="button" id="addFriendBtn" title="Добавить друга" aria-label="Добавить друга">+</button>
+      </div>
+      <div class="side-scroll" id="friendList"></div>
+      <div class="update-bar" id="updateBar" hidden>
+        <span id="updateText"></span>
+        <button class="btn small primary" type="button" id="updateGo">Перезапустить</button>
+      </div>
+      <div class="call-dock" id="callDock" hidden>
+        <button class="dock-open" type="button" id="dockOpen" title="Открыть чат">
+          <span class="dock-status" id="dockStatus"></span>
+          <span class="dock-name" id="dockName"></span>
+        </button>
+        <button class="icon-btn toggle" type="button" id="dockMute" aria-pressed="false" title="Микрофон" aria-label="Микрофон"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/><line class="slash" x1="2" y1="2" x2="22" y2="22"/></svg></button>
+        <button class="icon-btn hang" type="button" id="dockHangup" title="Завершить звонок" aria-label="Завершить звонок"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7a2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67m-2.67-3.34a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91"/><line x1="23" y1="1" x2="1" y2="23"/></svg></button>
+      </div>
+      <div class="me-panel">
+        <button class="me-btn" type="button" id="meBtn" title="Статус и профиль" aria-haspopup="menu">
+          <span id="meAvatar"></span>
+          <span class="me-text">
+            <span class="me-name" id="meName"></span>
+            <span class="me-code" id="meCode"></span>
+          </span>
+        </button>
+        <button class="icon-btn" type="button" id="inviteBtn" title="Моё приглашение" aria-label="Моё приглашение"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></button>
+        <button class="icon-btn" type="button" id="settingsBtn" title="Настройки" aria-label="Настройки"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
+      </div>
+    </aside>
+
+    <section class="chat">
+      <div class="banner" id="banner" hidden></div>
+      <div class="chat-empty" id="chatEmpty">
+        <div>
+          <h2 id="emptyTitle">Здесь пока тихо</h2>
+          <p id="emptyText">Добавьте друга по его приглашению или отправьте ему своё.</p>
+          <div class="actions">
+            <button class="btn primary" type="button" id="emptyAdd">Добавить друга</button>
+            <button class="btn" type="button" id="emptyInvite">Моё приглашение</button>
+            <button class="btn ghost" type="button" id="emptySecond" hidden>Открыть второй профиль</button>
+          </div>
+          <p class="hint" id="emptySecondHint" hidden data-mt>Второй профиль — отдельный «человек» на этом же ПК. Удобно, чтобы проверить заявки и переписку в одиночку.</p>
+        </div>
+      </div>
+
+      <div class="chat-view" id="chatView" hidden>
+        <header class="chat-head">
+          <div id="chatAvatar"></div>
+          <div class="chat-title">
+            <h2 id="chatName"></h2>
+            <div class="chat-status" id="chatStatus"></div>
+          </div>
+          <div class="verify" id="chatVerify"></div>
+          <button class="icon-btn" type="button" id="searchBtn" title="Поиск в переписке (Ctrl+F)" aria-label="Поиск в переписке"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+          <button class="icon-btn call-btn" type="button" id="callBtn" title="Позвонить" aria-label="Позвонить" hidden><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></button>
+          <button class="icon-btn" type="button" id="chatMenu" title="О друге" aria-label="О друге">⋯</button>
+        </header>
+        <section class="call-panel" id="callPanel" hidden aria-label="Звонок">
+          <div class="call-people">
+            <div class="call-person"><div class="call-av" id="callMeAv"></div><video class="call-video mine" id="callMeVideo" autoplay playsinline muted hidden></video><b id="callMeName"></b><span id="callMeFlags"></span></div>
+            <div class="call-person"><div class="call-av" id="callPeerAv"></div><video class="call-video" id="callPeerVideo" autoplay playsinline muted hidden title="Двойной щелчок — во весь экран"></video><b id="callPeerName"></b><span id="callPeerFlags"></span></div>
+          </div>
+          <div class="call-status" id="callStatus"></div>
+          <div class="call-info" id="callInfo"></div>
+          <div class="screen-stage" id="screenStage" hidden>
+            <video id="screenVideo" autoplay playsinline muted></video>
+            <div class="screen-bar">
+              <span class="screen-title" id="screenTitle"></span>
+              <label class="call-vol" title="Громкость звука демки"><span>Звук</span><input type="range" id="screenVol" min="0" max="200" step="5" value="100" aria-label="Громкость звука демки"><span class="code" id="screenVolText">100%</span></label>
+              <button class="btn small" type="button" id="screenFull" title="Во весь экран (двойной щелчок по видео)">Во весь экран</button>
+            </div>
+          </div>
+          <div class="screen-mine" id="screenMine" hidden>
+            <video id="screenMineVideo" autoplay playsinline muted></video>
+            <div class="screen-mine-text"><b id="screenMineTitle"></b><span id="screenMineInfo"></span></div>
+            <button class="btn small" type="button" id="screenMineAudio" aria-pressed="true">Звук компьютера</button>
+            <button class="btn small danger" type="button" id="screenStop">Остановить</button>
+          </div>
+          <div class="call-controls">
+            <button class="round toggle" type="button" id="callMute" aria-pressed="false" aria-label="Микрофон"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/><line class="slash" x1="2" y1="2" x2="22" y2="22"/></svg></button>
+            <button class="round toggle" type="button" id="callDeafen" aria-pressed="false" aria-label="Звук"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/><line class="slash" x1="2" y1="2" x2="22" y2="22"/></svg></button>
+            <button class="round toggle" type="button" id="callCam" aria-pressed="false" aria-label="Камера" title="Включить камеру"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></button>
+            <button class="round toggle" type="button" id="callScreen" aria-pressed="false" aria-label="Демонстрация экрана" title="Показать экран"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></button>
+            <button class="round hang" type="button" id="callHangup" title="Завершить звонок" aria-label="Завершить звонок"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7a2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67m-2.67-3.34a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91"/><line x1="23" y1="1" x2="1" y2="23"/></svg></button>
+            <label class="call-vol" id="callVolWrap" title="Громкость друга">
+              <span>Громкость</span>
+              <input type="range" id="callVol" min="0" max="200" step="5" value="100" aria-label="Громкость друга">
+              <span class="code" id="callVolText">100%</span>
+            </label>
+          </div>
+        </section>
+        <div class="search-bar" id="searchBar" hidden>
+          <input type="text" id="searchInput" placeholder="Поиск в переписке" aria-label="Поиск в переписке" autocomplete="off">
+          <span class="search-count" id="searchCount"></span>
+          <button class="icon-btn" type="button" id="searchClose" title="Закрыть (Esc)" aria-label="Закрыть поиск">✕</button>
+          <div class="search-results" id="searchResults" hidden></div>
+        </div>
+        <div class="messages" id="messages" aria-live="polite"></div>
+        <div id="pendingPane" class="chat-empty" hidden>
+          <div>
+            <h2 id="pendingTitle"></h2>
+            <p id="pendingText"></p>
+            <div class="actions" id="pendingActions"></div>
+          </div>
+        </div>
+        <div class="compose-bar" id="composeBar" hidden>
+          <div class="cb-text"><b id="cbTitle"></b><span id="cbBody"></span></div>
+          <button class="icon-btn" type="button" id="cbClose" title="Отменить (Esc)" aria-label="Отменить">✕</button>
+        </div>
+        <div class="rec-bar" id="recBar" hidden>
+          <span class="rec-dot" id="recDot" aria-hidden="true"></span>
+          <span class="rec-time code" id="recTime">0:00</span>
+          <canvas class="rec-wave" id="recWave" aria-hidden="true"></canvas>
+          <span class="rec-hint" id="recHint"></span>
+          <span class="rec-ctl" id="recCtl">
+            <button class="btn small" type="button" id="recPause">Пауза</button>
+            <button class="btn small" type="button" id="recCancel">Отмена</button>
+            <button class="btn small primary" type="button" id="recStop" title="Остановить и прослушать">Стоп</button>
+          </span>
+        </div>
+        <div class="circle-rec" id="circleRec" hidden>
+          <div class="circle-view"><video id="circleVideo" playsinline></video><span class="circle-left code" id="circleLeft"></span></div>
+          <div class="circle-bar">
+            <span class="rec-dot" id="circleDot" aria-hidden="true"></span>
+            <span class="rec-time code" id="circleTime">0:00</span>
+            <span class="rec-hint" id="circleHint"></span>
+            <span class="rec-ctl" id="circleCtl">
+              <button class="btn small" type="button" id="circlePause">Пауза</button>
+              <button class="btn small" type="button" id="circleCancel">Отмена</button>
+              <button class="btn small primary" type="button" id="circleStop">Стоп</button>
+            </span>
+            <span class="rec-ctl" id="circleDraftCtl">
+              <button class="btn small ghost" type="button" id="circleRedo">Перезаписать</button>
+              <button class="btn small ghost danger" type="button" id="circleDelete">Удалить</button>
+              <button class="btn small primary" type="button" id="circleSend">Отправить</button>
+            </span>
+          </div>
+        </div>
+        <div class="voice-draft" id="voiceDraft" hidden>
+          <button class="vbtn" type="button" id="vdPlay" aria-label="Прослушать"><span class="tri"></span></button>
+          <canvas class="vd-wave" id="vdWave" aria-label="Волна. Края можно перетащить — так обрезается начало и конец"></canvas>
+          <span class="code vd-time" id="vdTime">0:00</span>
+          <button class="btn small ghost" type="button" id="vdSpeed" title="Скорость прослушивания">1×</button>
+          <button class="btn small ghost" type="button" id="vdRedo">Перезаписать</button>
+          <button class="btn small ghost danger" type="button" id="vdDelete">Удалить</button>
+          <button class="btn small primary" type="button" id="vdSend">Отправить</button>
+        </div>
+        <form class="composer" id="composer">
+          <button class="icon-btn attach" type="button" id="attachBtn" title="Прикрепить файл" aria-label="Прикрепить файл"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></button>
+          <button class="icon-btn attach" type="button" id="voiceBtn" title="Голосовое сообщение" aria-label="Записать голосовое сообщение"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></button>
+          <button class="icon-btn attach" type="button" id="circleBtn" title="Видео-кружок: удерживайте или щёлкните" aria-label="Записать видео-кружок"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></button>
+          <textarea id="composerInput" rows="1" maxlength="4000" placeholder="Сообщение" aria-label="Сообщение"></textarea>
+          <button class="btn primary" type="submit" id="sendBtn">Отправить</button>
+        </form>
+        <div class="composer-note" id="composerNote"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Добавить друга -->
+  <dialog id="addDlg">
+    <form method="dialog" id="addForm">
+      <h2>Добавить друга</h2>
+      <p class="hint">Вставьте приглашение, которое прислал друг. Оно начинается с <span class="code">som://add/</span></p>
+      <div class="invite-box">
+        <textarea id="addInput" spellcheck="false" placeholder="som://add/…" aria-label="Приглашение"></textarea>
+        <div class="inline"><button class="btn small" type="button" id="addPaste">Вставить из буфера</button></div>
+      </div>
+      <div class="preview" id="addPreview" hidden data-mt></div>
+      <p class="hint" data-mt>Перед добавлением спросите у друга его код — он должен совпасть с кодом выше.</p>
+      <div class="dlg-actions">
+        <button class="btn" value="cancel" type="submit" formnovalidate>Отмена</button>
+        <button class="btn primary" type="button" id="addGo" disabled>Отправить заявку</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Моё приглашение -->
+  <dialog id="inviteDlg">
+    <form method="dialog">
+      <h2>Моё приглашение</h2>
+      <p class="hint">Отправьте ссылку другу любым способом. По ней Som найдёт вас и проверит, что это именно вы.</p>
+      <dl class="kv" data-mb>
+        <dt>Имя</dt><dd id="invName"></dd>
+        <dt>Код друга</dt><dd class="code" id="invCode"></dd>
+        <dt>Адрес</dt><dd class="code" id="invAddr"></dd>
+      </dl>
+      <div class="invite-box">
+        <textarea id="invLink" readonly spellcheck="false" aria-label="Ссылка-приглашение"></textarea>
+      </div>
+      <p class="notice warn" id="invWarn" hidden></p>
+      <div class="dlg-actions">
+        <button class="btn" value="close" type="submit">Закрыть</button>
+        <button class="btn primary" type="button" id="invCopy">Скопировать ссылку</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Карточка друга (и своя — для предпросмотра) -->
+  <dialog id="friendDlg" class="card-dlg">
+    <form method="dialog">
+      <div class="pcard" id="fdCard"></div>
+      <div class="pcard-body">
+        <label class="field"><span>Заметка — видна только вам</span>
+          <textarea id="fdNote" rows="2" maxlength="500" placeholder="Например: должен 500 ₽, день рождения 12 мая"></textarea>
+        </label>
+        <dl class="kv">
+          <dt>Код друга</dt><dd class="code" id="fdCode"></dd>
+          <dt>Код чата</dt><dd class="code" id="fdGroup"></dd>
+          <dt>Адрес</dt><dd class="code" id="fdAddr"></dd>
+          <dt>В сети</dt><dd id="fdSeen"></dd>
+        </dl>
+        <p class="hint" data-mt>Код чата должен совпадать у вас обоих. Если совпадает — переписку никто не подменил и не читает.</p>
+      </div>
+      <div class="dlg-actions">
+        <button class="btn danger" type="button" id="fdRemove">Удалить из друзей</button>
+        <span class="spacer"></span>
+        <button class="btn" type="button" id="fdCall">Позвонить</button>
+        <button class="btn primary" value="close" type="submit">Закрыть</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Мой профиль -->
+  <dialog id="profileDlg" class="profile-dlg">
+    <form method="dialog" id="profileForm">
+      <h2>Мой профиль</h2>
+      <p class="hint">Видят только ваши друзья. Уходит им зашифрованным, как сообщения.</p>
+      <div class="profile-grid">
+        <div class="profile-form">
+          <div class="photo-row">
+            <div id="pfAvatar"></div>
+            <div class="inline">
+              <button class="btn small" type="button" id="pfPhoto" title="Фото, GIF, анимированный WebP/PNG или видео до 10 секунд">Фото или GIF…</button>
+              <button class="btn small ghost" type="button" id="pfPhotoRedo" hidden>Настроить</button>
+              <button class="btn small ghost" type="button" id="pfPhotoRemove">Убрать</button>
+            </div>
+            <input type="file" id="pfFile" accept="image/png,image/apng,image/jpeg,image/webp,image/gif,image/bmp,video/mp4,video/webm,video/quicktime,.mov,.m4v" hidden>
+          </div>
+          <div class="field"><span>Баннер <i class="counter">3 : 1, над фото в карточке</i></span>
+            <div class="inline">
+              <button class="btn small" type="button" id="pfBanner">Выбрать картинку…</button>
+              <button class="btn small ghost" type="button" id="pfBannerRemove" hidden>Убрать</button>
+            </div>
+            <input type="file" id="pfBannerFile" accept="image/png,image/jpeg,image/webp,image/gif,image/bmp,video/mp4,video/webm" hidden>
+          </div>
+          <label class="field"><span>Имя</span><input type="text" id="pfName" maxlength="32" autocomplete="off"></label>
+          <div class="field"><span>Свой статус</span>
+            <div class="status-row">
+              <button class="btn emoji-btn" type="button" id="pfEmoji" aria-label="Значок статуса" title="Значок статуса">🙂</button>
+              <input type="text" id="pfStatus" maxlength="80" autocomplete="off" placeholder="Например: на паре" aria-label="Текст статуса">
+              <select id="pfUntil" aria-label="Сколько держать статус">
+                <option value="0">Без срока</option>
+                <option value="30">30 минут</option>
+                <option value="60">1 час</option>
+                <option value="240">4 часа</option>
+                <option value="today">До конца дня</option>
+              </select>
+            </div>
+          </div>
+          <label class="field"><span>О себе <i class="counter" id="pfAboutCount"></i></span><textarea id="pfAbout" rows="3" maxlength="190"></textarea></label>
+          <div class="field"><span>Цвет профиля</span><div class="swatches" id="pfColors"></div></div>
+        </div>
+        <div class="profile-preview"><span class="hint">Так вас увидят друзья</span><div class="pcard" id="pfPreview"></div></div>
+      </div>
+      <p class="hint mic-note" id="pfNote" hidden></p>
+      <div class="dlg-actions">
+        <button class="btn" value="cancel" type="submit" formnovalidate>Отмена</button>
+        <button class="btn primary" type="button" id="pfSave">Сохранить</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Настройки -->
+  <dialog id="settingsDlg">
+    <form method="dialog" id="settingsForm">
+      <h2>Настройки</h2>
+      <div class="settings-sec">
+        <h3>Имя</h3>
+        <div class="inline">
+          <input type="text" id="setName" maxlength="32" autocomplete="off" aria-label="Имя">
+          <button class="btn" type="button" id="setNameGo">Сохранить</button>
+        </div>
+      </div>
+      <div class="settings-sec">
+        <h3>Тема</h3>
+        <div class="seg" role="group" aria-label="Тема">
+          <button type="button" data-theme-pick="graphite">Графит</button>
+          <button type="button" data-theme-pick="paper">Бумага</button>
+        </div>
+      </div>
+      <div class="settings-sec">
+        <h3>Профиль и приватность</h3>
+        <label class="check"><input type="checkbox" id="setShowSeen"> <span>Показывать друзьям время «последний раз в сети»</span></label>
+        <label class="check"><input type="checkbox" id="setNoAnim"> <span>Не анимировать аватары</span></label>
+        <label class="check"><input type="checkbox" id="setCleanMeta"> <span>Убирать из фото геолокацию, модель камеры и даты</span></label>
+        <p class="hint">Друзья видят это время с точностью до часа. В режиме «Невидимка» игры не показываются.</p>
+      </div>
+      <div class="settings-sec" id="overlaySec">
+        <h3>Оверлей поверх игры</h3>
+        <div class="seg" role="group" aria-label="Когда показывать оверлей">
+          <button type="button" data-ovmode="games">В играх</button>
+          <button type="button" data-ovmode="always">Всегда в звонке</button>
+          <button type="button" data-ovmode="off">Выключен</button>
+        </div>
+        <div id="ovOpts">
+          <div class="field ov-row"><span>Угол экрана</span>
+            <div class="seg" role="group" aria-label="Угол экрана">
+              <button type="button" data-ovcorner="tl" title="Слева сверху">↖</button>
+              <button type="button" data-ovcorner="tr" title="Справа сверху">↗</button>
+              <button type="button" data-ovcorner="bl" title="Слева снизу">↙</button>
+              <button type="button" data-ovcorner="br" title="Справа снизу">↘</button>
+            </div>
+          </div>
+          <div class="field ov-row"><span>Размер</span>
+            <div class="seg" role="group" aria-label="Размер оверлея">
+              <button type="button" data-ovsize="s">Мелкий</button>
+              <button type="button" data-ovsize="m">Обычный</button>
+              <button type="button" data-ovsize="l">Крупный</button>
+            </div>
+          </div>
+          <label class="field ov-row"><span>Плотность фона</span><span class="inline"><input type="range" id="ovOpacity" min="30" max="100" step="5" aria-label="Непрозрачность фона оверлея"><output id="ovOpacityText"></output></span></label>
+          <label class="check"><input type="checkbox" id="ovCompact"> <span>Компактно — только имена, без фото</span></label>
+          <label class="check"><input type="checkbox" id="ovMessages"> <span>Уведомления о сообщениях и звонках</span></label>
+          <div class="inline"><button class="btn small" type="button" id="ovTest">Показать на 5 секунд</button></div>
+        </div>
+        <p class="hint">Показывает, кто говорит в звонке, ваш микрофон и новые сообщения. Виден поверх игр в оконном режиме и «без рамки»; в эксклюзивном полноэкранном Windows его не покажет. В демку и записи экрана он не попадает.</p>
+      </div>
+      <div class="settings-sec" id="gamesSec">
+        <h3>Игры</h3>
+        <label class="check"><input type="checkbox" id="setGames"> <span>Показывать друзьям, во что я играю</span></label>
+        <p class="hint" id="gamesNow"></p>
+        <div class="games-list" id="gamesCustom"></div>
+        <div class="games-list" id="gamesHidden"></div>
+        <div class="inline">
+          <button class="btn small" type="button" id="gamesAdd">Добавить игру…</button>
+          <button class="btn small ghost" type="button" id="gamesHide" hidden>Не показывать эту игру</button>
+        </div>
+        <div class="games-list" id="gamesRunning" hidden></div>
+      </div>
+      <div class="settings-sec">
+        <h3>Звук</h3>
+        <label class="field"><span>Микрофон</span><select id="setMic"></select></label>
+        <label class="field"><span>Колонки или наушники</span><select id="setOut"></select></label>
+        <div class="field"><span>Шумодав</span>
+          <div class="seg" role="group" aria-label="Шумодав">
+            <button type="button" data-ns="rnnoise" title="Нейросеть: клавиатура, вентилятор, улица">RNNoise</button>
+            <button type="button" data-ns="speex" title="Классический, мягкий">Speex</button>
+            <button type="button" data-ns="chromium" title="Встроенный в Chromium">Стандартный</button>
+            <button type="button" data-ns="off">Выкл</button>
+          </div>
+        </div>
+        <div class="field"><span>Мелодия входящего звонка</span>
+          <div class="seg" role="group" aria-label="Мелодия входящего звонка" id="ringPick"></div>
+        </div>
+        <div class="field"><span>Микрофон в звонке</span>
+          <div class="seg" role="group" aria-label="Микрофон в звонке" id="micModePick">
+            <button type="button" data-mm="open">Всегда включён</button>
+            <button type="button" data-mm="ptt">По клавише (push-to-talk)</button>
+          </div>
+        </div>
+        <label class="check"><input type="checkbox" id="setVoiceDraft"> <span>Голосовые: всегда давать прослушать перед отправкой</span></label>
+        <div class="inline ptt-row" id="pttRow" hidden>
+          <button class="btn small" type="button" id="pttKeyBtn">Клавиша: V</button>
+          <span class="hint" id="pttHint"></span>
+        </div>
+        <div class="inline mic-test">
+          <button class="btn small" type="button" id="micTest">Проверить шумодав</button>
+          <div class="meter" aria-hidden="true"><span id="micMeter"></span></div>
+        </div>
+        <p class="hint mic-note" id="micTestNote" hidden></p>
+        <div class="inline" id="micPlay" hidden>
+          <button class="btn small" type="button" id="micPlayRaw">▶ Как есть</button>
+          <button class="btn small" type="button" id="micPlayProc">▶ С шумодавом</button>
+        </div>
+      </div>
+      <div class="settings-sec">
+        <h3>Камера</h3>
+        <label class="field"><span>Камера для звонков и кружков</span><select id="setCam"></select></label>
+        <div class="field"><span>Качество в звонке</span>
+          <div class="seg" role="group" aria-label="Качество камеры">
+            <button type="button" data-camq="720p" title="Около 1,8 Мбит/с">720p</button>
+            <button type="button" data-camq="480p" title="Около 0,8 Мбит/с — для слабой сети">480p</button>
+          </div>
+        </div>
+        <div class="inline"><button class="btn small" type="button" id="camTest">Проверить камеру</button></div>
+        <video class="cam-preview" id="camPreview" autoplay playsinline muted hidden></video>
+        <p class="hint" id="setCamNote"></p>
+      </div>
+      <div class="settings-sec">
+        <h3>Проверка в одиночку</h3>
+        <p class="hint">Откроет второй профиль на этом ПК — со своим именем, ключами и друзьями.</p>
+        <button class="btn" type="button" id="setSecond">Открыть второй профиль</button>
+      </div>
+      <div class="settings-sec">
+        <h3>Звуки</h3>
+        <div class="sound-list" id="soundList"></div>
+        <label class="call-vol sound-vol"><span>Громкость звуков</span><input type="range" id="soundVol" min="0" max="100" step="5" aria-label="Громкость звуков"><span class="code" id="soundVolText"></span></label>
+      </div>
+      <div class="settings-sec">
+        <h3>Обновления</h3>
+        <p class="hint" id="updInfo">—</p>
+        <div class="inline"><button class="btn" type="button" id="updCheck">Проверить сейчас</button></div>
+      </div>
+      <div class="settings-sec">
+        <h3>Отчёт для проверки</h3>
+        <p class="hint">Сеть, друзья, скорость передачи файлов, качество звонков и ошибки. Без текста переписки и без ключей. Имена файлов и адреса в Radmin в отчёте есть.</p>
+        <div class="inline"><button class="btn" type="button" id="reportCopy">Скопировать отчёт</button></div>
+        <p class="hint mic-note" id="reportNote"></p>
+      </div>
+      <div class="settings-sec">
+        <h3>О программе</h3>
+        <dl class="kv" id="aboutList"></dl>
+      </div>
+      <div class="dlg-actions">
+        <button class="btn" value="close" type="submit">Закрыть</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Просмотр картинки -->
+  <dialog id="viewer" class="viewer">
+    <div class="viewer-bar">
+      <div class="viewer-title"><b id="viewerName"></b><span id="viewerInfo"></span></div>
+      <div class="att-actions" id="viewerActions"></div>
+      <form method="dialog"><button class="icon-btn" value="close" aria-label="Закрыть" title="Закрыть (Esc)">✕</button></form>
+    </div>
+    <div class="viewer-stage"><img id="viewerImg" alt=""></div>
+  </dialog>
+
+  <!-- Входящий звонок -->
+  <div class="incoming" id="incoming" hidden role="alertdialog" aria-labelledby="inName">
+    <div id="inAvatar"></div>
+    <div class="incoming-text"><span>Входящий звонок</span><b id="inName"></b></div>
+    <button class="round hang" type="button" id="inDecline" title="Отклонить" aria-label="Отклонить"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7a2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67m-2.67-3.34a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91"/><line x1="23" y1="1" x2="1" y2="23"/></svg></button>
+    <button class="round accept" type="button" id="inAccept" title="Принять" aria-label="Принять"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></button>
+  </div>
+
+  <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "som",
+  "productName": "Som",
+  "version": "0.8.0",
+  "description": "Som — мессенджер для своих: друзья, переписка со сквозным шифрованием MLS, без центрального сервера",
+  "main": "boot.js",
+  "private": true
+}
