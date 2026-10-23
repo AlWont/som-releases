@@ -1,8 +1,8 @@
 {
-  "version": "0.11.0",
+  "version": "0.12.0",
   "electron": "44.5.1",
   "date": "2026-10-23",
-  "notes": "Групповые чаты до 10 человек: шифрование MLS на всю группу, без серверов; участники могут не дружить между собой; доставка тем, кто был не в сети; ответы, реакции, правка, удаление, закреп, файлы, упоминания; создатель добавляет и убирает участников.",
+  "notes": "Групповые звонки до 6 человек: плитки как в Discord, демка с кнопкой «Смотреть» у каждого своя, камера, push-to-talk, оверлей. Кнопка звонка в шапке группы, плашка «Идёт звонок — Присоединиться», вызов с мелодией.",
   "files": [
     {
       "path": "boot.js",
@@ -11,8 +11,8 @@
     },
     {
       "path": "core/bin/som-core.exe",
-      "size": 3575808,
-      "sha256": "f739a0a8a72307b2073cf33d69004deac1aefe4b3abc9c5679600b5d38d996f2"
+      "size": 3581952,
+      "sha256": "6a998f4c8f581d6faf4559e7f85d76df1fc750a2546143d269860a624bcb2b94"
     },
     {
       "path": "games.cjs",
@@ -21,8 +21,8 @@
     },
     {
       "path": "main.js",
-      "size": 39094,
-      "sha256": "19fdca1d81490d781db00e6e108bf976fb5769bb40331ccd4a3505190202b6ee"
+      "size": 39110,
+      "sha256": "f1db88a0e9653a3196839ea9f60d3b715c65bb108546f402c0e3b84f2cdb068f"
     },
     {
       "path": "overlay-preload.cjs",
@@ -32,7 +32,7 @@
     {
       "path": "package.json",
       "size": 304,
-      "sha256": "c25e425b46f208438d82c893f5d11b9b0a50a7c2655905d4c30dc706f30f8299"
+      "sha256": "d6159d831be356ec07d75cb7bbcfbdb148db0bd6e1114e70936596c942bc2562"
     },
     {
       "path": "preload.cjs",
@@ -61,13 +61,13 @@
     },
     {
       "path": "renderer/index.html",
-      "size": 44516,
-      "sha256": "22a3e614c175331a16e51b56284856098925525ad7d6a26db5e6d108376f41fa"
+      "size": 45357,
+      "sha256": "4190ffe31cff370691b4b7afb195ef0fe64a2608d09d234b4ee9e73474e54839"
     },
     {
       "path": "renderer/js/app.js",
-      "size": 156822,
-      "sha256": "ba876616bf7f83cf8af9dba3275fed2a0027a824c745d8af2a2a579fdcb6b12f"
+      "size": 159093,
+      "sha256": "dcbdfbcba0a2165853124486f1fbf5b361169943eff4aa568e54bf7aac47d965"
     },
     {
       "path": "renderer/js/avatar-editor.js",
@@ -76,13 +76,18 @@
     },
     {
       "path": "renderer/js/call.js",
-      "size": 72206,
-      "sha256": "2f863d1256f0c77cb0930884f2a7bc56f674988eece9aaf29ceeaf75e3550f4c"
+      "size": 74814,
+      "sha256": "0fa52d3e9d4c4a1cc5795263bd0691bf85ee2367f9a4866a098c1f7efe375cc8"
     },
     {
       "path": "renderer/js/circle.js",
       "size": 4537,
       "sha256": "ba5b00409fecbd49e4df48df99ef161fd6b21af2729ff407f140472530ee9eee"
+    },
+    {
+      "path": "renderer/js/gcall.js",
+      "size": 37178,
+      "sha256": "32819e4b65f7750db7069af0bc03634c0aa9f2e925d2a2669e008b47ad0f9276"
     },
     {
       "path": "renderer/js/msgtools.js",
@@ -121,8 +126,8 @@
     },
     {
       "path": "renderer/styles.css",
-      "size": 58594,
-      "sha256": "fd36a718bb8fc4941bf7fa470d0ce2b3106e008d8f858f95dfdaf7f12f71dbf3"
+      "size": 60189,
+      "sha256": "dd45dd657552f14f1c308360cd696d4ea9be8a6418a8557e3a0abc83abc30877"
     },
     {
       "path": "renderer/vendor/ICONS-LICENSE.txt",
