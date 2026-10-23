@@ -1,8 +1,8 @@
 {
-  "version": "0.12.1",
+  "version": "0.13.0",
   "electron": "44.5.1",
   "date": "2026-10-23",
-  "notes": "Меньше нагрузки на ПК во время игр: определение игры больше не запускает tasklist и PowerShell (из-за них FPS периодически проседал), без звонка Som в фоне засыпает, звук между уведомлениями не держится открытым, подсветка «говорит» не перерисовывает плитки, демка захватывает экран раз в секунду, пока её никто не смотрит, оверлей обновляется без пересборки.",
+  "notes": "Общий браузер: откройте его в чате или группе — страница, прокрутка и видео синхронны у всех, хозяина нет (кто-то вышел — у остальных работает дальше). Отдельное окно без входа в аккаунты, всё стирается при закрытии, кто что открыл — не видно; IP виден сайтам как в обычном браузере. Плюс плитки в звонке теперь ровные 16:9, как в Discord, а демка рядом с человеком показывает превью на всю плитку.",
   "files": [
     {
       "path": "boot.js",
@@ -11,8 +11,8 @@
     },
     {
       "path": "core/bin/som-core.exe",
-      "size": 3598336,
-      "sha256": "7824e3cecd5a7e6813d201657a94f15473d6b0a79d6bed06fbefd387ccb0edba"
+      "size": 3602944,
+      "sha256": "b6bdbe374042c2436c6a3fa772d5797fe7d97c80389f729ee250e5811480a988"
     },
     {
       "path": "games.cjs",
@@ -21,8 +21,8 @@
     },
     {
       "path": "main.js",
-      "size": 40154,
-      "sha256": "6ce622d1a1d1d93ebb096cdc1e6af80782aabb0c92732ac5c8389f72a5d34525"
+      "size": 43424,
+      "sha256": "15b246cffb782d7fc5aadee3362da45156badd6012cda4b703ade1c9660d6eb8"
     },
     {
       "path": "overlay-preload.cjs",
@@ -32,12 +32,12 @@
     {
       "path": "package.json",
       "size": 304,
-      "sha256": "3948ce2096b794b4e601c70984c216f744541b361aa2c4db3a68affbb5209635"
+      "sha256": "1821a940a7125fb0e9e25a769fa29551b40ed0058c64a70d4a9e72867c98191f"
     },
     {
       "path": "preload.cjs",
-      "size": 2908,
-      "sha256": "e26c0990f0146514d215f9dcc1c1b8d5d0f81ce822c59183d9d233222d3e9345"
+      "size": 3008,
+      "sha256": "cde10332236a928ab92de80758ed2d1e241801d70865374d6a70578b2e6a5688"
     },
     {
       "path": "renderer/assets/icon-small.svg",
@@ -61,13 +61,13 @@
     },
     {
       "path": "renderer/index.html",
-      "size": 45686,
-      "sha256": "a59761e9ed45d5d38d2c781fe328348cc7fa33b1bf6f4d36927ab2a62e26fec5"
+      "size": 48675,
+      "sha256": "27fc14c472c504a4a2aac2e32eabe5f6f9bac8927d57732cf992b26e2dca7322"
     },
     {
       "path": "renderer/js/app.js",
-      "size": 159513,
-      "sha256": "8bec1f2ecafb12856689c40703edd11a6e8afafab3a531acfa2504c2eff580d9"
+      "size": 159989,
+      "sha256": "190488aff15be0269d52475d06c4335c489027ca3814734233b30e3a83d20272"
     },
     {
       "path": "renderer/js/avatar-editor.js",
@@ -76,8 +76,8 @@
     },
     {
       "path": "renderer/js/call.js",
-      "size": 77132,
-      "sha256": "209248aabe8febe4719f109df19467226922fd43aaaaef649be672fd01b06c72"
+      "size": 78772,
+      "sha256": "2beb70a4564c52995e15049de1c48d23bf50b58d8cdff6d06df1547fda3f9761"
     },
     {
       "path": "renderer/js/circle.js",
@@ -86,8 +86,8 @@
     },
     {
       "path": "renderer/js/gcall.js",
-      "size": 38042,
-      "sha256": "cc59251c049af1059f077d7c9373b69d0a17d884ba9092e33925eb43c7322309"
+      "size": 37671,
+      "sha256": "259c287f7cc5a2d6c8697104da37283ab592d870576b0856dea1cded4369a36d"
     },
     {
       "path": "renderer/js/msgtools.js",
@@ -98,6 +98,11 @@
       "path": "renderer/js/overlay.js",
       "size": 2576,
       "sha256": "5a424c6223358bc94b517feac441ceee65754a56fd6a96bbe003a075e9e2400e"
+    },
+    {
+      "path": "renderer/js/sharedbrowser.js",
+      "size": 11503,
+      "sha256": "64355760d07a44ba3fcb57f26d803134585ed0a81368369910e321d53cb9e751"
     },
     {
       "path": "renderer/js/sounds.js",
@@ -126,8 +131,8 @@
     },
     {
       "path": "renderer/styles.css",
-      "size": 60791,
-      "sha256": "c68ec7f35c605eb5b1285b64f137ede6538aae8f7942ea8f7068df8995335bd9"
+      "size": 62179,
+      "sha256": "f7675571ba5e21b423b101a66a0c8edddc017925c519c820da15460d340e22a3"
     },
     {
       "path": "renderer/vendor/ICONS-LICENSE.txt",
@@ -168,6 +173,11 @@
       "path": "renderer/vendor/nsx/speex.wasm",
       "size": 56268,
       "sha256": "bdd0a587bd7b0054589c3585b6b74390784d11265e43360bb3d1d09bf34ad788"
+    },
+    {
+      "path": "sb-guest.cjs",
+      "size": 3418,
+      "sha256": "b77ee731adbe3da3b4a1e1936af64fec903fcd6ae5ae84bc6bcb79ffe0faeadc"
     },
     {
       "path": "updater.cjs",
