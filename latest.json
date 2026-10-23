@@ -1,8 +1,8 @@
 {
-  "version": "0.10.0",
+  "version": "0.11.0",
   "electron": "44.5.1",
   "date": "2026-10-23",
-  "notes": "Звонок как в Discord: плитки людей и демок, демку смотришь по кнопке «Смотреть» (пока не смотрят — картинка не передаётся), развернуть звонок и полный экран, громкость по правому щелчку на плитке. 10 тем оформления и масштаб интерфейса. Исправления и оптимизация.",
+  "notes": "Групповые чаты до 10 человек: шифрование MLS на всю группу, без серверов; участники могут не дружить между собой; доставка тем, кто был не в сети; ответы, реакции, правка, удаление, закреп, файлы, упоминания; создатель добавляет и убирает участников.",
   "files": [
     {
       "path": "boot.js",
@@ -11,8 +11,8 @@
     },
     {
       "path": "core/bin/som-core.exe",
-      "size": 3358208,
-      "sha256": "0c3b15941d03ca3c101e972b32dd33d1fb2637c79cee0ffdb7d73485570cbcc1"
+      "size": 3575808,
+      "sha256": "f739a0a8a72307b2073cf33d69004deac1aefe4b3abc9c5679600b5d38d996f2"
     },
     {
       "path": "games.cjs",
@@ -21,8 +21,8 @@
     },
     {
       "path": "main.js",
-      "size": 38979,
-      "sha256": "070e8c3d9284f0f6f8cdc19cbccc5a94b155ba8b526acd7ae3c87f50a02a2e66"
+      "size": 39094,
+      "sha256": "19fdca1d81490d781db00e6e108bf976fb5769bb40331ccd4a3505190202b6ee"
     },
     {
       "path": "overlay-preload.cjs",
@@ -32,7 +32,7 @@
     {
       "path": "package.json",
       "size": 304,
-      "sha256": "d5dfaa0824cc8ca378dbb88a17a7b62768ad43c5b3fad63b5b9dfdcf761e7749"
+      "sha256": "c25e425b46f208438d82c893f5d11b9b0a50a7c2655905d4c30dc706f30f8299"
     },
     {
       "path": "preload.cjs",
@@ -61,13 +61,13 @@
     },
     {
       "path": "renderer/index.html",
-      "size": 41970,
-      "sha256": "77d7da410775d44152d1284681d0bda3e3635743a358c5f3d9f2cd563911441f"
+      "size": 44516,
+      "sha256": "22a3e614c175331a16e51b56284856098925525ad7d6a26db5e6d108376f41fa"
     },
     {
       "path": "renderer/js/app.js",
-      "size": 141623,
-      "sha256": "9820032c82f5194f7544b6a28ae7c5fb892b3a5ba129af70f1ed8c2e42ddae99"
+      "size": 156822,
+      "sha256": "ba876616bf7f83cf8af9dba3275fed2a0027a824c745d8af2a2a579fdcb6b12f"
     },
     {
       "path": "renderer/js/avatar-editor.js",
@@ -121,8 +121,8 @@
     },
     {
       "path": "renderer/styles.css",
-      "size": 57703,
-      "sha256": "58d47d9a2bb706eb6d8fc84b7aaf84643089241494b371a78f1027da13e7b680"
+      "size": 58594,
+      "sha256": "fd36a718bb8fc4941bf7fa470d0ce2b3106e008d8f858f95dfdaf7f12f71dbf3"
     },
     {
       "path": "renderer/vendor/ICONS-LICENSE.txt",
