@@ -1,8 +1,8 @@
 {
-  "version": "0.14.1",
+  "version": "0.15.0",
   "electron": "44.5.1",
   "date": "2026-10-24",
-  "notes": "Видео в просмотре снова играет, если открыть его второй раз (раньше был чёрный экран).",
+  "notes": "Заставка при запуске: проплывает сом, со звуком (выключается в «Внешний вид»). Галочка «Устанавливать обновления сами» в «О программе».",
   "files": [
     {
       "path": "boot.js",
@@ -21,8 +21,8 @@
     },
     {
       "path": "main.js",
-      "size": 43424,
-      "sha256": "15b246cffb782d7fc5aadee3362da45156badd6012cda4b703ade1c9660d6eb8"
+      "size": 46151,
+      "sha256": "f7d46cbf706c48aa635fe7f57bae81f85a6862e609955d3c8ca63e8545ea6974"
     },
     {
       "path": "overlay-preload.cjs",
@@ -32,12 +32,12 @@
     {
       "path": "package.json",
       "size": 304,
-      "sha256": "02dada8637e076a1cf8a9674f139dfdfcc4363aead20cd5ececc1f08ee583698"
+      "sha256": "b0eb91b6e9d2f23b4e9736ed9912d9f4981034b98961993017fb9d2d33c4b26c"
     },
     {
       "path": "preload.cjs",
-      "size": 3008,
-      "sha256": "cde10332236a928ab92de80758ed2d1e241801d70865374d6a70578b2e6a5688"
+      "size": 3342,
+      "sha256": "65ed3c1a52081cf71818b270751cfd65abddc9cd2c4506bc6b7ee3b9dccfa0f6"
     },
     {
       "path": "renderer/assets/icon-small.svg",
@@ -61,13 +61,13 @@
     },
     {
       "path": "renderer/index.html",
-      "size": 55835,
-      "sha256": "2172f2e3597e0c41f5d3f77191a04855c26890c18e782053abdd78617e509123"
+      "size": 57524,
+      "sha256": "db9e3471ebf3f3f98a6308acbf1f2d1f1f1d6c79e729337ffa71f5ddfcf0c223"
     },
     {
       "path": "renderer/js/app.js",
-      "size": 163895,
-      "sha256": "b26bec5b86ca6a5e917958a0e9ba1a0fd8ebcd3117a84a5c0635007d68b00837"
+      "size": 168422,
+      "sha256": "4808cee2c2204708c4a73f6985197dbbfab64cd7c43a5b6773b88b97d1ad8d75"
     },
     {
       "path": "renderer/js/avatar-editor.js",
@@ -85,9 +85,19 @@
       "sha256": "ba5b00409fecbd49e4df48df99ef161fd6b21af2729ff407f140472530ee9eee"
     },
     {
+      "path": "renderer/js/early.js",
+      "size": 658,
+      "sha256": "65857b9b34392f5f2df75b33a32514ee529b53a6d791d63c12f65dccdf47630c"
+    },
+    {
       "path": "renderer/js/gcall.js",
       "size": 37671,
       "sha256": "259c287f7cc5a2d6c8697104da37283ab592d870576b0856dea1cded4369a36d"
+    },
+    {
+      "path": "renderer/js/intro.js",
+      "size": 29348,
+      "sha256": "fc210810b9b4a274f08d1c59a66017824cd7587c6cd4a5e2b94f3f386038e493"
     },
     {
       "path": "renderer/js/mediaview.js",
@@ -136,8 +146,8 @@
     },
     {
       "path": "renderer/styles.css",
-      "size": 72881,
-      "sha256": "75aa2ce8b2be8226d978d8690a15d5fcc77d92b23142bb36d07bdf8e456371bf"
+      "size": 73565,
+      "sha256": "eb69d620e3d688ada961c06659e7a91925bec37bfa3dde83287c02e559b39faa"
     },
     {
       "path": "renderer/vendor/ICONS-LICENSE.txt",
