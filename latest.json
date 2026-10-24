@@ -1,8 +1,8 @@
 {
-  "version": "0.15.2",
+  "version": "0.16.0",
   "electron": "44.5.1",
   "date": "2026-10-24",
-  "notes": "Новые версии видны сразу после выхода (раньше GitHub мог до 5 минут показывать старую). Проверка обновлений — раз в 2 часа.",
+  "notes": "Крестик теперь прячет Som в трей у часов: сообщения и звонки приходят дальше, точка на значке — непрочитанные. В «Настройки → Уведомления» можно выбрать «Закрывать Som полностью». Окно после перезапуска возвращается того же размера.",
   "files": [
     {
       "path": "boot.js",
@@ -21,8 +21,8 @@
     },
     {
       "path": "main.js",
-      "size": 46151,
-      "sha256": "f7d46cbf706c48aa635fe7f57bae81f85a6862e609955d3c8ca63e8545ea6974"
+      "size": 50672,
+      "sha256": "726c0f02e6e53fa662ea8fb0f61b1b85de08796dc35debb7cdd24fd1da30e4ea"
     },
     {
       "path": "overlay-preload.cjs",
@@ -32,12 +32,12 @@
     {
       "path": "package.json",
       "size": 304,
-      "sha256": "6a75451478c7639e1b6a6070d234f8a79340af17225d3c66396297ed80afb474"
+      "sha256": "6644f2ff78d989e87681b85a432423cfd4c49fd996cfb1d8d7a53f254bbf40d0"
     },
     {
       "path": "preload.cjs",
-      "size": 3342,
-      "sha256": "65ed3c1a52081cf71818b270751cfd65abddc9cd2c4506bc6b7ee3b9dccfa0f6"
+      "size": 3462,
+      "sha256": "1976cd0d36a84dc9529a0683536a5df4bb95cfd8566887769af4409f60fcf8d1"
     },
     {
       "path": "renderer/assets/icon-small.svg",
@@ -60,14 +60,54 @@
       "sha256": "94a08e5437102560042592841730b5469b65e8676bfbceab3e23746c1c9c5540"
     },
     {
+      "path": "renderer/assets/tray-dot.png",
+      "size": 610,
+      "sha256": "bf3ad7226fcad77ab9f61db741b7bbba291c235c8a2c5abe30056768914fb9fe"
+    },
+    {
+      "path": "renderer/assets/tray-dot@1.25x.png",
+      "size": 726,
+      "sha256": "d3fb89a2eb17d4652721bb9363c621fbfe4b535effa5c741c936e753bc37ea88"
+    },
+    {
+      "path": "renderer/assets/tray-dot@1.5x.png",
+      "size": 907,
+      "sha256": "28bf307316097dca66ceeffa90931e77d3814b3c05cb152bbac838b812ee7846"
+    },
+    {
+      "path": "renderer/assets/tray-dot@2x.png",
+      "size": 1224,
+      "sha256": "a6ec4c5a884198da0401522731786d381b5fa5f626657ba1930d5d893050bd8d"
+    },
+    {
+      "path": "renderer/assets/tray.png",
+      "size": 541,
+      "sha256": "cc3d925d7ff2c4b518ca92f985b8c0af5b7362f85fcc1ac2d5652eb25c076fbd"
+    },
+    {
+      "path": "renderer/assets/tray@1.25x.png",
+      "size": 652,
+      "sha256": "5930af145d7f691584b0385202008fb76abefa0d80101814e3675f50fdd32aed"
+    },
+    {
+      "path": "renderer/assets/tray@1.5x.png",
+      "size": 777,
+      "sha256": "47f49bbe736d8e1b2c2cbe14375004ad6f879407e1d991e21a2e5af70609fcfa"
+    },
+    {
+      "path": "renderer/assets/tray@2x.png",
+      "size": 1074,
+      "sha256": "c6c93755f18f61eabb014c9d2cc72a9e2ced7733f1841757ad5e818f24abe320"
+    },
+    {
       "path": "renderer/index.html",
-      "size": 57524,
-      "sha256": "db9e3471ebf3f3f98a6308acbf1f2d1f1f1d6c79e729337ffa71f5ddfcf0c223"
+      "size": 57989,
+      "sha256": "a711a3b740d03cc7c49360437f003111e5bee8ecc58aa78c4e42af776863ab29"
     },
     {
       "path": "renderer/js/app.js",
-      "size": 168422,
-      "sha256": "4808cee2c2204708c4a73f6985197dbbfab64cd7c43a5b6773b88b97d1ad8d75"
+      "size": 169812,
+      "sha256": "7b1589d09e53fd3b9e81572d70e58eb820b11669214c8a5c641f84a138ed5233"
     },
     {
       "path": "renderer/js/avatar-editor.js",
