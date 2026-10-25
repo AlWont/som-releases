@@ -1,8 +1,8 @@
 {
-  "version": "0.17.0",
+  "version": "0.17.1",
   "electron": "44.5.1",
   "date": "2026-10-25",
-  "notes": "Радио: кнопка слева внизу — поиск станций, жанры, Россия и весь мир, избранное. Видно, что сейчас играет; в звонке радио тише, на время голосового — пауза; работают кнопки мультимедиа на клавиатуре.",
+  "notes": "Радио: свой каталог русских станций (Европа Плюс, Русское, Авторадио, DFM, Record, Маяк и ещё 40) — работает, даже когда мировой каталог недоступен. У станций запасные адреса, играют AAC и HLS. Можно добавить свою станцию по ссылке.",
   "files": [
     {
       "path": "boot.js",
@@ -21,8 +21,8 @@
     },
     {
       "path": "main.js",
-      "size": 51586,
-      "sha256": "9a433e2525332ee2e1e9de84e99f581dc459df97237f758ef3d9d22ede529f1c"
+      "size": 51757,
+      "sha256": "4adf08e1e025276bb0550f1d77654f519e06061b1af423ca64bf1399c4c8f95a"
     },
     {
       "path": "overlay-preload.cjs",
@@ -32,17 +32,22 @@
     {
       "path": "package.json",
       "size": 304,
-      "sha256": "60491b23ca6b7317304eabd98c58c6aa7c9d875d31e428a9aa8c358ce78108d5"
+      "sha256": "10c8dc92661d2e05fd5600e7eafec0b5cb2ff6d4b2c32a17ad36e25c1581e93d"
     },
     {
       "path": "preload.cjs",
-      "size": 3768,
-      "sha256": "cf9dcd6190511b1f418ef9919b3be15c5648aba81ce2044b82ec78d98edbbc99"
+      "size": 3885,
+      "sha256": "1d4047b6edb1d6368af1910ea0836163251fc935f26bf6e323acea56ac8276ce"
+    },
+    {
+      "path": "radio-ru.json",
+      "size": 12833,
+      "sha256": "39ae61dcaa779f8d474ffe1abca316e8f32daac7afc8a52d65feb4d25cdc42d0"
     },
     {
       "path": "radio.cjs",
-      "size": 9958,
-      "sha256": "759dcdcc69e9e86e6f6d2129af5daefc5b99c6fa9bb2d16dff11776ac0681c4a"
+      "size": 17005,
+      "sha256": "a6babc6609e3ee44158f7d534c66d6f747a475a0e6d957ecb6fe5490e53fbf3b"
     },
     {
       "path": "renderer/assets/icon-small.svg",
@@ -111,8 +116,8 @@
     },
     {
       "path": "renderer/js/app.js",
-      "size": 170344,
-      "sha256": "f8f9d16616dbe7fc0e0fa84b49ca9fc8bd429cf6f0d7b84e5c53ba8eedf26fa3"
+      "size": 170465,
+      "sha256": "a10c032a0344ada373c7f0cf263ab9c8a8d1c121cd5c12f53eeb596372522737"
     },
     {
       "path": "renderer/js/avatar-editor.js",
@@ -161,8 +166,8 @@
     },
     {
       "path": "renderer/js/radio.js",
-      "size": 20258,
-      "sha256": "c27c21970987b0ed7218cda052afece050980673a8e781572887d18f6b9ec411"
+      "size": 25851,
+      "sha256": "9b3ea230796029e92880688655596a7fe0364b485012fee0cbecde855c2bf8f5"
     },
     {
       "path": "renderer/js/sharedbrowser.js",
@@ -196,8 +201,8 @@
     },
     {
       "path": "renderer/styles.css",
-      "size": 78605,
-      "sha256": "da2994cf370f7371384e7439a5b7e74316e055ee61431c7f51ed0c627cc5ae92"
+      "size": 79075,
+      "sha256": "cd8df5af0ece6c694631672494f21f1c6bb933649137ccac3422bd9991e97525"
     },
     {
       "path": "renderer/vendor/ICONS-LICENSE.txt",
