@@ -1,0 +1,436 @@
+// Радио: окно выбора станций (поиск, жанры, Россия и мир, избранное, недавние) и мини-плеер слева внизу.
+// Каталог и поток — в главном процессе (radio.cjs); здесь только интерфейс и <audio>.
+// В звонке радио само приглушается, на время записи голосового — на паузе.
+
+const $ = (id) => document.getElementById(id);
+function pref(key, def) { try { return localStorage.getItem(key) ?? def; } catch { return def; } }
+function setPref(key, v) { try { localStorage.setItem(key, v); } catch { /* без памяти — не страшно */ } }
+function readList(key) { try { const v = JSON.parse(pref(key, '[]')); return Array.isArray(v) ? v : []; } catch { return []; } }
+
+function h(tag, props = {}, ...kids) {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(props)) {
+    if (v == null || v === false) continue;
+    if (k === 'class') el.className = v;
+    else if (k === 'text') el.textContent = v;
+    else if (k.startsWith('on')) el.addEventListener(k.slice(2), v);
+    else if (k === 'dataset') Object.assign(el.dataset, v);
+    else el.setAttribute(k, v === true ? '' : v);
+  }
+  for (const kid of kids.flat()) if (kid != null && kid !== false) el.append(kid instanceof Node ? kid : String(kid));
+  return el;
+}
+
+// Подборки. Жанры ищем по меткам каталога: сначала русские станции, потом остальные.
+const CHIPS = [
+  { id: 'fav', label: '★ Избранное' },
+  { id: 'recent', label: 'Недавние' },
+  { id: 'ru', label: 'Россия', q: { cc: 'RU' } },
+  { id: 'world', label: 'Весь мир', q: {} },
+  { id: 'pop', label: 'Поп', tag: 'pop' },
+  { id: 'rock', label: 'Рок', tag: 'rock' },
+  { id: 'electronic', label: 'Электроника', tag: 'electronic' },
+  { id: 'dance', label: 'Танцевальная', tag: 'dance' },
+  { id: 'hiphop', label: 'Хип-хоп', tag: 'hip hop' },
+  { id: 'chill', label: 'Чилаут', tag: 'chillout' },
+  { id: 'lofi', label: 'Лоу-фай', tag: 'lofi' },
+  { id: 'jazz', label: 'Джаз', tag: 'jazz' },
+  { id: 'classical', label: 'Классика', tag: 'classical' },
+  { id: 'retro', label: '80-е', tag: '80s' },
+  { id: 'metal', label: 'Метал', tag: 'metal' },
+  { id: 'chanson', label: 'Шансон', tag: 'chanson' },
+  { id: 'news', label: 'Новости', tag: 'news' },
+];
+const DUCK = 0.25; // громкость радио во время звонка
+const COUNTRY = { RU: 'Россия', UA: 'Украина', BY: 'Беларусь', KZ: 'Казахстан', US: 'США', GB: 'Великобритания', DE: 'Германия', FR: 'Франция', NL: 'Нидерланды', IT: 'Италия', ES: 'Испания', PL: 'Польша', CA: 'Канада', JP: 'Япония', CH: 'Швейцария', AT: 'Австрия', BE: 'Бельгия', GR: 'Греция', TR: 'Турция', BR: 'Бразилия' };
+
+const R = {
+  st: null, // станция в плеере
+  state: 'off', // off | connecting | playing | paused
+  now: '', // что сейчас играет
+  chip: '',
+  q: '',
+  seq: 0,
+  ducked: false,
+  pausedFor: null, // 'rec' — поставили на паузу ради записи голосового
+  broken: new Set(),
+  retry: 0,
+  list: [],
+};
+let X = { toast: () => {}, out: () => 'default' };
+const logoCache = new Map();
+let io = null;
+
+const audio = () => $('radioAudio');
+const volume = () => Math.max(0, Math.min(100, Number(pref('som.radio.vol', '60')) || 0));
+const favs = () => readList('som.radio.fav');
+const isFav = (id) => favs().some((s) => s.id === id);
+const slim = (s) => ({ id: s.id, name: s.name, url: s.url, logo: s.logo || '', tags: (s.tags || []).slice(0, 4), country: s.country || '', cc: s.cc || '', codec: s.codec || '', bitrate: s.bitrate || 0 });
+
+function applyVolume() {
+  const a = audio();
+  a.volume = (volume() / 100) * (R.ducked ? DUCK : 1);
+}
+
+// ---------- Логотипы ----------
+function initials(name) {
+  const w = String(name || '?').replace(/^(радио|radio)\s+/i, '').trim();
+  return (w[0] || '?').toUpperCase();
+}
+function hue(s) { let x = 0; for (const ch of String(s)) x = (x * 31 + ch.charCodeAt(0)) >>> 0; return x % 360; }
+function logoEl(st, size) {
+  const box = h('span', { class: 'r-logo', 'aria-hidden': 'true' });
+  box.style.width = `${size}px`;
+  box.style.height = `${size}px`;
+  box.style.background = `hsl(${hue(st.name)} 22% 32%)`;
+  box.append(h('span', { class: 'r-ini', text: initials(st.name) }));
+  if (st.logo) {
+    box.dataset.logo = st.logo;
+    if (logoCache.get(st.logo)) putLogo(box, logoCache.get(st.logo));
+    else if (!logoCache.has(st.logo)) io?.observe(box);
+  }
+  return box;
+}
+function putLogo(box, data) {
+  if (!data) return;
+  const img = h('img', { alt: '', src: data, draggable: 'false' });
+  img.addEventListener('error', () => img.remove());
+  box.replaceChildren(img);
+  box.classList.add('has-img');
+}
+async function loadLogo(box) {
+  const url = box.dataset.logo;
+  if (!url || logoCache.has(url)) { if (logoCache.get(url)) putLogo(box, logoCache.get(url)); return; }
+  logoCache.set(url, null);
+  const data = await window.som.radio.logo(url).catch(() => null);
+  logoCache.set(url, data);
+  for (const b of document.querySelectorAll('.r-logo')) if (b.dataset.logo === url) putLogo(b, data);
+  if (R.st?.logo === url) mediaSession();
+}
+
+// ---------- Плеер ----------
+async function play(st) {
+  if (!st?.url) return;
+  const a = audio();
+  R.now = '';
+  if (R.st?.id !== st.id || R.state !== 'connecting') { R.retry = 0; R.wasPlaying = false; }
+  R.st = slim(st);
+  R.state = 'connecting';
+  R.pausedFor = null;
+  setPref('som.radio.last', JSON.stringify(R.st));
+  const rec = readList('som.radio.recent').filter((s) => s.id !== st.id);
+  rec.unshift(R.st);
+  setPref('som.radio.recent', JSON.stringify(rec.slice(0, 20)));
+  render();
+  try {
+    const src = await window.som.radio.play(R.st);
+    if (R.st?.id !== st.id) return; // успели выбрать другую
+    const out = X.out();
+    if (typeof a.setSinkId === 'function') a.setSinkId(out && out !== 'default' ? out : '').catch(() => {});
+    applyVolume();
+    a.src = src;
+    await a.play();
+  } catch (err) {
+    if (R.st?.id === st.id && R.state === 'connecting' && err?.name !== 'AbortError') failed();
+  }
+}
+/** Пауза у живого радио — это «отключиться»: поток не качаем, станция остаётся в плеере. */
+function pause() {
+  const a = audio();
+  a.pause();
+  a.removeAttribute('src');
+  a.load();
+  window.som.radio.stop().catch(() => {});
+  if (R.st) R.state = 'paused';
+  render();
+}
+function toggle() {
+  if (!R.st) { open(); return; }
+  if (R.state === 'playing' || R.state === 'connecting') pause(); else play(R.st);
+}
+/** Выключить радио совсем: плеер слева пропадает. */
+function off() {
+  pause();
+  R.st = null;
+  R.state = 'off';
+  R.now = '';
+  setPref('som.radio.last', '');
+  render();
+}
+function failed() {
+  const name = R.st?.name || 'Станция';
+  if (R.st) R.broken.add(R.st.id);
+  pause();
+  X.toast(`«${name}» сейчас не отвечает. Попробуйте другую станцию.`, 'bad');
+  renderList();
+}
+
+function wireAudio() {
+  const a = audio();
+  a.addEventListener('playing', () => { if (R.st) { R.state = 'playing'; R.wasPlaying = true; render(); } });
+  a.addEventListener('waiting', () => { if (R.state === 'playing') { R.state = 'connecting'; render(); } });
+  // Связь со станцией оборвалась уже во время эфира — переподключаемся пару раз; не включилась вовсе — другая станция.
+  const reconnect = () => {
+    if (!R.st || R.state === 'paused' || R.state === 'off') return;
+    if (!R.wasPlaying || R.retry >= 2) { failed(); return; }
+    const n = R.retry + 1;
+    R.state = 'connecting';
+    render();
+    setTimeout(() => { if (R.st && R.state === 'connecting') { const st = R.st; play(st).then(() => { R.retry = n; }); R.retry = n; } }, 1500);
+  };
+  a.addEventListener('error', () => { if (a.getAttribute('src') && R.st) reconnect(); });
+  a.addEventListener('ended', reconnect);
+  // Включили голосовое, видео или песню из чата — радио замолкает (живые звонки не в счёт).
+  document.addEventListener('play', (e) => {
+    const m = e.target;
+    if (!(m instanceof HTMLMediaElement) || m === a || m.srcObject || m.muted) return;
+    if (R.state === 'playing' || R.state === 'connecting') pause();
+  }, true);
+  window.som.radio.onMeta((m) => {
+    if (!R.st || m.id !== R.st.id) return;
+    if (m.title != null) { R.now = m.title; render(); }
+  });
+}
+
+function mediaSession() {
+  const ms = navigator.mediaSession;
+  if (!ms || typeof MediaMetadata === 'undefined') return;
+  if (!R.st) { ms.metadata = null; ms.playbackState = 'none'; return; }
+  const art = logoCache.get(R.st.logo);
+  ms.metadata = new MediaMetadata({ title: R.now || R.st.name, artist: R.now ? R.st.name : 'Радио в Som', album: 'Som', artwork: art ? [{ src: art, sizes: '128x128' }] : [] });
+  ms.playbackState = R.state === 'playing' || R.state === 'connecting' ? 'playing' : 'paused';
+}
+function wireMediaKeys() {
+  const ms = navigator.mediaSession;
+  if (!ms) return;
+  const step = (d) => {
+    const list = favs().length ? favs() : readList('som.radio.recent');
+    if (!list.length) return;
+    const i = list.findIndex((s) => s.id === R.st?.id);
+    play(list[(i + d + list.length) % list.length]);
+  };
+  const set = (k, fn) => { try { ms.setActionHandler(k, fn); } catch { /* не поддерживается */ } };
+  set('play', () => { if (R.st) play(R.st); });
+  set('pause', () => pause());
+  set('stop', () => pause());
+  set('nexttrack', () => step(1));
+  set('previoustrack', () => step(-1));
+}
+
+// ---------- Мини-плеер ----------
+/** Строка «что играет»: не помещается — медленно ездит туда-обратно. */
+function setRunning(box, text) {
+  let run = box.firstElementChild;
+  if (!run) { run = h('span', { class: 'rd-run' }); box.replaceChildren(run); }
+  if (run.textContent === text) return;
+  run.textContent = text;
+  box.classList.remove('marquee');
+  requestAnimationFrame(() => {
+    const over = run.scrollWidth - box.clientWidth;
+    if (over <= 2) return;
+    box.style.setProperty('--run', `${-over - 8}px`);
+    box.style.setProperty('--run-time', `${Math.max(5, over / 28 + 3)}s`);
+    box.classList.add('marquee');
+  });
+}
+const PLAY_ICON = '<polygon points="7 4 20 12 7 20 7 4"/>';
+const PAUSE_ICON = '<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>';
+function render() {
+  const dock = $('radioDock');
+  const st = R.st;
+  dock.hidden = !st;
+  $('radioBtn').classList.toggle('on', R.state === 'playing' || R.state === 'connecting');
+  if (st) {
+    const logo = $('radioLogo');
+    if (logo.dataset.for !== st.id) { logo.dataset.for = st.id; logo.replaceChildren(logoEl(st, 32)); }
+    $('radioName').textContent = st.name;
+    const now = R.state === 'connecting' ? 'Подключаюсь…' : R.state === 'paused' ? 'На паузе' : (R.now || (R.ducked ? 'Тише — идёт звонок' : 'В эфире'));
+    setRunning($('radioNow'), now);
+    $('radioNow').title = R.now || '';
+    dock.dataset.state = R.state;
+    const playing = R.state === 'playing' || R.state === 'connecting';
+    $('radioPlay').querySelector('svg').innerHTML = playing ? PAUSE_ICON : PLAY_ICON;
+    $('radioPlay').setAttribute('aria-label', playing ? 'Пауза' : 'Играть');
+    $('radioPlay').title = playing ? 'Пауза' : 'Играть';
+  }
+  mediaSession();
+  if ($('radioDlg').open) markRows();
+}
+
+// ---------- Окно выбора ----------
+function metaLine(st) {
+  const parts = [];
+  if (st.cc && COUNTRY[st.cc]) parts.push(COUNTRY[st.cc]); else if (st.country) parts.push(st.country);
+  if (st.tags?.length) parts.push(st.tags.slice(0, 3).join(', '));
+  const q = [st.codec && st.codec !== 'UNKNOWN' ? st.codec : '', st.bitrate ? `${st.bitrate}` : ''].filter(Boolean).join(' ');
+  if (q) parts.push(q);
+  return parts.join(' · ');
+}
+function row(st) {
+  const fav = isFav(st.id);
+  const el = h('div', { class: `r-row${R.broken.has(st.id) ? ' broken' : ''}`, role: 'listitem', dataset: { id: st.id } },
+    h('button', { class: 'r-main', type: 'button', title: `Слушать «${st.name}»`, onclick: () => { if (R.st?.id === st.id && R.state !== 'paused') pause(); else play(st); } },
+      logoEl(st, 40),
+      h('span', { class: 'r-text' },
+        h('span', { class: 'r-name', text: st.name }),
+        h('span', { class: 'r-meta', text: R.broken.has(st.id) ? 'не отвечает' : metaLine(st) })),
+      h('span', { class: 'r-eq', 'aria-hidden': 'true' }, h('i'), h('i'), h('i'))),
+    h('button', {
+      class: 'icon-btn r-fav', type: 'button', 'aria-pressed': String(fav), title: fav ? 'Убрать из избранного' : 'В избранное', 'aria-label': fav ? 'Убрать из избранного' : 'В избранное',
+      onclick: (e) => toggleFav(st, e.currentTarget),
+    }, '★'));
+  return el;
+}
+function toggleFav(st, btn) {
+  const list = favs();
+  const i = list.findIndex((s) => s.id === st.id);
+  if (i >= 0) list.splice(i, 1); else list.unshift(slim(st));
+  setPref('som.radio.fav', JSON.stringify(list.slice(0, 100)));
+  const on = i < 0;
+  btn.setAttribute('aria-pressed', String(on));
+  btn.title = on ? 'Убрать из избранного' : 'В избранное';
+  btn.setAttribute('aria-label', btn.title);
+  if (R.chip === 'fav' && !on) renderList();
+}
+function markRows() {
+  for (const r of document.querySelectorAll('#radioList .r-row')) {
+    const cur = R.st && r.dataset.id === R.st.id;
+    r.classList.toggle('on', Boolean(cur) && R.state !== 'paused');
+    r.classList.toggle('connecting', Boolean(cur) && R.state === 'connecting');
+  }
+}
+function note(text, retry) {
+  const kids = [h('p', { text })];
+  if (retry) kids.push(h('button', { class: 'btn small', type: 'button', text: 'Ещё раз', onclick: retry }));
+  $('radioList').replaceChildren(h('div', { class: 'r-note' }, kids));
+}
+function renderList() {
+  const list = R.list;
+  if (!list.length) {
+    if (R.chip === 'fav') note('Здесь будут станции, которым вы поставите ★.');
+    else if (R.chip === 'recent') note('Здесь будут станции, которые вы слушали.');
+    else note(R.q ? `По запросу «${R.q}» ничего не нашлось.` : 'Ничего не нашлось.');
+    return;
+  }
+  $('radioList').replaceChildren(...list.map(row));
+  markRows();
+}
+async function load() {
+  const seq = ++R.seq;
+  const chip = CHIPS.find((c) => c.id === R.chip);
+  if (R.q) {
+    note('Ищу станции…');
+    try {
+      const [byName, byTag] = await Promise.all([
+        window.som.radio.search({ q: R.q, limit: 40 }),
+        window.som.radio.search({ tag: R.q.toLowerCase(), limit: 20 }).catch(() => []),
+      ]);
+      if (seq !== R.seq) return;
+      R.list = dedupe([...byName, ...byTag]);
+      renderList();
+    } catch { if (seq === R.seq) note('Каталог станций не ответил. Проверьте интернет и попробуйте ещё раз.', load); }
+    return;
+  }
+  if (chip.id === 'fav') { R.list = favs(); renderList(); return; }
+  if (chip.id === 'recent') { R.list = readList('som.radio.recent'); renderList(); return; }
+  note('Загружаю станции…');
+  try {
+    let list;
+    if (chip.tag) {
+      const [ru, all] = await Promise.all([
+        window.som.radio.search({ tag: chip.tag, cc: 'RU', limit: 15 }).catch(() => []),
+        window.som.radio.search({ tag: chip.tag, limit: 40 }),
+      ]);
+      list = dedupe([...ru, ...all]);
+    } else list = await window.som.radio.search({ ...chip.q, limit: 50 });
+    if (seq !== R.seq) return;
+    R.list = list;
+    renderList();
+  } catch { if (seq === R.seq) note('Каталог станций не ответил. Проверьте интернет и попробуйте ещё раз.', load); }
+}
+function dedupe(list) {
+  const seen = new Set();
+  return list.filter((s) => (seen.has(s.id) ? false : (seen.add(s.id), true)));
+}
+function selectChip(id) {
+  R.chip = id;
+  R.q = '';
+  $('radioQ').value = '';
+  setPref('som.radio.chip', id);
+  for (const b of document.querySelectorAll('#radioChips .chip')) b.setAttribute('aria-selected', String(b.dataset.chip === id));
+  load();
+}
+
+export function open() {
+  const dlg = $('radioDlg');
+  if (!dlg.open) dlg.showModal();
+  const saved = pref('som.radio.chip', '');
+  selectChip(CHIPS.some((c) => c.id === saved) ? saved : (favs().length ? 'fav' : 'ru'));
+  $('radioQ').focus();
+}
+
+/** Звонок начался/кончился — радио тише/громче. */
+export function duck(on) {
+  if (R.ducked === Boolean(on)) return;
+  R.ducked = Boolean(on);
+  applyVolume();
+  render();
+}
+/** Запись голосового или кружка: радио на паузу, после — снова играет. */
+export function holdForRecording(on) {
+  if (on) {
+    if (R.state === 'playing' || R.state === 'connecting') { pause(); R.pausedFor = 'rec'; }
+  } else if (R.pausedFor === 'rec') {
+    R.pausedFor = null;
+    if (R.st) play(R.st);
+  }
+}
+/** Сменили колонки в настройках. */
+export function applyOutput() {
+  const a = audio();
+  const out = X.out();
+  if (typeof a.setSinkId === 'function') a.setSinkId(out && out !== 'default' ? out : '').catch(() => {});
+}
+export const radioPlaying = () => R.state === 'playing' || R.state === 'connecting';
+
+export function initRadio(deps) {
+  X = { ...X, ...deps };
+  io = new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) { io.unobserve(e.target); loadLogo(e.target); }
+  }, { root: $('radioList'), rootMargin: '200px' });
+  $('radioChips').replaceChildren(...CHIPS.map((c) => h('button', {
+    class: 'chip', type: 'button', role: 'tab', 'aria-selected': 'false', dataset: { chip: c.id }, text: c.label, onclick: () => selectChip(c.id),
+  })));
+  let t = 0;
+  $('radioQ').addEventListener('input', () => {
+    clearTimeout(t);
+    t = setTimeout(() => {
+      R.q = $('radioQ').value.trim();
+      for (const b of document.querySelectorAll('#radioChips .chip')) b.setAttribute('aria-selected', String(!R.q && b.dataset.chip === R.chip));
+      if (R.q || R.chip) load();
+    }, 350);
+  });
+  $('radioQ').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); clearTimeout(t); R.q = $('radioQ').value.trim(); load(); } });
+  $('radioBtn').addEventListener('click', open);
+  $('radioOpen').addEventListener('click', open);
+  $('radioDlgClose').addEventListener('click', () => $('radioDlg').close());
+  $('radioDlg').addEventListener('click', (e) => { if (e.target === $('radioDlg')) $('radioDlg').close(); });
+  $('radioPlay').addEventListener('click', toggle);
+  $('radioClose').addEventListener('click', off);
+  const vol = $('radioVol');
+  vol.value = String(volume());
+  vol.addEventListener('input', () => { setPref('som.radio.vol', vol.value); applyVolume(); });
+  $('radioDock').addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const v = Math.max(0, Math.min(100, volume() + (e.deltaY < 0 ? 5 : -5)));
+    setPref('som.radio.vol', String(v));
+    vol.value = String(v);
+    applyVolume();
+  }, { passive: false });
+  applyVolume();
+  wireAudio();
+  wireMediaKeys();
+  // Слушали раньше — станция ждёт в плеере на паузе, включить можно одной кнопкой.
+  try { const last = JSON.parse(pref('som.radio.last', '') || 'null'); if (last?.url) { R.st = last; R.state = 'paused'; } } catch { /* нет */ }
+  render();
+}

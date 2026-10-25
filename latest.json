@@ -1,8 +1,8 @@
 {
-  "version": "0.16.0",
+  "version": "0.17.0",
   "electron": "44.5.1",
-  "date": "2026-10-24",
-  "notes": "Крестик теперь прячет Som в трей у часов: сообщения и звонки приходят дальше, точка на значке — непрочитанные. В «Настройки → Уведомления» можно выбрать «Закрывать Som полностью». Окно после перезапуска возвращается того же размера.",
+  "date": "2026-10-25",
+  "notes": "Радио: кнопка слева внизу — поиск станций, жанры, Россия и весь мир, избранное. Видно, что сейчас играет; в звонке радио тише, на время голосового — пауза; работают кнопки мультимедиа на клавиатуре.",
   "files": [
     {
       "path": "boot.js",
@@ -21,8 +21,8 @@
     },
     {
       "path": "main.js",
-      "size": 50672,
-      "sha256": "726c0f02e6e53fa662ea8fb0f61b1b85de08796dc35debb7cdd24fd1da30e4ea"
+      "size": 51586,
+      "sha256": "9a433e2525332ee2e1e9de84e99f581dc459df97237f758ef3d9d22ede529f1c"
     },
     {
       "path": "overlay-preload.cjs",
@@ -32,12 +32,17 @@
     {
       "path": "package.json",
       "size": 304,
-      "sha256": "6644f2ff78d989e87681b85a432423cfd4c49fd996cfb1d8d7a53f254bbf40d0"
+      "sha256": "60491b23ca6b7317304eabd98c58c6aa7c9d875d31e428a9aa8c358ce78108d5"
     },
     {
       "path": "preload.cjs",
-      "size": 3462,
-      "sha256": "1976cd0d36a84dc9529a0683536a5df4bb95cfd8566887769af4409f60fcf8d1"
+      "size": 3768,
+      "sha256": "cf9dcd6190511b1f418ef9919b3be15c5648aba81ce2044b82ec78d98edbbc99"
+    },
+    {
+      "path": "radio.cjs",
+      "size": 9958,
+      "sha256": "759dcdcc69e9e86e6f6d2129af5daefc5b99c6fa9bb2d16dff11776ac0681c4a"
     },
     {
       "path": "renderer/assets/icon-small.svg",
@@ -101,13 +106,13 @@
     },
     {
       "path": "renderer/index.html",
-      "size": 57989,
-      "sha256": "a711a3b740d03cc7c49360437f003111e5bee8ecc58aa78c4e42af776863ab29"
+      "size": 60864,
+      "sha256": "be6be6e61f1b04538342bb3a552666a6213ac3e030285b91c7d3fee1ebba9747"
     },
     {
       "path": "renderer/js/app.js",
-      "size": 169812,
-      "sha256": "7b1589d09e53fd3b9e81572d70e58eb820b11669214c8a5c641f84a138ed5233"
+      "size": 170344,
+      "sha256": "f8f9d16616dbe7fc0e0fa84b49ca9fc8bd429cf6f0d7b84e5c53ba8eedf26fa3"
     },
     {
       "path": "renderer/js/avatar-editor.js",
@@ -155,6 +160,11 @@
       "sha256": "5a424c6223358bc94b517feac441ceee65754a56fd6a96bbe003a075e9e2400e"
     },
     {
+      "path": "renderer/js/radio.js",
+      "size": 20258,
+      "sha256": "c27c21970987b0ed7218cda052afece050980673a8e781572887d18f6b9ec411"
+    },
+    {
       "path": "renderer/js/sharedbrowser.js",
       "size": 12387,
       "sha256": "346c86cb62dbef30cfa75db1314c2a3fceb8d624bfbbfd786d804aa51fd13c1d"
@@ -186,8 +196,8 @@
     },
     {
       "path": "renderer/styles.css",
-      "size": 73565,
-      "sha256": "eb69d620e3d688ada961c06659e7a91925bec37bfa3dde83287c02e559b39faa"
+      "size": 78605,
+      "sha256": "da2994cf370f7371384e7439a5b7e74316e055ee61431c7f51ed0c627cc5ae92"
     },
     {
       "path": "renderer/vendor/ICONS-LICENSE.txt",
