@@ -1,8 +1,8 @@
 {
-  "version": "0.17.1",
+  "version": "0.18.0",
   "electron": "44.5.1",
-  "date": "2026-10-25",
-  "notes": "Радио: свой каталог русских станций (Европа Плюс, Русское, Авторадио, DFM, Record, Маяк и ещё 40) — работает, даже когда мировой каталог недоступен. У станций запасные адреса, играют AAC и HLS. Можно добавить свою станцию по ссылке.",
+  "date": "2026-10-26",
+  "notes": "Щелчок по себе — карточка профиля: статус, «Изменить профиль», «Настройки». Все смайлики с поиском (статус, сообщения, реакции). Анимированный баннер из GIF или видео. Свой цвет профиля или «Авто» по фото. В звонке гифка-аватар оживает, пока человек говорит (выключается в «Внешний вид»).",
   "files": [
     {
       "path": "boot.js",
@@ -11,8 +11,8 @@
     },
     {
       "path": "core/bin/som-core.exe",
-      "size": 3602944,
-      "sha256": "b6bdbe374042c2436c6a3fa772d5797fe7d97c80389f729ee250e5811480a988"
+      "size": 3615232,
+      "sha256": "0ecd8efe5bac95f4a8edcd5bcd329fff2970e030ef8645448e129aa2a79fd971"
     },
     {
       "path": "games.cjs",
@@ -21,8 +21,8 @@
     },
     {
       "path": "main.js",
-      "size": 51757,
-      "sha256": "4adf08e1e025276bb0550f1d77654f519e06061b1af423ca64bf1399c4c8f95a"
+      "size": 51774,
+      "sha256": "4d00ac4751031b2e4b8e3943b5f1171f1055383694d7589e76518fa19b50adeb"
     },
     {
       "path": "overlay-preload.cjs",
@@ -32,7 +32,7 @@
     {
       "path": "package.json",
       "size": 304,
-      "sha256": "10c8dc92661d2e05fd5600e7eafec0b5cb2ff6d4b2c32a17ad36e25c1581e93d"
+      "sha256": "467be353cc3f4080da7cadcb381b245616d80a33d3e2dd8b0e43275302af129c"
     },
     {
       "path": "preload.cjs",
@@ -111,18 +111,18 @@
     },
     {
       "path": "renderer/index.html",
-      "size": 60864,
-      "sha256": "be6be6e61f1b04538342bb3a552666a6213ac3e030285b91c7d3fee1ebba9747"
+      "size": 63761,
+      "sha256": "b42ed2d8959a00e3df19949e2f57b69985557cddd745a980bde6056a2f6556d1"
     },
     {
       "path": "renderer/js/app.js",
-      "size": 170465,
-      "sha256": "a10c032a0344ada373c7f0cf263ab9c8a8d1c121cd5c12f53eeb596372522737"
+      "size": 180884,
+      "sha256": "61f6f0dd51af45a9442629e7a2d1b4c2ee39cf611dda7ad2e0dfb4c1aeb469ca"
     },
     {
       "path": "renderer/js/avatar-editor.js",
-      "size": 32748,
-      "sha256": "20a83bd94937e56aee6a6f88f4c4220aeb75ce8e9f4fd047a58e55fd3276c789"
+      "size": 32991,
+      "sha256": "9de03ade4fd3e4cf5ee370204bdcfac7804a5487d8c6d9ffa0ee03842a246b2e"
     },
     {
       "path": "renderer/js/call.js",
@@ -138,6 +138,11 @@
       "path": "renderer/js/early.js",
       "size": 658,
       "sha256": "65857b9b34392f5f2df75b33a32514ee529b53a6d791d63c12f65dccdf47630c"
+    },
+    {
+      "path": "renderer/js/emoji-data.js",
+      "size": 194686,
+      "sha256": "5146a45d571f79a610b5c518fe63a158f5451946241cdaa7404ff1e13cfcc20f"
     },
     {
       "path": "renderer/js/gcall.js",
@@ -156,8 +161,8 @@
     },
     {
       "path": "renderer/js/msgtools.js",
-      "size": 9982,
-      "sha256": "1b73e7cb502f38a930b252335a862b83e7f6c0b0fb41c9c8637ae7474e047bd2"
+      "size": 15446,
+      "sha256": "c188ea3fd515336a967865458f1a87955f775f5f9ed7ec7734d6ca8899f2cb55"
     },
     {
       "path": "renderer/js/overlay.js",
@@ -201,8 +206,8 @@
     },
     {
       "path": "renderer/styles.css",
-      "size": 79075,
-      "sha256": "cd8df5af0ece6c694631672494f21f1c6bb933649137ccac3422bd9991e97525"
+      "size": 84252,
+      "sha256": "bb0ce073cdd407b7b36ea9897e9aa9803eddce6c54f18329bcc1ab585306427b"
     },
     {
       "path": "renderer/vendor/ICONS-LICENSE.txt",
