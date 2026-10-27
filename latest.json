@@ -1,8 +1,8 @@
 {
-  "version": "0.21.0",
+  "version": "0.22.0",
   "electron": "44.5.1",
   "date": "2026-10-27",
-  "notes": "Голосовые комнаты в группах: можно зайти, никому не звоня, — кто в комнате, видно прямо в списке под группой, а позвать всех или одного можно кнопкой с колокольчиком. Радио вместе: в звонке в окне радио выберите «Для всех» — станция заиграет у всех, каждый со своей громкостью, выключить у себя можно крестиком. «Позвать в игру» — кнопка с геймпадом у поля сообщения: игра, время, сервер; друзья отвечают «Иду!», «Чуть позже» или «Не смогу», ответ виден даже поверх игры.",
+  "notes": "Своё видео вместе: в звонке нажмите «Показать экран» → «Своё видео с компьютера» — фильм играет у вас, а друзья видят и слышат его вместе с вами; пауза и перемотка — у всех, громкость — у каждого своя. Перенос профиля на другой ПК: Настройки → Приватность → «Сохранить профиль в файл» (под паролем: ключи, друзья, группы, переписка, стикеры, звуки, настройки); на новом ПК — «Перенести его сюда» на первом экране.",
   "files": [
     {
       "path": "boot.js",
@@ -11,8 +11,8 @@
     },
     {
       "path": "core/bin/som-core.exe",
-      "size": 3629056,
-      "sha256": "9e475b6b0dd284e94b4ef844048f6b6c06fdb86f42ad1c4ee9fba03ea84f2706"
+      "size": 3734016,
+      "sha256": "9ce87a96414b3490827863114b6b7c92a916d5099b5719b46dc1d57259dbecf7"
     },
     {
       "path": "games.cjs",
@@ -21,13 +21,13 @@
     },
     {
       "path": "library.cjs",
-      "size": 9584,
-      "sha256": "dae82a1a3b5c8d399a79a2de313f52d37a675073ada4fddf3c3dfa90835d1311"
+      "size": 9781,
+      "sha256": "b62a41c6c09b28d7105d5e5ba4bc515ed52b7ceefed43dc2c1866070aa9377a5"
     },
     {
       "path": "main.js",
-      "size": 59907,
-      "sha256": "521888c2e739786656483690529ebadecf8ca4e001d937154cc76f1acfd7593c"
+      "size": 63034,
+      "sha256": "a989693a6361f3b70a0f7715f57261901e452a635180bcadf43c94853a5788b2"
     },
     {
       "path": "overlay-preload.cjs",
@@ -37,12 +37,12 @@
     {
       "path": "package.json",
       "size": 304,
-      "sha256": "325fecdd0b4e9fada03be7a5691629252a2e04f0ca942fc42a5c2730eaf1e0e3"
+      "sha256": "d42920827b17ce919fea8fbbc7d0bdf70f478293dda9bd7c75813968c730db49"
     },
     {
       "path": "preload.cjs",
-      "size": 5272,
-      "sha256": "ae52b1a6738201b6e787a8cb86365f2c06ff128065181b6ec9eb2553be6e4e78"
+      "size": 5522,
+      "sha256": "be1dfed649ac5db635e5b80eb497e89a44e5ad493c4d6cd525f157a421ad4e1c"
     },
     {
       "path": "radio-ru.json",
@@ -116,13 +116,13 @@
     },
     {
       "path": "renderer/index.html",
-      "size": 67960,
-      "sha256": "8f9d304a4beaceeeaab147580e596e85fb304c0f434b67d4567bbdd89b85a9da"
+      "size": 72103,
+      "sha256": "d7fc0d87c9909bf81b9d397bdbd6b2da7302d751bc91717da85c43bd253a2fe5"
     },
     {
       "path": "renderer/js/app.js",
-      "size": 195146,
-      "sha256": "62f63759af87364440b865be092969d53c80e21c7967fd760749d408d4a21191"
+      "size": 195843,
+      "sha256": "765f3d8f8041ffed8b04bcbbdb954a2d66c9f55bbe026d35525531625e8a0b80"
     },
     {
       "path": "renderer/js/avatar-editor.js",
@@ -130,9 +130,14 @@
       "sha256": "9de03ade4fd3e4cf5ee370204bdcfac7804a5487d8c6d9ffa0ee03842a246b2e"
     },
     {
+      "path": "renderer/js/backup.js",
+      "size": 8010,
+      "sha256": "0aebeea90b7459c11f39bc112369cbd67d76c8320ab409898cf05196f2f66963"
+    },
+    {
       "path": "renderer/js/call.js",
-      "size": 80211,
-      "sha256": "4e5150be88272bb3e15f274b3e588ea79c44d10ddd9fbeaa2f8adbe62f3f9000"
+      "size": 85273,
+      "sha256": "b6784655118800e4d09f297f11e46d05b473b5231a6dc7418af07a63381f35d4"
     },
     {
       "path": "renderer/js/circle.js",
@@ -156,8 +161,8 @@
     },
     {
       "path": "renderer/js/gcall.js",
-      "size": 43349,
-      "sha256": "c7174135c18e0cc3e3f280860ca29792bd06e1a95318ad4ba9069685561bfd07"
+      "size": 43881,
+      "sha256": "00c3788c21645706be575f01de4bd20d9691e8a2729c20d1b48e8443b253670b"
     },
     {
       "path": "renderer/js/intro.js",
@@ -191,8 +196,8 @@
     },
     {
       "path": "renderer/js/soundboard.js",
-      "size": 16113,
-      "sha256": "9793326fe65ccd40b6860714511a54f9cea25cb2f967a216afc1afc92468c1aa"
+      "size": 16189,
+      "sha256": "ae42d5d56e9e6c5716c0f70f6973fb85dc46874a23de45feda72b802c993532e"
     },
     {
       "path": "renderer/js/sounds.js",
@@ -201,8 +206,8 @@
     },
     {
       "path": "renderer/js/stickers.js",
-      "size": 14642,
-      "sha256": "fd42f83b5de1fb163d57caec131f5d3f2348af7eb095f25834b649e096c4713e"
+      "size": 14716,
+      "sha256": "345dec7ab0e421ec1c40d6ceaa927578fa3c38473f6bbd738582de37ea489ec1"
     },
     {
       "path": "renderer/js/themes.js",
@@ -226,8 +231,8 @@
     },
     {
       "path": "renderer/styles.css",
-      "size": 93554,
-      "sha256": "408d901691da543be5debca8ffd8659b6f25f590abb5f899d8dde67d245f3116"
+      "size": 95330,
+      "sha256": "edea1b383331d97ed6419b4cff7f7869b7d9d32d5133ee53c59c7f14ab6c47f6"
     },
     {
       "path": "renderer/vendor/ICONS-LICENSE.txt",
