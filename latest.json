@@ -1,8 +1,8 @@
 {
-  "version": "0.19.0",
+  "version": "0.20.0",
   "electron": "44.5.1",
   "date": "2026-10-27",
-  "notes": "Уведомления Windows о сообщениях и звонках, когда Som свёрнут или в трее (щелчок открывает чат). Запуск вместе с Windows сразу в трей. Клавиши в звонке: выключить микрофон или звук из любой программы (Настройки → Звук).",
+  "notes": "Стикеры: свои наборы из картинок и GIF, кнопка у поля сообщения; набор можно отправить другу целиком, а понравившийся стикер — добавить к себе (правый щелчок). Звуковая панель в звонке (кнопка с нотой): 10 готовых звуков и свои до 10 секунд, их слышат все, даже когда ваш микрофон выключен.",
   "files": [
     {
       "path": "boot.js",
@@ -11,8 +11,8 @@
     },
     {
       "path": "core/bin/som-core.exe",
-      "size": 3615232,
-      "sha256": "0ecd8efe5bac95f4a8edcd5bcd329fff2970e030ef8645448e129aa2a79fd971"
+      "size": 3617792,
+      "sha256": "62fa344f4fcb60b8edbb2d2b9e4252c0ad61c662b223ae559e3cab8339f25ea7"
     },
     {
       "path": "games.cjs",
@@ -20,9 +20,14 @@
       "sha256": "00671d28ba9393dfcd38e3353a9aaed1e2b742a04b60b978b62907baad138cef"
     },
     {
+      "path": "library.cjs",
+      "size": 9584,
+      "sha256": "dae82a1a3b5c8d399a79a2de313f52d37a675073ada4fddf3c3dfa90835d1311"
+    },
+    {
       "path": "main.js",
-      "size": 56943,
-      "sha256": "f6c1a711f0a14229cdf10c5947493daa490074e70b7e5e434a337461921ac345"
+      "size": 59027,
+      "sha256": "77c5627873a8eec2092321e3c1eb3df8f4f6f1000ad8b8b2439e55d065680e78"
     },
     {
       "path": "overlay-preload.cjs",
@@ -32,12 +37,12 @@
     {
       "path": "package.json",
       "size": 304,
-      "sha256": "703d2f027f893687fa31ff322ed2b7fa4cb8f5c2bd312a2da66bf928483eac49"
+      "sha256": "33c6972f1f371c7a29411112935feaf7ca60453314019469cea0264e3adc58d7"
     },
     {
       "path": "preload.cjs",
-      "size": 4210,
-      "sha256": "ba20c4d974187d17e9c9f3940211c379726f245108735346c61057db5d612ff2"
+      "size": 5155,
+      "sha256": "cca0b266a514e5860e3bb737be5a3e25a39b26839d35d209ff35119b5d84554f"
     },
     {
       "path": "radio-ru.json",
@@ -111,13 +116,13 @@
     },
     {
       "path": "renderer/index.html",
-      "size": 65853,
-      "sha256": "0209a8974c9cf9ffd3546f027bbb3677c25a0e5ccd42bc6406f251a76db92505"
+      "size": 66561,
+      "sha256": "6c261d8d5229ba270f1c4c0444c7f49c9f08fd4657ddac1857535f39e197423e"
     },
     {
       "path": "renderer/js/app.js",
-      "size": 188175,
-      "sha256": "b50999a2ae51e59c73b914f6838fde45d80f169460d97825065ea1816bbbc5aa"
+      "size": 189496,
+      "sha256": "e4debe346f810a171d082db8488a9db7c39885c04513ef1d749fe1c829339335"
     },
     {
       "path": "renderer/js/avatar-editor.js",
@@ -126,8 +131,8 @@
     },
     {
       "path": "renderer/js/call.js",
-      "size": 79063,
-      "sha256": "eb999fedd650cdf1eca6f984b5c81988e27f016286408dabec13c1d8192a1958"
+      "size": 79809,
+      "sha256": "5be879f6373044cfc45b8d146d32fe5d410b02ed305a5199dd2e32792ac284ca"
     },
     {
       "path": "renderer/js/circle.js",
@@ -146,8 +151,8 @@
     },
     {
       "path": "renderer/js/gcall.js",
-      "size": 37671,
-      "sha256": "259c287f7cc5a2d6c8697104da37283ab592d870576b0856dea1cded4369a36d"
+      "size": 37691,
+      "sha256": "91c0e8564ad40bf52cc85737ad7a68294212eade5e57e7685f1dc0e4509b6392"
     },
     {
       "path": "renderer/js/intro.js",
@@ -180,9 +185,19 @@
       "sha256": "346c86cb62dbef30cfa75db1314c2a3fceb8d624bfbbfd786d804aa51fd13c1d"
     },
     {
+      "path": "renderer/js/soundboard.js",
+      "size": 16113,
+      "sha256": "9793326fe65ccd40b6860714511a54f9cea25cb2f967a216afc1afc92468c1aa"
+    },
+    {
       "path": "renderer/js/sounds.js",
       "size": 5944,
       "sha256": "631d703f782b52c9ad55dcdd7e01155a7cf2373df4ae1543e83ad7a57841024e"
+    },
+    {
+      "path": "renderer/js/stickers.js",
+      "size": 14642,
+      "sha256": "fd42f83b5de1fb163d57caec131f5d3f2348af7eb095f25834b649e096c4713e"
     },
     {
       "path": "renderer/js/themes.js",
@@ -206,8 +221,8 @@
     },
     {
       "path": "renderer/styles.css",
-      "size": 84582,
-      "sha256": "3ea18076519a6883b20711b0f1363cf871b9db82726d8d9e08dbe1194948969b"
+      "size": 88096,
+      "sha256": "530dd04238f9173212e6a5826ea3e8ace51b64cf9ab6895ee074e2cef318f847"
     },
     {
       "path": "renderer/vendor/ICONS-LICENSE.txt",
