@@ -1,8 +1,8 @@
 {
-  "version": "0.18.0",
+  "version": "0.19.0",
   "electron": "44.5.1",
-  "date": "2026-10-26",
-  "notes": "Щелчок по себе — карточка профиля: статус, «Изменить профиль», «Настройки». Все смайлики с поиском (статус, сообщения, реакции). Анимированный баннер из GIF или видео. Свой цвет профиля или «Авто» по фото. В звонке гифка-аватар оживает, пока человек говорит (выключается в «Внешний вид»).",
+  "date": "2026-10-27",
+  "notes": "Уведомления Windows о сообщениях и звонках, когда Som свёрнут или в трее (щелчок открывает чат). Запуск вместе с Windows сразу в трей. Клавиши в звонке: выключить микрофон или звук из любой программы (Настройки → Звук).",
   "files": [
     {
       "path": "boot.js",
@@ -21,8 +21,8 @@
     },
     {
       "path": "main.js",
-      "size": 51774,
-      "sha256": "4d00ac4751031b2e4b8e3943b5f1171f1055383694d7589e76518fa19b50adeb"
+      "size": 56943,
+      "sha256": "f6c1a711f0a14229cdf10c5947493daa490074e70b7e5e434a337461921ac345"
     },
     {
       "path": "overlay-preload.cjs",
@@ -32,12 +32,12 @@
     {
       "path": "package.json",
       "size": 304,
-      "sha256": "467be353cc3f4080da7cadcb381b245616d80a33d3e2dd8b0e43275302af129c"
+      "sha256": "703d2f027f893687fa31ff322ed2b7fa4cb8f5c2bd312a2da66bf928483eac49"
     },
     {
       "path": "preload.cjs",
-      "size": 3885,
-      "sha256": "1d4047b6edb1d6368af1910ea0836163251fc935f26bf6e323acea56ac8276ce"
+      "size": 4210,
+      "sha256": "ba20c4d974187d17e9c9f3940211c379726f245108735346c61057db5d612ff2"
     },
     {
       "path": "radio-ru.json",
@@ -111,13 +111,13 @@
     },
     {
       "path": "renderer/index.html",
-      "size": 63761,
-      "sha256": "b42ed2d8959a00e3df19949e2f57b69985557cddd745a980bde6056a2f6556d1"
+      "size": 65853,
+      "sha256": "0209a8974c9cf9ffd3546f027bbb3677c25a0e5ccd42bc6406f251a76db92505"
     },
     {
       "path": "renderer/js/app.js",
-      "size": 180884,
-      "sha256": "61f6f0dd51af45a9442629e7a2d1b4c2ee39cf611dda7ad2e0dfb4c1aeb469ca"
+      "size": 188175,
+      "sha256": "b50999a2ae51e59c73b914f6838fde45d80f169460d97825065ea1816bbbc5aa"
     },
     {
       "path": "renderer/js/avatar-editor.js",
@@ -126,8 +126,8 @@
     },
     {
       "path": "renderer/js/call.js",
-      "size": 79044,
-      "sha256": "3e12c9faea6ff815d336696678c5bbe86e6fca3296f58350cda11abdb784ab77"
+      "size": 79063,
+      "sha256": "eb999fedd650cdf1eca6f984b5c81988e27f016286408dabec13c1d8192a1958"
     },
     {
       "path": "renderer/js/circle.js",
@@ -206,8 +206,8 @@
     },
     {
       "path": "renderer/styles.css",
-      "size": 84252,
-      "sha256": "bb0ce073cdd407b7b36ea9897e9aa9803eddce6c54f18329bcc1ab585306427b"
+      "size": 84582,
+      "sha256": "3ea18076519a6883b20711b0f1363cf871b9db82726d8d9e08dbe1194948969b"
     },
     {
       "path": "renderer/vendor/ICONS-LICENSE.txt",
