@@ -1,0 +1,610 @@
+{
+ "v": 1,
+ "updated": "2026-10-25",
+ "note": "Станции для радио в Som. Адреса потоков по порядку: первый рабочий и играет.",
+ "stations": [
+  {
+   "id": "ru:europaplus",
+   "name": "Европа Плюс",
+   "g": [
+    "pop"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/1576.png",
+   "urls": [
+    "https://ep256.hostingradio.ru:8052/europaplus256.mp3",
+    "http://ep128.hostingradio.ru:8030/ep128"
+   ]
+  },
+  {
+   "id": "ru:rusradio",
+   "name": "Русское Радио",
+   "g": [
+    "pop"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/85.png",
+   "urls": [
+    "https://rusradio.hostingradio.ru/rusradio128.mp3",
+    "http://rusradio.hostingradio.ru/rusradio128.mp3"
+   ]
+  },
+  {
+   "id": "ru:avtoradio",
+   "name": "Авторадио",
+   "g": [
+    "pop",
+    "retro"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/78.png",
+   "urls": [
+    "https://pub0301.101.ru:8443/stream/air/mp3/256/100",
+    "https://pub0302.101.ru:8443/stream/air/mp3/256/100",
+    "https://pub0301.101.ru:8443/stream/air/aac/64/100"
+   ]
+  },
+  {
+   "id": "ru:energy",
+   "name": "Радио ENERGY (NRG)",
+   "g": [
+    "dance",
+    "pop"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/4.png",
+   "urls": [
+    "https://pub0301.101.ru:8443/stream/air/mp3/256/99",
+    "https://pub0302.101.ru:8443/stream/air/mp3/256/99",
+    "https://pub0301.101.ru:8443/stream/air/aac/64/99"
+   ]
+  },
+  {
+   "id": "ru:romantika",
+   "name": "Романтика",
+   "g": [
+    "pop"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/177.png",
+   "urls": [
+    "https://pub0301.101.ru:8443/stream/air/mp3/256/101",
+    "https://pub0302.101.ru:8443/stream/air/mp3/256/101",
+    "https://pub0301.101.ru:8443/stream/air/aac/64/101"
+   ]
+  },
+  {
+   "id": "ru:humorfm",
+   "name": "Юмор FM",
+   "g": [
+    "talk"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/64.png",
+   "urls": [
+    "https://pub0301.101.ru:8443/stream/air/mp3/256/102",
+    "https://pub0302.101.ru:8443/stream/air/mp3/256/102",
+    "https://pub0301.101.ru:8443/stream/air/aac/64/102"
+   ]
+  },
+  {
+   "id": "ru:chanson",
+   "name": "Радио Шансон",
+   "g": [
+    "chanson"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/2.png",
+   "urls": [
+    "https://chanson.hostingradio.ru:8041/chanson256.mp3",
+    "http://chanson.hostingradio.ru:8041/chanson256.mp3",
+    "https://chanson.hostingradio.ru:8041/chanson128.mp3"
+   ]
+  },
+  {
+   "id": "ru:retrofm",
+   "name": "Ретро FM",
+   "g": [
+    "retro"
+   ],
+   "logo": "",
+   "urls": [
+    "https://retro.hostingradio.ru:8043/retro256.mp3",
+    "http://retro.hostingradio.ru:8043/retro128.mp3",
+    "http://hls-01-retro.emgsound.ru/12/128/playlist.m3u8"
+   ]
+  },
+  {
+   "id": "ru:radio7",
+   "name": "Радио 7 на семи холмах",
+   "g": [
+    "pop",
+    "retro"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/93.png",
+   "urls": [
+    "https://radio7.hostingradio.ru:8040/radio7256.mp3",
+    "http://radio7.hostingradio.ru:8040/radio7128.mp3"
+   ]
+  },
+  {
+   "id": "ru:dorognoe",
+   "name": "Дорожное радио",
+   "g": [
+    "pop",
+    "retro"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/83.png",
+   "urls": [
+    "https://dorognoe.hostingradio.ru:8000/dorognoe",
+    "http://dorognoe.hostingradio.ru:8000/dorognoe"
+   ]
+  },
+  {
+   "id": "ru:newradio",
+   "name": "Новое радио",
+   "g": [
+    "pop"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/221.png",
+   "urls": [
+    "http://icecast.newradio.cdnvideo.ru/newradio3",
+    "https://icecast-newradio.cdnvideo.ru/newradio3"
+   ]
+  },
+  {
+   "id": "ru:marusya",
+   "name": "Маруся ФМ",
+   "g": [
+    "pop"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/1323.png",
+   "urls": [
+    "http://radio-holding.ru:9000/marusya_default"
+   ]
+  },
+  {
+   "id": "ru:dfm",
+   "name": "DFM",
+   "g": [
+    "dance",
+    "electronic"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/88.png",
+   "urls": [
+    "https://dfm.hostingradio.ru/dfm96.aacp",
+    "http://dfm.hostingradio.ru/dfm96.aacp"
+   ]
+  },
+  {
+   "id": "ru:maximum",
+   "name": "Радио Максимум",
+   "g": [
+    "rock",
+    "pop"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/87.png",
+   "urls": [
+    "https://maximum.hostingradio.ru/maximum96.aacp",
+    "http://maximum.hostingradio.ru/maximum96.aacp"
+   ]
+  },
+  {
+   "id": "ru:hitfm",
+   "name": "Хит FM",
+   "g": [
+    "pop"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/2508.png",
+   "urls": [
+    "https://hitfm.hostingradio.ru/hitfm96.aacp",
+    "http://hitfm.hostingradio.ru/hitfm96.aacp"
+   ]
+  },
+  {
+   "id": "ru:montecarlo",
+   "name": "Радио Монте-Карло",
+   "g": [
+    "chill",
+    "pop"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/603.png",
+   "urls": [
+    "https://montecarlo.hostingradio.ru/montecarlo96.aacp",
+    "http://montecarlo.hostingradio.ru/montecarlo96.aacp"
+   ]
+  },
+  {
+   "id": "ru:hypefm",
+   "name": "ХАЙП FM",
+   "g": [
+    "hiphop",
+    "pop"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/1567.png",
+   "urls": [
+    "http://air.volna.top/HypeFM"
+   ]
+  },
+  {
+   "id": "ru:nashe",
+   "name": "Наше Радио",
+   "g": [
+    "rock"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/33.png",
+   "urls": [
+    "https://nashe1.hostingradio.ru/nashe-128.mp3",
+    "http://nashe1.hostingradio.ru/nashe-128.mp3"
+   ]
+  },
+  {
+   "id": "ru:rockfm",
+   "name": "Rock FM",
+   "g": [
+    "rock"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/2066.png",
+   "urls": [
+    "https://nashe1.hostingradio.ru/rock-128.mp3",
+    "http://nashe1.hostingradio.ru/rock-128.mp3"
+   ]
+  },
+  {
+   "id": "ru:ultra",
+   "name": "Радио Ultra",
+   "g": [
+    "rock",
+    "metal"
+   ],
+   "logo": "",
+   "urls": [
+    "https://nashe1.hostingradio.ru/ultra-128.mp3",
+    "http://nashe1.hostingradio.ru/ultra-128.mp3"
+   ]
+  },
+  {
+   "id": "ru:bestfm",
+   "name": "Best FM",
+   "g": [
+    "pop"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/1413.png",
+   "urls": [
+    "https://nashe1.hostingradio.ru/best-128.mp3",
+    "http://nashe1.hostingradio.ru/best-128.mp3"
+   ]
+  },
+  {
+   "id": "ru:jazz",
+   "name": "Радио Джаз 89.1",
+   "g": [
+    "jazz"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/308.png",
+   "urls": [
+    "https://nashe1.hostingradio.ru/jazz-128.mp3",
+    "http://nashe1.hostingradio.ru/jazz-128.mp3"
+   ]
+  },
+  {
+   "id": "ru:mayak",
+   "name": "Маяк",
+   "g": [
+    "talk",
+    "news"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/89.png",
+   "urls": [
+    "https://icecast-vgtrk.cdnvideo.ru/mayakfm_mp3_192kbps",
+    "http://icecast.vgtrk.cdnvideo.ru/mayakfm_mp3_128kbps",
+    "https://icecast-vgtrk.cdnvideo.ru/mayakfm_aac_64kbps"
+   ]
+  },
+  {
+   "id": "ru:vesti",
+   "name": "Вести FM",
+   "g": [
+    "news"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/644.png",
+   "urls": [
+    "https://icecast-vgtrk.cdnvideo.ru/vestifm_mp3_192kbps",
+    "http://icecast.vgtrk.cdnvideo.ru/vestifm_mp3_128kbps",
+    "https://icecast-vgtrk.cdnvideo.ru/vestifm_aac_64kbps"
+   ]
+  },
+  {
+   "id": "ru:radiorossii",
+   "name": "Радио России",
+   "g": [
+    "news",
+    "talk"
+   ],
+   "logo": "",
+   "urls": [
+    "https://icecast-vgtrk.cdnvideo.ru/rrzonam_mp3_192kbps",
+    "http://icecast.vgtrk.cdnvideo.ru/rrzonam_mp3_128kbps",
+    "https://icecast-vgtrk.cdnvideo.ru/rrzonam_aac_64kbps"
+   ]
+  },
+  {
+   "id": "ru:kultura",
+   "name": "Радио Культура",
+   "g": [
+    "classical",
+    "talk"
+   ],
+   "logo": "",
+   "urls": [
+    "https://icecast-vgtrk.cdnvideo.ru/kulturafm_mp3_192kbps",
+    "http://icecast.vgtrk.cdnvideo.ru/kulturafm_mp3_128kbps",
+    "https://icecast-vgtrk.cdnvideo.ru/kulturafm_aac_64kbps"
+   ]
+  },
+  {
+   "id": "ru:sputnik",
+   "name": "Sputnik",
+   "g": [
+    "news",
+    "talk"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/962.png",
+   "urls": [
+    "https://icecast-rian.cdnvideo.ru/voicerus",
+    "http://icecast-rian.cdnvideo.ru/voicerus"
+   ]
+  },
+  {
+   "id": "ru:zvezda",
+   "name": "Радио Звезда",
+   "g": [
+    "pop",
+    "news"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/495.png",
+   "urls": [
+    "https://zvezda-radio128.mediacdn.ru/radio/zvezda/zvezda_128"
+   ]
+  },
+  {
+   "id": "ru:kommersant",
+   "name": "Коммерсантъ FM",
+   "g": [
+    "news"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/614.png",
+   "urls": [
+    "https://kommersant77.hostingradio.ru:8016/kommersant128.mp3"
+   ]
+  },
+  {
+   "id": "ru:silverrain",
+   "name": "Серебряный дождь",
+   "g": [
+    "pop",
+    "chill"
+   ],
+   "logo": "",
+   "urls": [
+    "http://silverrain.hostingradio.ru/silver128.mp3",
+    "https://silverrain.hostingradio.ru/silver128.mp3"
+   ]
+  },
+  {
+   "id": "ru:orfey",
+   "name": "Орфей",
+   "g": [
+    "classical"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/1365.png",
+   "urls": [
+    "https://orfeyfm.hostingradio.ru:8034/orfeyfm128.mp3",
+    "http://orfeyfm.hostingradio.ru:8034/orfeyfm128.mp3"
+   ]
+  },
+  {
+   "id": "ru:kniga",
+   "name": "Радио «Книга»",
+   "g": [
+    "talk"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/721.png",
+   "urls": [
+    "https://bookradio.hostingradio.ru:8069/fm"
+   ]
+  },
+  {
+   "id": "ru:melodia",
+   "name": "Радио Мелодия (Санкт-Петербург)",
+   "g": [
+    "retro"
+   ],
+   "logo": "",
+   "urls": [
+    "http://stream128.melodiafm.spb.ru:8000/melodia128"
+   ]
+  },
+  {
+   "id": "ru:record",
+   "name": "Радио Record",
+   "g": [
+    "dance",
+    "electronic"
+   ],
+   "logo": "https://radiopotok.ru/f/station/256/67.png",
+   "urls": [
+    "https://radiorecord.hostingradio.ru/rr_main96.aacp",
+    "https://radiorecord.hostingradio.ru/rr_main64.aacp"
+   ]
+  },
+  {
+   "id": "ru:record-sd90",
+   "name": "Record: Супердискотека 90-х",
+   "g": [
+    "retro",
+    "dance"
+   ],
+   "logo": "",
+   "urls": [
+    "https://radiorecord.hostingradio.ru/sd9096.aacp"
+   ]
+  },
+  {
+   "id": "ru:record-russianmix",
+   "name": "Record: Russian Mix",
+   "g": [
+    "dance",
+    "pop"
+   ],
+   "logo": "",
+   "urls": [
+    "https://radiorecord.hostingradio.ru/rus96.aacp"
+   ]
+  },
+  {
+   "id": "ru:record-russianhits",
+   "name": "Record: Russian Hits",
+   "g": [
+    "pop"
+   ],
+   "logo": "",
+   "urls": [
+    "https://radiorecord.hostingradio.ru/russianhits64.aacp"
+   ]
+  },
+  {
+   "id": "ru:record-chill",
+   "name": "Record: Chill-Out",
+   "g": [
+    "chill",
+    "electronic"
+   ],
+   "logo": "",
+   "urls": [
+    "https://radiorecord.hostingradio.ru/chil96.aacp"
+   ]
+  },
+  {
+   "id": "ru:record-lofi",
+   "name": "Record: Lo-Fi",
+   "g": [
+    "lofi",
+    "chill"
+   ],
+   "logo": "",
+   "urls": [
+    "https://radiorecord.hostingradio.ru/lofi96.aacp"
+   ]
+  },
+  {
+   "id": "ru:record-deep",
+   "name": "Record: Deep",
+   "g": [
+    "electronic",
+    "chill"
+   ],
+   "logo": "",
+   "urls": [
+    "https://radiorecord.hostingradio.ru/deep96.aacp"
+   ]
+  },
+  {
+   "id": "ru:record-techno",
+   "name": "Record: Techno",
+   "g": [
+    "electronic"
+   ],
+   "logo": "",
+   "urls": [
+    "https://radiorecord.hostingradio.ru/techno96.aacp"
+   ]
+  },
+  {
+   "id": "ru:record-trance",
+   "name": "Record: Trancemission",
+   "g": [
+    "electronic"
+   ],
+   "logo": "",
+   "urls": [
+    "https://radiorecord.hostingradio.ru/tm96.aacp"
+   ]
+  },
+  {
+   "id": "ru:record-dubstep",
+   "name": "Record: Dubstep",
+   "g": [
+    "electronic"
+   ],
+   "logo": "",
+   "urls": [
+    "https://radiorecord.hostingradio.ru/dub96.aacp"
+   ]
+  },
+  {
+   "id": "ru:record-phonk",
+   "name": "Record: Phonk",
+   "g": [
+    "hiphop",
+    "electronic"
+   ],
+   "logo": "",
+   "urls": [
+    "https://radiorecord.hostingradio.ru/phonk96.aacp"
+   ]
+  },
+  {
+   "id": "ru:record-synth",
+   "name": "Record: Synthwave",
+   "g": [
+    "electronic",
+    "retro"
+   ],
+   "logo": "",
+   "urls": [
+    "https://radiorecord.hostingradio.ru/synth96.aacp"
+   ]
+  },
+  {
+   "id": "ru:record-rock",
+   "name": "Record: Rock",
+   "g": [
+    "rock"
+   ],
+   "logo": "",
+   "urls": [
+    "https://radiorecord.hostingradio.ru/rock96.aacp"
+   ]
+  },
+  {
+   "id": "ru:record-gold",
+   "name": "Record: Gold",
+   "g": [
+    "retro",
+    "dance"
+   ],
+   "logo": "",
+   "urls": [
+    "https://radiorecord.hostingradio.ru/gold96.aacp"
+   ]
+  },
+  {
+   "id": "ru:record-gop",
+   "name": "Record: Гоп FM",
+   "g": [
+    "chanson",
+    "talk"
+   ],
+   "logo": "",
+   "urls": [
+    "https://radiorecord.hostingradio.ru/gop96.aacp"
+   ]
+  },
+  {
+   "id": "ru:record-mdl",
+   "name": "Record: Медляк FM",
+   "g": [
+    "pop",
+    "retro"
+   ],
+   "logo": "",
+   "urls": [
+    "https://radiorecord.hostingradio.ru/mdl96.aacp"
+   ]
+  }
+ ]
+}

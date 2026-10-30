@@ -1,8 +1,8 @@
 {
-  "version": "0.22.2",
+  "version": "0.22.3",
   "electron": "44.5.1",
-  "date": "2026-10-27",
-  "notes": "Мелодии звонка: остались две из Лаборатории звуков — «8-бит» и новая «Капель». Старые («Капли», «Колокольчик», «Перезвон», «Классика») убраны.",
+  "date": "2026-10-30",
+  "notes": "Радио вместе: пауза и «играть» у того, кто включил общее радио, теперь у всех в звонке. Демка: разрешение держится, как выбрано — при слабом интернете или нагрузке становится меньше кадров в секунду, а не меньше картинка.",
   "files": [
     {
       "path": "boot.js",
@@ -37,7 +37,7 @@
     {
       "path": "package.json",
       "size": 304,
-      "sha256": "a285d7d002945a3a9283fccc4f1fca657231b949699af8be8a030c7ff8e92572"
+      "sha256": "7410ae36d2a1a159a2a3fd7eb52afcec49b8ad90d5d23f736bb0b27dabd47dd0"
     },
     {
       "path": "preload.cjs",
@@ -136,8 +136,8 @@
     },
     {
       "path": "renderer/js/call.js",
-      "size": 84041,
-      "sha256": "46a656ef52b83a744a362b460c4ec5c2b9b9b2f7d7db860510c97e783124b46e"
+      "size": 84485,
+      "sha256": "cb548a553ff8fc87343fd0623df9f946edf2126eef4e1648befd7108c8ab276f"
     },
     {
       "path": "renderer/js/circle.js",
@@ -161,8 +161,8 @@
     },
     {
       "path": "renderer/js/gcall.js",
-      "size": 43881,
-      "sha256": "00c3788c21645706be575f01de4bd20d9691e8a2729c20d1b48e8443b253670b"
+      "size": 43945,
+      "sha256": "238da0eef5bfba74c4d548e5336ae27796f0c441bb817455aaac523d6b66db91"
     },
     {
       "path": "renderer/js/intro.js",
@@ -191,8 +191,8 @@
     },
     {
       "path": "renderer/js/radio.js",
-      "size": 33742,
-      "sha256": "da83ca75106a4907f51de12cbdc6b55472ba56f78cde4824c9719ea26177ed78"
+      "size": 35277,
+      "sha256": "83b431fc09c69b4e292f115983bb982f547a84895561e9c1e6f07604b7263c34"
     },
     {
       "path": "renderer/js/sharedbrowser.js",
