@@ -1,8 +1,8 @@
 {
-  "version": "0.23.0",
+  "version": "0.23.1",
   "electron": "44.5.1",
   "date": "2026-10-30",
-  "notes": "Украшения (Настройки → Внешний вид): рамки аватара — их видят друзья (золото, неон, радуга, огонь, корона, сом и другие); фон переписки — рисунки (сомики, пузырьки, игры, звёзды…) или своя картинка; эффекты — снег, пузырьки, светлячки, звёзды, листопад, сакура, дождь; праздничные эффекты в сообщениях: конфетти на «С днём рождения», салют на «С Новым годом», сердечки на ❤️.",
+  "notes": "Рамка аватара теперь сразу обновляется везде, и в звонке тоже. Высоту звонка можно менять: потяните за полоску под плитками; двойной щелчок по ней — обычная высота. Новая рамка «Нефть»: чёрная жидкость, с которой капает капля.",
   "files": [
     {
       "path": "boot.js",
@@ -37,7 +37,7 @@
     {
       "path": "package.json",
       "size": 304,
-      "sha256": "e1fb1ebc2ca7d188e561108fafd9ec2b2d6e7acf065b0133a8511ca7038d6544"
+      "sha256": "95b69d649088b734fc8a48655b66bdaa79ad915ca0656ae88d6063db21b53367"
     },
     {
       "path": "preload.cjs",
@@ -116,13 +116,13 @@
     },
     {
       "path": "renderer/index.html",
-      "size": 74006,
-      "sha256": "25563ed0a0cf5dfa2716176288581efa9e18b64ac05154eab398d8783dccf4c0"
+      "size": 74304,
+      "sha256": "e4391936b5aa7b1d2bf9f3038f1ced55619ab60ac02b49dae720a781091fd43b"
     },
     {
       "path": "renderer/js/app.js",
-      "size": 201299,
-      "sha256": "ebbeb7a6c329fa6b202590ae7fb80060260b9881f9a60223316983bb20ba35b1"
+      "size": 201351,
+      "sha256": "8fed6406cff3e368d261996cdd33209b76889f0bc8736500724424c251270ea3"
     },
     {
       "path": "renderer/js/avatar-editor.js",
@@ -136,8 +136,8 @@
     },
     {
       "path": "renderer/js/call.js",
-      "size": 84485,
-      "sha256": "cb548a553ff8fc87343fd0623df9f946edf2126eef4e1648befd7108c8ab276f"
+      "size": 87272,
+      "sha256": "6051bfa7c023aa950eca9d2b19a239f5f1da28fd781dc66f93c8134965eacd50"
     },
     {
       "path": "renderer/js/circle.js",
@@ -146,8 +146,8 @@
     },
     {
       "path": "renderer/js/decor.js",
-      "size": 23242,
-      "sha256": "0a1d2591e4b07fb29b85c2487c59718f344ca4b0fb1f7f487f1550ab838c2b35"
+      "size": 23279,
+      "sha256": "95ae9509c395490e85a27e61b626128caccc040ab65f1199cfd5d23f3242bca9"
     },
     {
       "path": "renderer/js/early.js",
@@ -166,8 +166,8 @@
     },
     {
       "path": "renderer/js/gcall.js",
-      "size": 43945,
-      "sha256": "238da0eef5bfba74c4d548e5336ae27796f0c441bb817455aaac523d6b66db91"
+      "size": 44046,
+      "sha256": "8bc67881000fb423168e1e5cb206ea464bdb41812666ff51eb917a610470d71b"
     },
     {
       "path": "renderer/js/intro.js",
@@ -241,8 +241,8 @@
     },
     {
       "path": "renderer/styles.css",
-      "size": 101678,
-      "sha256": "411a2368ca3a774fc9e1fdcfe5929909db85ee355976040edef90c4de10edfb9"
+      "size": 104426,
+      "sha256": "f569070a7a5773ae39d5cd2e119093e171f877b0be102226517e9daf9d072fce"
     },
     {
       "path": "renderer/vendor/ICONS-LICENSE.txt",
