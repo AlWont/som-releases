@@ -1,8 +1,8 @@
 {
-  "version": "0.22.3",
+  "version": "0.23.0",
   "electron": "44.5.1",
   "date": "2026-10-30",
-  "notes": "Радио вместе: пауза и «играть» у того, кто включил общее радио, теперь у всех в звонке. Демка: разрешение держится, как выбрано — при слабом интернете или нагрузке становится меньше кадров в секунду, а не меньше картинка.",
+  "notes": "Украшения (Настройки → Внешний вид): рамки аватара — их видят друзья (золото, неон, радуга, огонь, корона, сом и другие); фон переписки — рисунки (сомики, пузырьки, игры, звёзды…) или своя картинка; эффекты — снег, пузырьки, светлячки, звёзды, листопад, сакура, дождь; праздничные эффекты в сообщениях: конфетти на «С днём рождения», салют на «С Новым годом», сердечки на ❤️.",
   "files": [
     {
       "path": "boot.js",
@@ -11,8 +11,8 @@
     },
     {
       "path": "core/bin/som-core.exe",
-      "size": 3734016,
-      "sha256": "9ce87a96414b3490827863114b6b7c92a916d5099b5719b46dc1d57259dbecf7"
+      "size": 3737600,
+      "sha256": "b84d7a3afd65e1d0baacbb0549533872601e1d4fb196128e40369508c37f8c4d"
     },
     {
       "path": "games.cjs",
@@ -21,13 +21,13 @@
     },
     {
       "path": "library.cjs",
-      "size": 9781,
-      "sha256": "b62a41c6c09b28d7105d5e5ba4bc515ed52b7ceefed43dc2c1866070aa9377a5"
+      "size": 10787,
+      "sha256": "ff22f1f46a0e3f42c3d211b2de2d22829b24de6c3db780836e43d421fc1f327c"
     },
     {
       "path": "main.js",
-      "size": 63034,
-      "sha256": "a989693a6361f3b70a0f7715f57261901e452a635180bcadf43c94853a5788b2"
+      "size": 63182,
+      "sha256": "0daeb00d93a3e60379c87206e56d7bd1acb2af48dab2a6474bb476337b2b948b"
     },
     {
       "path": "overlay-preload.cjs",
@@ -37,12 +37,12 @@
     {
       "path": "package.json",
       "size": 304,
-      "sha256": "7410ae36d2a1a159a2a3fd7eb52afcec49b8ad90d5d23f736bb0b27dabd47dd0"
+      "sha256": "e1fb1ebc2ca7d188e561108fafd9ec2b2d6e7acf065b0133a8511ca7038d6544"
     },
     {
       "path": "preload.cjs",
-      "size": 5522,
-      "sha256": "be1dfed649ac5db635e5b80eb497e89a44e5ad493c4d6cd525f157a421ad4e1c"
+      "size": 5597,
+      "sha256": "e53ae8ca611cd02588ed8ffe40cb773c29bc0deca18d3611ecd5737373482f8a"
     },
     {
       "path": "radio-ru.json",
@@ -116,13 +116,13 @@
     },
     {
       "path": "renderer/index.html",
-      "size": 72103,
-      "sha256": "d7fc0d87c9909bf81b9d397bdbd6b2da7302d751bc91717da85c43bd253a2fe5"
+      "size": 74006,
+      "sha256": "25563ed0a0cf5dfa2716176288581efa9e18b64ac05154eab398d8783dccf4c0"
     },
     {
       "path": "renderer/js/app.js",
-      "size": 195843,
-      "sha256": "765f3d8f8041ffed8b04bcbbdb954a2d66c9f55bbe026d35525531625e8a0b80"
+      "size": 201299,
+      "sha256": "ebbeb7a6c329fa6b202590ae7fb80060260b9881f9a60223316983bb20ba35b1"
     },
     {
       "path": "renderer/js/avatar-editor.js",
@@ -143,6 +143,11 @@
       "path": "renderer/js/circle.js",
       "size": 4537,
       "sha256": "ba5b00409fecbd49e4df48df99ef161fd6b21af2729ff407f140472530ee9eee"
+    },
+    {
+      "path": "renderer/js/decor.js",
+      "size": 23242,
+      "sha256": "0a1d2591e4b07fb29b85c2487c59718f344ca4b0fb1f7f487f1550ab838c2b35"
     },
     {
       "path": "renderer/js/early.js",
@@ -236,8 +241,8 @@
     },
     {
       "path": "renderer/styles.css",
-      "size": 95330,
-      "sha256": "edea1b383331d97ed6419b4cff7f7869b7d9d32d5133ee53c59c7f14ab6c47f6"
+      "size": 101678,
+      "sha256": "411a2368ca3a774fc9e1fdcfe5929909db85ee355976040edef90c4de10edfb9"
     },
     {
       "path": "renderer/vendor/ICONS-LICENSE.txt",
