@@ -1,8 +1,8 @@
 {
-  "version": "0.24.0",
+  "version": "0.25.0",
   "electron": "44.5.1",
-  "date": "2026-10-30",
-  "notes": "Рамка аватара теперь видна и в карточке профиля. Создатель группы может удалить её у всех (правый щелчок по группе или «О группе»). День рождения в профиле — по желанию (Изменить профиль): друзья увидят его в карточке, а в сам день — 🎂 в списке и напоминание. Высоту звонка меняют за полоску по центру под плитками.",
+  "date": "2026-10-31",
+  "notes": "Живой 3D-персонаж (Настройки → Внешний вид → 3D-персонаж): загрузите свою модель .glb — она поселится в углу переписки, будет смотреть на курсор, махать рукой на щелчок, подпрыгивать на новые сообщения, танцевать под радио, слушать в звонке и засыпать, если вас долго нет. Модели в T-позе Som сам добавляет скелет — двигаются руки и голова; модели с анимациями (Mixamo) используют свои. Видите только вы.",
   "files": [
     {
       "path": "boot.js",
@@ -21,13 +21,13 @@
     },
     {
       "path": "library.cjs",
-      "size": 10787,
-      "sha256": "ff22f1f46a0e3f42c3d211b2de2d22829b24de6c3db780836e43d421fc1f327c"
+      "size": 11734,
+      "sha256": "2a724ce8731e231a965812ee8438f9487776d7ea37b7579d257bdcda518b22c8"
     },
     {
       "path": "main.js",
-      "size": 63214,
-      "sha256": "105d81fb989a397304893ae9f83ef58af3bfb1699f7c4d829c401674dd599df1"
+      "size": 63270,
+      "sha256": "8142fcd1fd440a7263c42cd841d633dc34dcef05cb5e2e224b63a939cf198985"
     },
     {
       "path": "overlay-preload.cjs",
@@ -37,12 +37,12 @@
     {
       "path": "package.json",
       "size": 304,
-      "sha256": "89e245c412dd6de42d03751a4b02ee670ac353c479d54a32244bbec214902a4e"
+      "sha256": "10a80cbe684aa3ad035c8d9c411c68f5e955eabaca9e6b2b618627ef60973cc0"
     },
     {
       "path": "preload.cjs",
-      "size": 5597,
-      "sha256": "e53ae8ca611cd02588ed8ffe40cb773c29bc0deca18d3611ecd5737373482f8a"
+      "size": 5662,
+      "sha256": "7ffdc1b5d6e137c12c11f034f0b553b0985dace2d4aa83bc315c9951c71bba79"
     },
     {
       "path": "radio-ru.json",
@@ -116,13 +116,13 @@
     },
     {
       "path": "renderer/index.html",
-      "size": 75098,
-      "sha256": "ef5093015ef0e518cefbd8b830e9e162953696c03864829623fede68d22bbf0d"
+      "size": 76278,
+      "sha256": "9c8274ce2c58aade23439b0e313d3097449b399fcffa2f57575e7d09cd78ba04"
     },
     {
       "path": "renderer/js/app.js",
-      "size": 207131,
-      "sha256": "dfa221aa43d9e7f376c385b7cd43f3e4e12d8701258c444997199ca72c3f7a76"
+      "size": 210434,
+      "sha256": "86ddcb3c5862706924609bee777aa005e910121d765e7fe3ae3167c83252e05e"
     },
     {
       "path": "renderer/js/avatar-editor.js",
@@ -146,8 +146,8 @@
     },
     {
       "path": "renderer/js/decor.js",
-      "size": 23279,
-      "sha256": "95ae9509c395490e85a27e61b626128caccc040ab65f1199cfd5d23f3242bca9"
+      "size": 23355,
+      "sha256": "acaa6a41d557fe01f0945f02feb11c5e7d585908414b0bbcf7ac25cc67fc0a2b"
     },
     {
       "path": "renderer/js/early.js",
@@ -193,6 +193,11 @@
       "path": "renderer/js/overlay.js",
       "size": 2576,
       "sha256": "5a424c6223358bc94b517feac441ceee65754a56fd6a96bbe003a075e9e2400e"
+    },
+    {
+      "path": "renderer/js/pet.js",
+      "size": 24978,
+      "sha256": "ab8e62c976b8e186eef1dac7e456d59bbb75d41d287d002f065b65571aa2992f"
     },
     {
       "path": "renderer/js/radio.js",
@@ -241,8 +246,8 @@
     },
     {
       "path": "renderer/styles.css",
-      "size": 104990,
-      "sha256": "e416e85446a6563eb91115e08ea57dccf0f68a22533fbf8862e7562cd6afdd1b"
+      "size": 106545,
+      "sha256": "668fbdddc9edda135b4c17ead7e71f14ad80061aa88c47aede8cd27b600da2df"
     },
     {
       "path": "renderer/vendor/ICONS-LICENSE.txt",
@@ -283,6 +288,26 @@
       "path": "renderer/vendor/nsx/speex.wasm",
       "size": 56268,
       "sha256": "bdd0a587bd7b0054589c3585b6b74390784d11265e43360bb3d1d09bf34ad788"
+    },
+    {
+      "path": "renderer/vendor/three/BufferGeometryUtils.js",
+      "size": 31784,
+      "sha256": "b9ea77ef3aacbf82d386c33311067e6ea4a3aac4190b32e001bdd11d063fb6ae"
+    },
+    {
+      "path": "renderer/vendor/three/GLTFLoader.js",
+      "size": 110282,
+      "sha256": "d6b517ee599c974f9b3648b11621dc23d41de24adcac3c826b3985a9313f6b84"
+    },
+    {
+      "path": "renderer/vendor/three/LICENSE",
+      "size": 1081,
+      "sha256": "4c40a1ef62450b857c3b2aaf294936304cd552d965fbcd9d32d4c5bcf4ba4454"
+    },
+    {
+      "path": "renderer/vendor/three/three.module.min.js",
+      "size": 691648,
+      "sha256": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7"
     },
     {
       "path": "sb-guest.cjs",
