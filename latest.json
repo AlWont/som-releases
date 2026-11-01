@@ -1,8 +1,8 @@
 {
-  "version": "0.28.1",
+  "version": "0.29.0",
   "electron": "44.5.1",
   "date": "2026-11-01",
-  "notes": "Карточка игры из Steam: цена и кнопки теперь в одну строку («Запустить» стала «Играть»); в узком окне старая цена прячется, скидка остаётся. Отзывы Steam берутся через новый API Steam — старый Steam отключает, из-за него оценка могла не показываться.",
+  "notes": "Мои игры: новая кнопка с геймпадом внизу левой панели открывает библиотеку всех игр на этом ПК — Steam, Epic Games, GOG Galaxy и Ubisoft Connect Som находит сам, остальные можно добавить кнопкой «Добавить игру…» (.exe или ярлык). Обложки, поиск, сортировка (недавние, по названию, больше всего играл, по размеру), время в игре и когда играли последний раз (для Steam). Щелчок по игре — запуск. В меню игры (⋯): позвать друга в эту игру, страница в Steam, открыть папку, переименовать, своя обложка, скрыть. Игры с ПК теперь подсказываются и в «Позвать в игру».",
   "files": [
     {
       "path": "applock.cjs",
@@ -20,6 +20,11 @@
       "sha256": "873b086dd3baa16ea9ac8317751ac5e370328dc341b4559552ea9a75beaf6965"
     },
     {
+      "path": "gamelib.cjs",
+      "size": 21247,
+      "sha256": "d85e68f6bde075622bf54922ee1ee1885c0540bda2318a535c55bde26c44e648"
+    },
+    {
       "path": "games.cjs",
       "size": 6837,
       "sha256": "5c6d330b5c46d3a786705fb52ac5ccc3129c6a68a18ba2a212d5dabd47ea855a"
@@ -31,13 +36,13 @@
     },
     {
       "path": "library.cjs",
-      "size": 11156,
-      "sha256": "e1f0c3397a25f8021b2bfdbd4a77bf42165b2f126ace25ce89bcd19855571d40"
+      "size": 11695,
+      "sha256": "26e4a2b09df6bee0fe354c923eb608778d615b8920ad6ab56b230bf5ea705710"
     },
     {
       "path": "main.js",
-      "size": 89690,
-      "sha256": "e8c99d3e8f06a014f0280b91cb2f9893ba565c0f962fede334b3aa9d138d2e63"
+      "size": 91626,
+      "sha256": "51dde23f330d7fa6dd4a75e31a950fd1eb087c44caddd773f1f94055e5aec66f"
     },
     {
       "path": "overlay-preload.cjs",
@@ -47,12 +52,12 @@
     {
       "path": "package.json",
       "size": 304,
-      "sha256": "db48d1cad8a8c825807c22ea087acc2266033f6e28713abe32c0b04859ebda81"
+      "sha256": "ec509e6e6a7758cc0b59a2ccb73f3948e5c63d860037175aeacc690b938e9ae2"
     },
     {
       "path": "preload.cjs",
-      "size": 6356,
-      "sha256": "a0aa4b19e06372c7495a84eae32c272f3666455620db364857350a9aacca3492"
+      "size": 6807,
+      "sha256": "72f1c031a18f18d36bbdd37dbaf27e0aeb59f55fcc3164634fe0c0745329d338"
     },
     {
       "path": "radio-ru.json",
@@ -126,13 +131,13 @@
     },
     {
       "path": "renderer/index.html",
-      "size": 84702,
-      "sha256": "8c6ed0cecad44b8d09a1098e47e7e1f6b560867f79a4dc01b28172d186b0426b"
+      "size": 87153,
+      "sha256": "ee8108b8229f4dd11b1981f350527af37fa75c5378be4e3fdb04c640f3f7b5cd"
     },
     {
       "path": "renderer/js/app.js",
-      "size": 211338,
-      "sha256": "f825c6dfae5875809c1055d66c1c0f37e217830af34eba91f18a8c325dd50503"
+      "size": 211692,
+      "sha256": "2729ca833d7ec09c4aae3a3f2ba9dceecef37e7699320eeb5427eabfa93a75f5"
     },
     {
       "path": "renderer/js/avatar-editor.js",
@@ -171,8 +176,13 @@
     },
     {
       "path": "renderer/js/gameinvite.js",
-      "size": 9759,
-      "sha256": "d66ace4764c015463a0f09b820fd62b82f3cbc03f71f4d95d8d1fe392672f0b4"
+      "size": 10454,
+      "sha256": "ca69301512baa769784bd9251819d073e2fab2e1b54bfb1ff835913d41d1d93c"
+    },
+    {
+      "path": "renderer/js/gamelib.js",
+      "size": 13124,
+      "sha256": "9c5039855cbb6fa8243359114f65c527cb9f298e7bc97393c5007aaa214d7957"
     },
     {
       "path": "renderer/js/gcall.js",
@@ -256,8 +266,8 @@
     },
     {
       "path": "renderer/styles.css",
-      "size": 113713,
-      "sha256": "ccd31bc5a77d9f6758710e101238c41c03995c6675cc0a4ddcbcc9109f3c7b91"
+      "size": 119784,
+      "sha256": "d985b5d2a7c5803f3337dab0b340d4cc7c66dc34f5d8c84e6ce63211f280c56a"
     },
     {
       "path": "renderer/vendor/ICONS-LICENSE.txt",
