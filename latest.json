@@ -1,8 +1,8 @@
 {
-  "version": "0.29.1",
+  "version": "0.30.0",
   "electron": "44.5.1",
   "date": "2026-11-01",
-  "notes": "Мои игры: игра больше не показывается дважды, если библиотека Steam записана в настройках Steam по-разному (так было с Rust). Обложки: для новых игр Steam, у которых нет обычной вертикальной обложки, Som находит её по новому адресу магазина, а если вертикальной нет совсем — показывает широкую шапку игры целиком на размытом фоне.",
+  "notes": "Отложенные сообщения: кнопка с часами рядом с «Отправить» (или правый щелчок по «Отправить») — через 30 минут, час, вечером, завтра или своё время; запланированные видны над полем ввода, их можно отправить сразу, перенести, вернуть в поле ввода или удалить. Уходят сами, пока Som запущен (можно в трее); если ПК был выключен — Som спросит. Новая вкладка настроек «Ресурсы ПК»: сколько Som ест сейчас, приоритет у Windows (ниже, когда идёт игра), режим игры (стоп анимациям, тишина сообщений, ограничение отдачи файлов), освобождение памяти в трее, выключатель аппаратного ускорения. Выбор кодека демки с пояснениями и тем, что умеет ваш ПК (видеокарта или процессор). Исправлено: снова можно выбрать рамку аватара и фон чата (сломалось в 0.26); не стирается текст, дописанный во время загрузки превью ссылки; игры, которым нужны права администратора, запускаются из «Моих игр»; игры GOG получают свои параметры запуска; самоудаление копии под ключ убирает Som и из автозапуска.",
   "files": [
     {
       "path": "applock.cjs",
@@ -16,13 +16,13 @@
     },
     {
       "path": "core/bin/som-core.exe",
-      "size": 3807744,
-      "sha256": "873b086dd3baa16ea9ac8317751ac5e370328dc341b4559552ea9a75beaf6965"
+      "size": 3841536,
+      "sha256": "543a8d1ecb7aa39072e59901d8efe9fe7efedd8f641fd0b8d388bc6a4e6043be"
     },
     {
       "path": "gamelib.cjs",
-      "size": 23728,
-      "sha256": "21c49637ee92acce0f3577b1834912e141ada01cecfa56e5730f764114e48753"
+      "size": 24541,
+      "sha256": "3bf8b37f0cf8bf373c0df9d95552b49cb071e433174a8ca43443c9e2e9184ad7"
     },
     {
       "path": "games.cjs",
@@ -41,8 +41,8 @@
     },
     {
       "path": "main.js",
-      "size": 91626,
-      "sha256": "51dde23f330d7fa6dd4a75e31a950fd1eb087c44caddd773f1f94055e5aec66f"
+      "size": 98281,
+      "sha256": "8400dcbfc90fc6218113535532824222c756ed34042942cf1fd0451d4436f3d2"
     },
     {
       "path": "overlay-preload.cjs",
@@ -52,12 +52,12 @@
     {
       "path": "package.json",
       "size": 304,
-      "sha256": "a53abeef7c7769c6b793750cd0eca49a251c18fb53fc85ba4aa7b162e8a310f9"
+      "sha256": "e69f80acaa81e5d6b757acac86e6ac894af4bc5dcf716e0f1c9ab08356179a92"
     },
     {
       "path": "preload.cjs",
-      "size": 6807,
-      "sha256": "72f1c031a18f18d36bbdd37dbaf27e0aeb59f55fcc3164634fe0c0745329d338"
+      "size": 7149,
+      "sha256": "8e53b159b9c7efd0ed9926b7a8d1a2b7e3480e298b283ad918b17f8c5fed4d75"
     },
     {
       "path": "radio-ru.json",
@@ -131,13 +131,13 @@
     },
     {
       "path": "renderer/index.html",
-      "size": 87153,
-      "sha256": "ee8108b8229f4dd11b1981f350527af37fa75c5378be4e3fdb04c640f3f7b5cd"
+      "size": 94486,
+      "sha256": "1bda5a27b4d434ceda1fa864c042a59c673621538555d877656ea907feead3aa"
     },
     {
       "path": "renderer/js/app.js",
-      "size": 211692,
-      "sha256": "2729ca833d7ec09c4aae3a3f2ba9dceecef37e7699320eeb5427eabfa93a75f5"
+      "size": 215927,
+      "sha256": "999676468ad91c609213449140b6b12015fbe211ebef19fafcfee435cf6767f8"
     },
     {
       "path": "renderer/js/avatar-editor.js",
@@ -151,8 +151,8 @@
     },
     {
       "path": "renderer/js/call.js",
-      "size": 87427,
-      "sha256": "aa98ca18396961fd91ecc68c06754a7321651724b2e1a95f07f9fa10ac565fa3"
+      "size": 88205,
+      "sha256": "cae57e07bfc13b900f5717a543723e80021bd93f329c2feb3d588d0e52d3c539"
     },
     {
       "path": "renderer/js/circle.js",
@@ -160,9 +160,14 @@
       "sha256": "ba5b00409fecbd49e4df48df99ef161fd6b21af2729ff407f140472530ee9eee"
     },
     {
+      "path": "renderer/js/codecs.js",
+      "size": 6314,
+      "sha256": "aa11d3124b5e6bd80fc429c2ab76543c763007b5b1d382204f3203f8b2d81653"
+    },
+    {
       "path": "renderer/js/decor.js",
-      "size": 23279,
-      "sha256": "95ae9509c395490e85a27e61b626128caccc040ab65f1199cfd5d23f3242bca9"
+      "size": 23330,
+      "sha256": "be2b6ae0d6914f0e03c8e94d643531803a78cd23eb2f336c835c9e7bffe19dcf"
     },
     {
       "path": "renderer/js/early.js",
@@ -186,8 +191,8 @@
     },
     {
       "path": "renderer/js/gcall.js",
-      "size": 44065,
-      "sha256": "40eac705c8f7115180c66fedcb7a4156e5b99b8a78854ab3562b06e46733c355"
+      "size": 43945,
+      "sha256": "16c9cbb0b4dcd5ac683ff567190768e55730ab624ecf0b96bf9850d5a6eeab69"
     },
     {
       "path": "renderer/js/intro.js",
@@ -223,6 +228,16 @@
       "path": "renderer/js/radio.js",
       "size": 35277,
       "sha256": "83b431fc09c69b4e292f115983bb982f547a84895561e9c1e6f07604b7263c34"
+    },
+    {
+      "path": "renderer/js/resources.js",
+      "size": 5900,
+      "sha256": "2a7bf6a8223ef7bb9ef81d96e56ff493041a1e27ff4eed1beafba95a0e8090e9"
+    },
+    {
+      "path": "renderer/js/schedule.js",
+      "size": 10298,
+      "sha256": "e40325fcaed577eeabd1a6068295abbc35c0980b8a443d28968f64281444c445"
     },
     {
       "path": "renderer/js/sharedbrowser.js",
@@ -266,8 +281,8 @@
     },
     {
       "path": "renderer/styles.css",
-      "size": 119993,
-      "sha256": "72c32104bd763b5bc53264ef94c90f9bb99aafc796bb42cad30c6f0543d9182e"
+      "size": 125213,
+      "sha256": "993cb30846b36994399c2c7cf7ff5824403c9850df7431bd435bca6cb808609b"
     },
     {
       "path": "renderer/vendor/ICONS-LICENSE.txt",
