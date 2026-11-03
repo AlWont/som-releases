@@ -1,8 +1,8 @@
 {
-  "version": "0.34.0",
+  "version": "0.35.0",
   "electron": "44.5.1",
   "date": "2026-11-03",
-  "notes": "Радио: у станций без логотипа вместо буквы теперь виниловая пластинка с цветной наклейкой. Пока играет — крутится, на паузе останавливается по инерции, как проигрыватель.\nПод мини-плеером — живой визуализатор звука: басы в центре, верха по краям, сверху пики, снизу отражение. Цвет — от темы.\nЗвук радио при этом не меняется: громкость, колонки и приглушение в звонке работают как раньше. Визуализатор стоит, когда окно свёрнуто или идёт игра.\nВыключить пластинку и визуализатор: Настройки → Внешний вид → Анимация.",
+  "notes": "Главная при запуске: приветствие, кто из друзей на связи и во что играет, что ждёт ответа, во что вы играли последними (запуск в один щелчок) и радио. Вернуться на главную — значок Som слева вверху.\nНовичку главная подсказывает, как добавить первого друга. Заявки в друзья и дни рождения — тоже там, а после обновления — «Что нового».\nНовый значок: объёмный сом в глубокой воде, с лучами света и пузырьками. Для мелких размеров (трей, панель задач) — упрощённый, чтобы читался.\nНовая заставка: тот же сом проплывает сквозь солнечные блики, за ним всплывает значок и проявляется «Som».",
   "files": [
     {
       "path": "applock.cjs",
@@ -41,8 +41,8 @@
     },
     {
       "path": "main.js",
-      "size": 104104,
-      "sha256": "ad850af3213a657cf5a56a1120ec4ef8c9448f195e9fbd8c18b17e944cf086f1"
+      "size": 104439,
+      "sha256": "baa6f4ef04cc0a9048ecdccaec104ce7cc2731d7f056910875a1b741c1c4e0c5"
     },
     {
       "path": "overlay-preload.cjs",
@@ -52,7 +52,7 @@
     {
       "path": "package.json",
       "size": 304,
-      "sha256": "6bb56d077ec4cb68ce1ca651210e20b7d3baf8eb3adc6b379d6808f2e4223cba"
+      "sha256": "8d55fbe61e8534fafba500ebdab3acd6e0e6818846acf982cca6641d33ec2d35"
     },
     {
       "path": "preload.cjs",
@@ -70,64 +70,59 @@
       "sha256": "1e2ddffbdddfd62ac314dd58fb4818a150288715f4112857c3640f06f85f07f7"
     },
     {
-      "path": "renderer/assets/icon-small.svg",
-      "size": 532,
-      "sha256": "caae1bf5104212f1f39c1db583b57cb7dded5ca9d1227a71ac2995df650ff153"
+      "path": "renderer/assets/icon-512.png",
+      "size": 233215,
+      "sha256": "ffa6d6461ccb83b250ca96e8fa1aaabbc76536a7c3acfb2fb10e4a9cbfd19f9d"
     },
     {
       "path": "renderer/assets/icon.ico",
-      "size": 113090,
-      "sha256": "bd4c826ad5da593df8fd5171fc3d59de4f6128515d3599f34973ea15af62e4c6"
+      "size": 110770,
+      "sha256": "1bc00110327e170e07e6f3655bd2d18024fb91052116e24bb06589d1e2a37323"
     },
     {
       "path": "renderer/assets/icon.png",
-      "size": 10349,
-      "sha256": "2b9d6783fd4232fa81635757c0f0769b42c90e548fa743bbc45c259740ec9c40"
-    },
-    {
-      "path": "renderer/assets/icon.svg",
-      "size": 916,
-      "sha256": "94a08e5437102560042592841730b5469b65e8676bfbceab3e23746c1c9c5540"
+      "size": 71975,
+      "sha256": "c174e9639be96985e6d98f53af686c4664bbc7f734d07a54177b056be46fe67f"
     },
     {
       "path": "renderer/assets/tray-dot.png",
-      "size": 610,
-      "sha256": "bf3ad7226fcad77ab9f61db741b7bbba291c235c8a2c5abe30056768914fb9fe"
+      "size": 901,
+      "sha256": "d792da3660103dd9277035e94ebd7c8b325c398454a74c6487537e1a0820fcbc"
     },
     {
       "path": "renderer/assets/tray-dot@1.25x.png",
-      "size": 726,
-      "sha256": "d3fb89a2eb17d4652721bb9363c621fbfe4b535effa5c741c936e753bc37ea88"
+      "size": 1244,
+      "sha256": "d73e8971e3a381f81e559b18f26c51759ce588f738cab0b61af496ea8964ea62"
     },
     {
       "path": "renderer/assets/tray-dot@1.5x.png",
-      "size": 907,
-      "sha256": "28bf307316097dca66ceeffa90931e77d3814b3c05cb152bbac838b812ee7846"
+      "size": 1597,
+      "sha256": "ea582005d846deebc8d57cf5949043c1bf9577a23ea98777f2c76839a4931900"
     },
     {
       "path": "renderer/assets/tray-dot@2x.png",
-      "size": 1224,
-      "sha256": "a6ec4c5a884198da0401522731786d381b5fa5f626657ba1930d5d893050bd8d"
+      "size": 2471,
+      "sha256": "513cc58265e1c967893802a76f13a1b85f3162234d16fe324ce7cefa201b8e03"
     },
     {
       "path": "renderer/assets/tray.png",
-      "size": 541,
-      "sha256": "cc3d925d7ff2c4b518ca92f985b8c0af5b7362f85fcc1ac2d5652eb25c076fbd"
+      "size": 862,
+      "sha256": "d08e499ef86dbc4382159991d6677abacb3807a6a74b335d129e1ffef28fe597"
     },
     {
       "path": "renderer/assets/tray@1.25x.png",
-      "size": 652,
-      "sha256": "5930af145d7f691584b0385202008fb76abefa0d80101814e3675f50fdd32aed"
+      "size": 1212,
+      "sha256": "cc3f750e7e541f56f47b24fba3f56421e0e487001c15fe70626e100cc30f5c70"
     },
     {
       "path": "renderer/assets/tray@1.5x.png",
-      "size": 777,
-      "sha256": "47f49bbe736d8e1b2c2cbe14375004ad6f879407e1d991e21a2e5af70609fcfa"
+      "size": 1583,
+      "sha256": "4475edf9f09d9cc32556991d37d6da358a60c6acf32203836b94c38a7b042013"
     },
     {
       "path": "renderer/assets/tray@2x.png",
-      "size": 1074,
-      "sha256": "c6c93755f18f61eabb014c9d2cc72a9e2ced7733f1841757ad5e818f24abe320"
+      "size": 2438,
+      "sha256": "3613878795dbf607be17f28cb523a392fb7d72cc9abbf86944fee44817749c0c"
     },
     {
       "path": "renderer/fonts/Unbounded-OFL.txt",
@@ -161,13 +156,13 @@
     },
     {
       "path": "renderer/index.html",
-      "size": 98402,
-      "sha256": "741cf0220249d5442525f4f514f4eea684522b21a6262f45350b0511763ed4d4"
+      "size": 97960,
+      "sha256": "ef3c996b208e214baee44de7e1cb11509a778db251eab4d72ddc67ce67ab4050"
     },
     {
       "path": "renderer/js/app.js",
-      "size": 217848,
-      "sha256": "dd3aef8540b3485e8836a3ce0659a0ecee63a35cd50e00a2381d8d2b54f5e7ac"
+      "size": 218642,
+      "sha256": "7e9536f9e02eea15a3249e82da714f92bd8f80628cb07da150f8a7bb6c4106c7"
     },
     {
       "path": "renderer/js/avatar-editor.js",
@@ -183,6 +178,11 @@
       "path": "renderer/js/call.js",
       "size": 88205,
       "sha256": "cae57e07bfc13b900f5717a543723e80021bd93f329c2feb3d588d0e52d3c539"
+    },
+    {
+      "path": "renderer/js/catfish.js",
+      "size": 23810,
+      "sha256": "2b0040d4cf7b7f4684db553b0255f2cbb266ba9de7fa9060857f5f341bd476b4"
     },
     {
       "path": "renderer/js/circle.js",
@@ -221,8 +221,8 @@
     },
     {
       "path": "renderer/js/gamelib.js",
-      "size": 13476,
-      "sha256": "5d20865194cbbdaf48a4d93549b1cf2058b590abe6e0d8786d437cadc3ca7dca"
+      "size": 14400,
+      "sha256": "a8f0cd2a161082b649550d11e392615c9973e21d358e29db4b1f453d150c4409"
     },
     {
       "path": "renderer/js/gauge.js",
@@ -235,9 +235,14 @@
       "sha256": "16c9cbb0b4dcd5ac683ff567190768e55730ab624ecf0b96bf9850d5a6eeab69"
     },
     {
+      "path": "renderer/js/home.js",
+      "size": 19873,
+      "sha256": "a8bd559d050d5028a0238d66206d1dd8f6c4696aafdc708b5b3b1a94474b3ced"
+    },
+    {
       "path": "renderer/js/intro.js",
-      "size": 30527,
-      "sha256": "5b91c5bd0288835837a1a107acc8c4d9768bfb25e4fb8023a3c1d013aeb6bcc0"
+      "size": 29607,
+      "sha256": "5e59dda227ac9e6258f21a75ddcd7329917c5c1c6d033f9f2e1404e9a3dfb2dd"
     },
     {
       "path": "renderer/js/labsound.js",
@@ -266,8 +271,8 @@
     },
     {
       "path": "renderer/js/radio.js",
-      "size": 36318,
-      "sha256": "42b1667fc428cfc5ce86a8452f97d9f0721c4f07c402b1827e70adc25a3119f4"
+      "size": 36974,
+      "sha256": "c80a67ec3d9ea18ba9ba912df279758c6c1f2ca57615d159f14cf4ce0f81c15a"
     },
     {
       "path": "renderer/js/radioviz.js",
@@ -326,13 +331,13 @@
     },
     {
       "path": "renderer/rich.css",
-      "size": 25374,
-      "sha256": "607351ec177a54d942acbebdff516beded4a897e535ff71421ebe86aee7dd607"
+      "size": 26843,
+      "sha256": "12ab9bc7f047f4180d5d561775828bee872ede72a2a30ffa80e23bc064ead050"
     },
     {
       "path": "renderer/styles.css",
-      "size": 128347,
-      "sha256": "1f3a54b79fad2dc067002bb661deaffac87b355bc1075bc306600e662b1ccd2c"
+      "size": 138380,
+      "sha256": "b5445a01074aa88bf2de0c48da23eb5cbf47527ec404808b06665a424dc191ef"
     },
     {
       "path": "renderer/vendor/ICONS-LICENSE.txt",
