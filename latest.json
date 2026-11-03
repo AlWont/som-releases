@@ -1,8 +1,8 @@
 {
-  "version": "0.32.0",
+  "version": "0.33.0",
   "electron": "44.5.1",
-  "date": "2026-11-02",
-  "notes": "Новые рамки аватара — нарисованные и с живой анимацией.\nПеределаны все прежние: у золота и серебра бегает блик и стоят камни, корона нарисована по-настоящему, огонь горит языками, у льда кристаллы и снежинка, листва стала венком с ягодами, у сакуры ветки с цветами, по рамке «Сом» плавает сомик.\nНовые: Наушники, 8 бит, Молния, Гирлянда, Ушки.\nАнимации стоят, когда окно свёрнуто, идёт игра или анимации выключены.",
+  "date": "2026-11-03",
+  "notes": "Новое оформление «Графон»: Som теперь будто под водой — сверху падают лучи света, по фону гуляют блики, как солнце сквозь воду, медленно поднимается взвесь. Всё в цвет выбранной темы.\nПанели объёмные и подсвечены сверху, кнопки и выбранное светятся, новые сообщения выплывают, окна всплывают из глубины, заголовки — новым шрифтом.\nФон двигается, только когда окно Som в фокусе и рисует видеокарта; в игре, в трее и без видеокарты он стоит. Вернуть прежний вид: Настройки → Внешний вид → Оформление → «Строгое».\nРамка «Нефть» перерисована: блестящая чёрная жидкость с радужным переливом, натёки внизу и падающая капля.",
   "files": [
     {
       "path": "applock.cjs",
@@ -41,8 +41,8 @@
     },
     {
       "path": "main.js",
-      "size": 103553,
-      "sha256": "59cda1296dd41749d47b71a127b97580522fb931d597fba5b10f4803e09e6511"
+      "size": 103954,
+      "sha256": "71b0b0617384b81de57b77f4764f14a4c0958350c12990ef45a3b178ba1c97e3"
     },
     {
       "path": "overlay-preload.cjs",
@@ -52,7 +52,7 @@
     {
       "path": "package.json",
       "size": 304,
-      "sha256": "84296e808e84056a18695c697d37da19b531767df062941fddda934f6d6999a1"
+      "sha256": "9d00d749318ea3f6daaa7f708275f436eb8170e83bc9349963843c66a852e375"
     },
     {
       "path": "preload.cjs",
@@ -130,14 +130,44 @@
       "sha256": "c6c93755f18f61eabb014c9d2cc72a9e2ced7733f1841757ad5e818f24abe320"
     },
     {
+      "path": "renderer/fonts/Unbounded-OFL.txt",
+      "size": 4390,
+      "sha256": "48a780bc857729859e54d1e691b05792894a26634edc1c4b5dbeabffe6941758"
+    },
+    {
+      "path": "renderer/fonts/unbounded-cyrillic-wght-normal.woff2",
+      "size": 31424,
+      "sha256": "e30bf6a6063b6a47232bbd657e24c7cf4fdaf76fc2c50d92d9ee63e2ad2087cf"
+    },
+    {
+      "path": "renderer/fonts/unbounded-latin-wght-normal.woff2",
+      "size": 50904,
+      "sha256": "22f9b928aa3928a896340422b54d690fbb5875c30eae4c106f029c61f2289fd6"
+    },
+    {
+      "path": "renderer/img/caustics-a.png",
+      "size": 39727,
+      "sha256": "2b750e49a8048bc7a1805b8ca20ccd77456a57c873cbb8389638e445508a135f"
+    },
+    {
+      "path": "renderer/img/caustics-b.png",
+      "size": 46288,
+      "sha256": "22e4e49d9ef9e0080a78cc47aa5300912f7a6682e9893a5439f3be97aebd793d"
+    },
+    {
+      "path": "renderer/img/motes.png",
+      "size": 8679,
+      "sha256": "45df036a5abc54a044a0a1952cfa793750595ca6d20784390ac0b8fe72daccc6"
+    },
+    {
       "path": "renderer/index.html",
-      "size": 97256,
-      "sha256": "57f13242ed69983da2e4a6246045f3a758b600459cfcc9ed4548a84627fbaa20"
+      "size": 97813,
+      "sha256": "2e204a3eb23338ec8e8b2136b6e4eeedb4be944b31de13c15bcebfda94d49545"
     },
     {
       "path": "renderer/js/app.js",
-      "size": 215927,
-      "sha256": "999676468ad91c609213449140b6b12015fbe211ebef19fafcfee435cf6767f8"
+      "size": 217517,
+      "sha256": "3855081a2e43c16d4b99c65513e1b984370f6d7af1d96e161232c8c5a5c6d839"
     },
     {
       "path": "renderer/js/avatar-editor.js",
@@ -171,8 +201,8 @@
     },
     {
       "path": "renderer/js/early.js",
-      "size": 658,
-      "sha256": "65857b9b34392f5f2df75b33a32514ee529b53a6d791d63c12f65dccdf47630c"
+      "size": 991,
+      "sha256": "18a2166375e4a23785f16b4cb234493978e66d51658d0f4f2c5b09756b58c637"
     },
     {
       "path": "renderer/js/emoji-data.js",
@@ -181,8 +211,8 @@
     },
     {
       "path": "renderer/js/frames.js",
-      "size": 48366,
-      "sha256": "fa36fb39091ca2651b0ffe3af58bd4ac49870fb9bb6ca16014dc347e492d8a41"
+      "size": 54745,
+      "sha256": "51a7c5996bb9f6bb410a9a45461277850f393adfedbd5cbc8dec66ce730b081c"
     },
     {
       "path": "renderer/js/gameinvite.js",
@@ -241,8 +271,8 @@
     },
     {
       "path": "renderer/js/resources.js",
-      "size": 15724,
-      "sha256": "e51da2eeb67f0cfe4190993dfec1f49cfba6ad5a5d21f0e445aad168ffd52bbd"
+      "size": 15980,
+      "sha256": "81fd5cd1b142c7ca085a31177c3d4982580611708bc7b8a5cb920fd71608a936"
     },
     {
       "path": "renderer/js/schedule.js",
@@ -290,9 +320,14 @@
       "sha256": "c80bcf96824a38d555e7e5c1007c05d02a2183b2de88df8d44891693b8e8948f"
     },
     {
+      "path": "renderer/rich.css",
+      "size": 24790,
+      "sha256": "c59e7b7dba671816285eec786320ab43f3bc140d468458b77d4b374a01522403"
+    },
+    {
       "path": "renderer/styles.css",
-      "size": 127387,
-      "sha256": "c8815ac5eb2265e2d76b7ca3b8a4be0d58edbcc1f5c10f739a5697e2209db795"
+      "size": 125797,
+      "sha256": "943de54e976048d947b02be17bd669567a95f7ba037dac11ac43e1cea8d8890a"
     },
     {
       "path": "renderer/vendor/ICONS-LICENSE.txt",
