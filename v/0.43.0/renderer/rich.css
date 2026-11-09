@@ -1,0 +1,333 @@
+/* Оформление «Графон»: Som — сом, он живёт в глубине. За всем окном медленно гуляют блики света
+   сквозь воду (каустика) цвета темы, панели полупрозрачные и подсвечены сверху, как будто свет
+   падает с поверхности, а всё, чего вы касаетесь, отвечает мягким свечением.
+   Двигается только вода на фоне — и замирает, когда Som свёрнут, идёт игра или открыто окно поверх.
+   Включено, когда у <html> data-ui="rich" (Настройки → Внешний вид → Оформление). */
+
+@font-face {
+  font-family: "Unbounded"; font-style: normal; font-display: swap; font-weight: 200 900;
+  src: url("fonts/unbounded-cyrillic-wght-normal.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Unbounded"; font-style: normal; font-display: swap; font-weight: 200 900;
+  src: url("fonts/unbounded-latin-wght-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+#depth { display: none; }
+
+:root[data-ui="rich"] {
+  --glow: color-mix(in srgb, var(--accent) 55%, transparent);
+  --glow-soft: color-mix(in srgb, var(--accent) 20%, transparent);
+  --rim: rgba(255, 255, 255, 0.075);
+  --rim-strong: rgba(255, 255, 255, 0.13);
+  --abyss: color-mix(in srgb, var(--bg) 62%, #000);
+  --caustic: color-mix(in srgb, var(--accent) 45%, #fff);
+  --caustic-op: 0.17;
+  --ray-k: 0.11;
+  --mote-op: 0.55;
+  --lift: 0 10px 30px -14px rgba(0, 0, 0, 0.7);
+  --display: "Unbounded", "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
+}
+:root[data-ui="rich"][data-scheme="light"] {
+  --rim: rgba(255, 255, 255, 0.7);
+  --rim-strong: rgba(255, 255, 255, 0.95);
+  --abyss: color-mix(in srgb, var(--bg) 84%, var(--accent));
+  --caustic: #fff;
+  --caustic-op: 0.55;
+  --ray-k: 0.5;
+  --mote-op: 0.8;
+  --lift: 0 10px 28px -16px rgba(40, 40, 60, 0.35);
+}
+
+/* ---------- Глубина: фон всего окна ---------- */
+:root[data-ui="rich"] body {
+  background:
+    radial-gradient(70% 55% at 34% -8%, color-mix(in srgb, var(--accent) 30%, transparent), transparent 70%),
+    radial-gradient(110% 70% at 60% -20%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 75%),
+    radial-gradient(60% 45% at 100% 105%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 70%),
+    linear-gradient(180deg, color-mix(in srgb, var(--bg) 88%, var(--accent)) 0%, var(--bg) 38%, var(--abyss) 100%);
+}
+/* Светлые темы: у поверхности светлее, в глубину — оттенок темы. */
+:root[data-ui="rich"][data-scheme="light"] body {
+  background:
+    radial-gradient(70% 55% at 34% -8%, rgba(255, 255, 255, 0.9), transparent 70%),
+    radial-gradient(60% 50% at 100% 105%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 70%),
+    linear-gradient(180deg, color-mix(in srgb, var(--bg) 70%, #fff) 0%, var(--bg) 40%, var(--abyss) 100%);
+}
+:root[data-ui="rich"][data-scheme="light"] #depth .ca, :root[data-ui="rich"][data-scheme="light"] #depth .rays { background-color: color-mix(in srgb, var(--accent) 35%, #fff); }
+:root[data-ui="rich"][data-scheme="light"] #depth .motes { background: color-mix(in srgb, var(--accent) 60%, transparent); }
+:root[data-ui="rich"] #depth {
+  display: block; position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  /* Свет идёт сверху: у поверхности блики ярче, в глубине гаснут. */
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.7) 45%, rgba(0, 0, 0, 0.3) 100%);
+  mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.7) 45%, rgba(0, 0, 0, 0.3) 100%);
+}
+#depth > i { position: absolute; display: block; will-change: transform; }
+/* Каустика: два слоя бликов разного масштаба плавно гуляют навстречу друг другу. */
+#depth .ca { inset: -340px; background: var(--caustic); opacity: var(--caustic-op); -webkit-mask-repeat: repeat; mask-repeat: repeat; }
+#depth .ca1 { -webkit-mask-image: url("img/caustics-a.png"); mask-image: url("img/caustics-a.png"); -webkit-mask-size: 680px; mask-size: 680px; animation: ca-a 44s ease-in-out infinite alternate; }
+#depth .ca2 { -webkit-mask-image: url("img/caustics-b.png"); mask-image: url("img/caustics-b.png"); -webkit-mask-size: 940px; mask-size: 940px; opacity: calc(var(--caustic-op) * 0.7); animation: ca-b 59s ease-in-out infinite alternate; }
+@keyframes ca-a { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-300px, 170px, 0); } }
+@keyframes ca-b { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(280px, 230px, 0); } }
+/* Лучи света с поверхности: мягкие полосы сверху, чуть покачиваются. */
+#depth .rays {
+  inset: -12% -25% 20% -25%; transform-origin: 30% 0;
+  --ray: color-mix(in srgb, var(--caustic) calc(var(--ray-k) * 100%), transparent);
+  background:
+    linear-gradient(101deg, transparent 14%, var(--ray) 17.5%, transparent 21%),
+    linear-gradient(104deg, transparent 27%, color-mix(in srgb, var(--caustic) calc(var(--ray-k) * 60%), transparent) 31%, transparent 37%),
+    linear-gradient(99deg, transparent 43%, var(--ray) 45.5%, transparent 48%),
+    linear-gradient(106deg, transparent 56%, color-mix(in srgb, var(--caustic) calc(var(--ray-k) * 55%), transparent) 61%, transparent 68%),
+    linear-gradient(102deg, transparent 74%, color-mix(in srgb, var(--caustic) calc(var(--ray-k) * 80%), transparent) 77%, transparent 80%);
+  -webkit-mask-image: linear-gradient(180deg, #000, transparent 85%); mask-image: linear-gradient(180deg, #000, transparent 85%);
+  animation: rays 21s ease-in-out infinite alternate;
+}
+@keyframes rays { from { transform: translateX(-2.5%) skewX(-3deg); } to { transform: translateX(2.5%) skewX(3deg); } }
+/* Взвесь в воде: крошечные частицы медленно поднимаются. */
+#depth .motes { left: 0; right: 0; top: 0; background: var(--caustic); -webkit-mask-image: url("img/motes.png"); mask-image: url("img/motes.png"); -webkit-mask-repeat: repeat; mask-repeat: repeat; }
+#depth .m1 { bottom: -512px; -webkit-mask-size: 512px; mask-size: 512px; opacity: var(--mote-op); animation: rise-1 52s linear infinite; }
+@keyframes rise-1 { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, -512px, 0); } }
+/* Вода замирает: окно скрыто или не в фокусе, идёт игра, анимации выключены, нет видеокарты или открыто окно поверх. */
+:root[data-bg="1"] #depth > i, :root[data-gaming="1"] #depth > i, :root[data-focus="0"] #depth > i, :root:has(dialog[open]) #depth > i { animation-play-state: paused; }
+:root[data-no-anim="1"] #depth > i, :root[data-gpu="0"] #depth > i { animation: none; }
+@media (prefers-reduced-motion: reduce) { #depth > i { animation: none; } }
+
+:root[data-ui="rich"] .shell, :root[data-ui="rich"] .welcome, :root[data-ui="rich"] .boot { position: relative; z-index: 1; }
+
+/* ---------- Шрифт заголовков ---------- */
+:root[data-ui="rich"] .side-head h2, :root[data-ui="rich"] .settings-nav h2, :root[data-ui="rich"] .set-title,
+:root[data-ui="rich"] dialog h2, :root[data-ui="rich"] .welcome-card h1, :root[data-ui="rich"] .hh-hi, :root[data-ui="rich"] .big-code {
+  font-family: var(--display); font-weight: 600; letter-spacing: -0.01em;
+}
+:root[data-ui="rich"] .side-head h2 { font-size: 15px; }
+:root[data-ui="rich"] .set-title { font-size: 19px; }
+:root[data-ui="rich"] .g-val { font-family: var(--display); font-weight: 600; }
+
+/* ---------- Каркас: панели над водой ---------- */
+:root[data-ui="rich"] .rail {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--rail) 76%, transparent), color-mix(in srgb, var(--rail) 90%, transparent));
+  border-right-color: color-mix(in srgb, var(--line) 60%, transparent);
+  box-shadow: inset -1px 0 0 var(--rim);
+}
+:root[data-ui="rich"] .side {
+  background: color-mix(in srgb, var(--side) 74%, transparent);
+  border-right-color: color-mix(in srgb, var(--line) 60%, transparent);
+  box-shadow: inset -1px 0 0 var(--rim);
+}
+:root[data-ui="rich"] .me-panel { background: color-mix(in srgb, var(--rail) 72%, transparent); border-top-color: color-mix(in srgb, var(--line) 60%, transparent); box-shadow: inset 0 1px 0 var(--rim); }
+:root[data-ui="rich"] .chat { background: transparent; }
+:root[data-ui="rich"] .chat-head {
+  position: relative; z-index: 2;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--panel) 84%, transparent), color-mix(in srgb, var(--panel) 64%, transparent));
+  border-bottom-color: color-mix(in srgb, var(--line) 55%, transparent);
+  box-shadow: inset 0 1px 0 var(--rim), 0 10px 24px -18px rgba(0, 0, 0, 0.75);
+}
+:root[data-ui="rich"] .banner { background: color-mix(in srgb, var(--warn) 10%, transparent); border-bottom-color: color-mix(in srgb, var(--warn) 22%, transparent); }
+
+/* Левая колонка: кнопки-«капли» */
+:root[data-ui="rich"] .rail-btn {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--panel-2) 92%, #fff 8%), var(--panel-2));
+  box-shadow: inset 0 1px 0 var(--rim), 0 4px 12px -6px rgba(0, 0, 0, 0.6);
+  transition: border-radius 0.22s ease, box-shadow 0.2s ease, transform 0.15s ease, color 0.15s;
+}
+:root[data-ui="rich"] .rail-btn:hover:not(:disabled) { border-radius: 17px; color: var(--text); transform: translateY(-1px); box-shadow: inset 0 1px 0 var(--rim-strong), 0 0 0 1px var(--glow-soft), 0 8px 20px -8px var(--glow); }
+:root[data-ui="rich"] .rail-btn[aria-current="true"] { border-radius: 17px; box-shadow: inset 0 1px 0 var(--rim-strong), 0 0 0 1px var(--glow-soft), 0 6px 18px -8px var(--glow); }
+:root[data-ui="rich"] .rail-btn[aria-current="true"]::before { background: var(--accent); box-shadow: 0 0 10px var(--glow); }
+
+/* Список друзей */
+:root[data-ui="rich"] .row { position: relative; transition: background-color 0.15s ease, box-shadow 0.15s ease; }
+:root[data-ui="rich"] .row:hover { background: color-mix(in srgb, var(--hover) 80%, transparent); box-shadow: inset 0 1px 0 var(--rim); }
+:root[data-ui="rich"] .row[aria-current="true"] {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 19%, transparent), color-mix(in srgb, var(--accent) 6%, transparent) 75%);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 16%, transparent), inset 0 1px 0 var(--rim);
+}
+:root[data-ui="rich"] .row[aria-current="true"]::before {
+  content: ''; position: absolute; left: -8px; top: 12px; bottom: 12px; width: 3px; border-radius: 0 3px 3px 0;
+  background: var(--accent); box-shadow: 0 0 10px var(--glow);
+}
+:root[data-ui="rich"] .badge { box-shadow: 0 0 0 2px color-mix(in srgb, var(--side) 80%, transparent), 0 0 12px var(--glow); }
+:root[data-ui="rich"] .avatar .dot[data-p="online"] { box-shadow: 0 0 6px color-mix(in srgb, var(--good) 65%, transparent); }
+:root[data-ui="rich"] .req { background: color-mix(in srgb, var(--panel) 80%, transparent); box-shadow: inset 0 1px 0 var(--rim), var(--lift); }
+
+/* ---------- Кнопки, поля ---------- */
+:root[data-ui="rich"] .btn { box-shadow: inset 0 1px 0 var(--rim); transition: background-color 0.15s, box-shadow 0.18s, transform 0.1s, filter 0.15s, border-color 0.15s; }
+:root[data-ui="rich"] .btn:active:not(:disabled) { transform: translateY(1px); }
+:root[data-ui="rich"] .btn.ghost { box-shadow: none; }
+:root[data-ui="rich"] .btn.primary {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 78%, #fff), var(--accent) 52%, color-mix(in srgb, var(--accent) 86%, #000));
+  border-color: color-mix(in srgb, var(--accent) 75%, #000);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 14px -6px var(--glow);
+  text-shadow: 0 1px 0 color-mix(in srgb, var(--accent) 60%, #fff);
+}
+:root[data-ui="rich"][data-scheme="dark"] .btn.primary { text-shadow: none; }
+:root[data-ui="rich"] .btn.primary:hover:not(:disabled) {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 70%, #fff), var(--accent) 52%, color-mix(in srgb, var(--accent) 90%, #000));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 0 0 3px var(--glow-soft), 0 8px 24px -8px var(--glow);
+}
+:root[data-ui="rich"] .icon-btn { transition: background-color 0.15s, color 0.15s, box-shadow 0.15s; }
+:root[data-ui="rich"] .icon-btn:hover { background: color-mix(in srgb, var(--accent) 13%, var(--hover)); box-shadow: inset 0 1px 0 var(--rim); }
+:root[data-ui="rich"] input[type="text"], :root[data-ui="rich"] input[type="number"], :root[data-ui="rich"] input[type="password"],
+:root[data-ui="rich"] input[type="search"], :root[data-ui="rich"] textarea, :root[data-ui="rich"] select {
+  transition: border-color 0.15s, box-shadow 0.18s;
+}
+:root[data-ui="rich"] input[type="text"]:focus, :root[data-ui="rich"] input[type="number"]:focus, :root[data-ui="rich"] input[type="password"]:focus,
+:root[data-ui="rich"] input[type="search"]:focus, :root[data-ui="rich"] textarea:focus {
+  border-color: var(--accent); box-shadow: 0 0 0 3px var(--glow-soft), 0 0 18px -6px var(--glow);
+}
+:root[data-ui="rich"] .composer textarea {
+  background: color-mix(in srgb, var(--panel) 78%, transparent);
+  box-shadow: inset 0 1px 0 var(--rim), 0 8px 24px -16px rgba(0, 0, 0, 0.8);
+}
+:root[data-ui="rich"] .composer textarea:focus { box-shadow: 0 0 0 3px var(--glow-soft), 0 0 22px -8px var(--glow), inset 0 1px 0 var(--rim); }
+:root[data-ui="rich"] .seg { background: color-mix(in srgb, var(--panel-2) 80%, transparent); box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25); }
+:root[data-ui="rich"] .seg button { transition: background-color 0.15s, color 0.15s, box-shadow 0.18s; }
+:root[data-ui="rich"] .seg button[aria-pressed="true"] {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--panel) 92%, #fff 8%), var(--panel));
+  box-shadow: inset 0 1px 0 var(--rim-strong), 0 2px 8px -2px rgba(0, 0, 0, 0.45), 0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+:root[data-ui="rich"] :focus-visible { outline-color: var(--accent); box-shadow: 0 0 0 4px var(--glow-soft); }
+:root[data-ui="rich"] ::selection { background: color-mix(in srgb, var(--accent) 38%, transparent); }
+:root[data-ui="rich"] ::-webkit-scrollbar { width: 10px; height: 10px; }
+:root[data-ui="rich"] ::-webkit-scrollbar-track { background: transparent; }
+:root[data-ui="rich"] ::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--text) 16%, transparent); border: 3px solid transparent; border-radius: 10px; background-clip: padding-box; }
+:root[data-ui="rich"] ::-webkit-scrollbar-thumb:hover { background-color: color-mix(in srgb, var(--accent) 55%, transparent); }
+
+/* ---------- Переписка ---------- */
+:root[data-ui="rich"] .day {
+  padding: 3px 12px; border-radius: 12px; color: var(--muted);
+  background: color-mix(in srgb, var(--panel) 62%, transparent); box-shadow: inset 0 1px 0 var(--rim);
+}
+:root[data-ui="rich"] .bubble {
+  border-color: color-mix(in srgb, var(--line) 55%, transparent);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--theirs) 94%, #fff 6%), var(--theirs));
+  box-shadow: inset 0 1px 0 var(--rim), 0 4px 14px -10px rgba(0, 0, 0, 0.8);
+  border-radius: 16px 16px 16px 6px;
+}
+:root[data-ui="rich"] .msg.in.same .bubble { border-top-left-radius: 6px; }
+:root[data-ui="rich"] .msg.out .bubble {
+  background: linear-gradient(155deg, color-mix(in srgb, var(--mine) 76%, var(--accent) 24%), var(--mine) 72%);
+  border-color: color-mix(in srgb, var(--accent) 24%, transparent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 6px 18px -12px var(--glow);
+  border-radius: 16px 16px 6px 16px;
+}
+:root[data-ui="rich"] .msg.out.same .bubble { border-top-right-radius: 6px; }
+:root[data-ui="rich"] .att { box-shadow: inset 0 1px 0 var(--rim), 0 4px 14px -10px rgba(0, 0, 0, 0.8); }
+:root[data-ui="rich"] .reacts button { transition: transform 0.12s ease, box-shadow 0.15s; }
+:root[data-ui="rich"] .reacts button:hover { transform: translateY(-1px); }
+:root[data-ui="rich"] .reacts button.mine { box-shadow: 0 0 10px -2px var(--glow); }
+/* Новое сообщение выплывает со своей стороны. */
+:root[data-ui="rich"] .msg.arrive.in { animation: msg-in-l 0.34s cubic-bezier(0.2, 0.9, 0.25, 1.15) both; transform-origin: 0 100%; }
+:root[data-ui="rich"] .msg.arrive.out { animation: msg-in-r 0.34s cubic-bezier(0.2, 0.9, 0.25, 1.15) both; transform-origin: 100% 100%; }
+@keyframes msg-in-l { from { opacity: 0; transform: translate(-12px, 8px) scale(0.94); } to { opacity: 1; transform: none; } }
+@keyframes msg-in-r { from { opacity: 0; transform: translate(12px, 8px) scale(0.94); } to { opacity: 1; transform: none; } }
+
+/* ---------- Окна поверх: всплывают из глубины ---------- */
+:root[data-ui="rich"] dialog {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--panel) 96%, #fff 4%), var(--panel) 40%);
+  border-color: color-mix(in srgb, var(--line) 70%, transparent);
+  box-shadow: inset 0 1px 0 var(--rim-strong), 0 0 0 1px rgba(0, 0, 0, 0.25), 0 30px 80px -24px rgba(0, 0, 0, 0.75), 0 0 60px -30px var(--glow);
+}
+/* backwards, не both: после анимации у окна не должно оставаться transform — иначе меню внутри (position: fixed)
+   считает координаты от угла окна и уезжает. */
+:root[data-ui="rich"] dialog:not(.lock-dlg)[open] { animation: dlg-in 0.28s cubic-bezier(0.2, 0.9, 0.25, 1) backwards; }
+:root[data-ui="rich"] dialog:not(.lock-dlg)::backdrop { background: radial-gradient(ellipse at 50% 35%, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.62)); animation: bd-in 0.25s ease both; }
+@keyframes dlg-in { from { opacity: 0; transform: translateY(16px) scale(0.975); } to { opacity: 1; transform: none; } }
+@keyframes bd-in { from { opacity: 0; } to { opacity: 1; } }
+:root[data-ui="rich"] .pop-menu, :root[data-ui="rich"] .pop-react, :root[data-ui="rich"] .pop-sched, :root[data-ui="rich"] .me-pop {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--panel) 95%, #fff 5%), var(--panel) 50%);
+  border-color: color-mix(in srgb, var(--line) 70%, transparent);
+  box-shadow: inset 0 1px 0 var(--rim-strong), 0 18px 44px -14px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+:root[data-ui="rich"] .pop-menu, :root[data-ui="rich"] .pop-react, :root[data-ui="rich"] .pop-sched { animation: pop-in 0.16s cubic-bezier(0.2, 0.9, 0.3, 1.1); }
+@keyframes pop-in { from { opacity: 0; transform: translateY(4px) scale(0.97); } to { opacity: 1; transform: none; } }
+:root[data-ui="rich"] .pop-menu button { transition: background-color 0.12s; }
+:root[data-ui="rich"] .pop-menu button:hover, :root[data-ui="rich"] .pop-menu button:focus-visible { background: color-mix(in srgb, var(--accent) 14%, var(--hover)); box-shadow: none; }
+:root[data-ui="rich"] .toast {
+  background: color-mix(in srgb, var(--panel) 86%, transparent);
+  -webkit-backdrop-filter: blur(10px) saturate(1.2); backdrop-filter: blur(10px) saturate(1.2);
+  border-left-width: 3px; box-shadow: inset 0 1px 0 var(--rim-strong), 0 14px 36px -14px rgba(0, 0, 0, 0.75), -8px 0 24px -16px var(--glow);
+}
+:root[data-ui="rich"] .toast[data-kind="bad"] { box-shadow: inset 0 1px 0 var(--rim-strong), 0 14px 36px -14px rgba(0, 0, 0, 0.75), -8px 0 24px -14px color-mix(in srgb, var(--bad) 60%, transparent); }
+:root[data-ui="rich"] .toast[data-kind="ok"] { box-shadow: inset 0 1px 0 var(--rim-strong), 0 14px 36px -14px rgba(0, 0, 0, 0.75), -8px 0 24px -14px color-mix(in srgb, var(--good) 60%, transparent); }
+
+/* ---------- Настройки ---------- */
+:root[data-ui="rich"] .settings-nav { background: linear-gradient(180deg, color-mix(in srgb, var(--panel-2) 92%, #fff 3%), var(--panel-2)); box-shadow: inset -1px 0 0 var(--rim); }
+:root[data-ui="rich"] .set-tab { position: relative; transition: background-color 0.15s, color 0.15s; }
+:root[data-ui="rich"] .set-tab[aria-selected="true"] {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 20%, transparent), color-mix(in srgb, var(--accent) 6%, transparent));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 16%, transparent);
+}
+:root[data-ui="rich"] .set-tab[aria-selected="true"]::before {
+  content: ''; position: absolute; left: -12px; top: 9px; bottom: 9px; width: 3px; border-radius: 0 3px 3px 0; background: var(--accent); box-shadow: 0 0 10px var(--glow);
+}
+:root[data-ui="rich"] .set-group {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--panel-2) 62%, transparent), color-mix(in srgb, var(--panel-2) 32%, transparent));
+  border-color: color-mix(in srgb, var(--line) 70%, transparent); box-shadow: inset 0 1px 0 var(--rim);
+}
+:root[data-ui="rich"] .frame-card, :root[data-ui="rich"] .bg-card, :root[data-ui="rich"] .fx-card, :root[data-ui="rich"] .theme-card {
+  transition: border-color 0.15s, box-shadow 0.2s, transform 0.15s;
+}
+:root[data-ui="rich"] .frame-card:hover, :root[data-ui="rich"] .bg-card:hover, :root[data-ui="rich"] .fx-card:hover, :root[data-ui="rich"] .theme-card:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -14px rgba(0, 0, 0, 0.7); }
+:root[data-ui="rich"] .frame-card[aria-pressed="true"], :root[data-ui="rich"] .bg-card[aria-pressed="true"], :root[data-ui="rich"] .fx-card[aria-pressed="true"], :root[data-ui="rich"] .theme-card[aria-pressed="true"] {
+  box-shadow: 0 0 0 1px var(--accent), 0 0 22px -6px var(--glow);
+}
+
+/* ---------- Звонок ---------- */
+:root[data-ui="rich"] .call-panel {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--rail) 80%, transparent), color-mix(in srgb, var(--rail) 62%, transparent));
+  border-bottom-color: color-mix(in srgb, var(--line) 55%, transparent);
+  box-shadow: inset 0 -1px 0 var(--rim);
+}
+:root[data-ui="rich"] .tile { border-radius: 14px; box-shadow: inset 0 0 0 1px var(--rim), 0 10px 26px -14px rgba(0, 0, 0, 0.75); }
+:root[data-ui="rich"] .tile.person {
+  background:
+    radial-gradient(70% 80% at 50% 38%, color-mix(in srgb, var(--tile-c, #5f7f6a) 55%, var(--panel)), transparent 75%),
+    color-mix(in srgb, var(--tile-c, #5f7f6a) 20%, var(--panel));
+}
+:root[data-ui="rich"] .tile::after { box-shadow: inset 0 0 0 2px var(--good), inset 0 0 28px color-mix(in srgb, var(--good) 40%, transparent); }
+:root[data-ui="rich"] .round {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--panel-2) 90%, #fff 10%), var(--panel-2));
+  border-color: color-mix(in srgb, var(--line) 70%, transparent);
+  box-shadow: inset 0 1px 0 var(--rim-strong), 0 6px 16px -8px rgba(0, 0, 0, 0.7);
+  transition: transform 0.12s ease, box-shadow 0.18s, background-color 0.15s;
+}
+:root[data-ui="rich"] .round:hover { transform: translateY(-1px); box-shadow: inset 0 1px 0 var(--rim-strong), 0 0 0 3px var(--glow-soft), 0 10px 22px -10px var(--glow); }
+:root[data-ui="rich"] .round:active { transform: translateY(1px); }
+:root[data-ui="rich"] .round.toggle[aria-pressed="true"] { background: var(--text); box-shadow: 0 0 18px -4px color-mix(in srgb, var(--text) 50%, transparent); }
+:root[data-ui="rich"] .round.hang {
+  background: linear-gradient(180deg, #e2604f, #bd3d30); border-color: #a8352a;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 8px 22px -8px rgba(226, 80, 64, 0.8);
+}
+:root[data-ui="rich"] .round.hang:hover { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 0 3px rgba(226, 80, 64, 0.25), 0 10px 26px -8px rgba(226, 80, 64, 0.9); }
+
+/* ---------- Знакомство ---------- */
+:root[data-ui="rich"] .welcome-card {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--panel) 90%, #fff 4%), color-mix(in srgb, var(--panel) 86%, transparent));
+  border-color: color-mix(in srgb, var(--line) 70%, transparent);
+  box-shadow: inset 0 1px 0 var(--rim-strong), 0 40px 90px -30px rgba(0, 0, 0, 0.8), 0 0 80px -40px var(--glow);
+}
+
+/* ---------- Ресурсы ПК: спидометры как приборы ---------- */
+:root[data-ui="rich"] .gauge {
+  background: radial-gradient(90% 70% at 50% 30%, color-mix(in srgb, var(--panel-2) 80%, #fff 4%), color-mix(in srgb, var(--panel-2) 85%, #000));
+  box-shadow: inset 0 1px 0 var(--rim), 0 12px 28px -16px rgba(0, 0, 0, 0.8);
+}
+:root[data-ui="rich"] .gauge[data-state="tight"] { box-shadow: inset 0 1px 0 var(--rim), 0 0 0 3px color-mix(in srgb, var(--bad) 18%, transparent), 0 0 36px -10px color-mix(in srgb, var(--bad) 70%, transparent); }
+:root[data-ui="rich"] .g-needle path { filter: drop-shadow(0 0 3px var(--st)); }
+
+/* Радио: пластинка играющей станции подсвечена (свечение — на неподвижной рамке, чтобы не перерисовывать его каждый кадр). */
+:root[data-ui="rich"] .radio-dock[data-state="playing"] .rd-logo .r-logo.is-vinyl { box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent), 0 0 14px -2px color-mix(in srgb, var(--accent) 60%, transparent); }
+:root[data-ui="rich"][data-gpu="1"] .rd-viz { filter: drop-shadow(0 0 5px color-mix(in srgb, var(--accent) 45%, transparent)); }
+
+/* Главная: заголовок крупным шрифтом, значок покачивается на воде, портреты друзей со светом сверху. */
+:root[data-ui="rich"] .hh-hi { font-family: var(--display); font-weight: 600; letter-spacing: -0.01em; }
+:root[data-ui="rich"] .hh-emblem { width: 84px; height: 84px; box-shadow: 0 16px 34px rgba(0, 0, 0, 0.42), 0 0 0 1px rgba(255, 255, 255, 0.06), 0 0 40px -8px var(--glow-soft); animation: hh-bob 7s ease-in-out infinite alternate; }
+@keyframes hh-bob { from { transform: translateY(0) rotate(0deg); } to { transform: translateY(-5px) rotate(-1.5deg); } }
+:root[data-bg="1"] .hh-emblem, :root[data-gaming="1"] .hh-emblem, :root[data-focus="0"] .hh-emblem, :root:has(dialog[open]) .hh-emblem { animation-play-state: paused; }
+:root[data-no-anim="1"] .hh-emblem, :root[data-gpu="0"] .hh-emblem { animation: none; }
+:root[data-ui="rich"] .hp, :root[data-ui="rich"] .hu-list, :root[data-ui="rich"] .home-radio, :root[data-ui="rich"] .hs-list li { box-shadow: inset 0 1px 0 var(--rim); }
+:root[data-ui="rich"] .hp:hover, :root[data-ui="rich"] .hp:focus-within { box-shadow: inset 0 1px 0 var(--rim-strong), 0 10px 26px -12px var(--glow); }
+:root[data-ui="rich"] .hq.primary { background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 88%, white), var(--accent)); box-shadow: 0 6px 18px -6px var(--glow); }
+:root[data-ui="rich"] .home-note { box-shadow: inset 0 1px 0 var(--rim); }
